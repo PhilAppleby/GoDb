@@ -1,0 +1,20 @@
+import os
+import pymongo
+from flask import Flask
+from config import basedir
+from config import DBNAME
+from models import DataStore
+
+app = Flask(__name__)
+app.config.from_object('config')
+
+connection = pymongo.MongoClient("mongodb://localhost")
+login_str = "connection." + DBNAME
+print "LOGIN:", login_str
+try:
+  db = eval(login_str)
+  ds = DataStore(db, DBNAME)
+except:
+  print "Unexpected error:", sys.exc_info()[0]
+
+from app import views, models

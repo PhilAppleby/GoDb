@@ -1,0 +1,171 @@
+#-------------------------------------------------------------------------------
+# Contains handlers for GenomicsDB search end-points
+#
+#
+#-------------------------------------------------------------------------------
+import os
+import time
+from flask import render_template, flash, redirect, session, url_for, request, g
+from flask import make_response, send_from_directory
+from werkzeug.utils import secure_filename
+from app import app
+from app import ds
+from forms import SearchForm, SearchRangeForm, UploadForm
+from datetime import datetime
+from utils import allowed_file
+
+@app.errorhandler(404)
+def internal_error(error):
+  return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+  return render_template('500.html'), 500
+
+@app.route('/', methods = ['GET', 'POST'])
+@app.route('/index', methods = ['GET', 'POST'])
+@app.route('/index/<rsid>', methods = ['GET', 'POST'])
+@app.route('/index/<rsid>/<threshold>', methods = ['GET', 'POST'])
+@app.route('/index/<rsid>/<threshold>/<procopt>', methods = ['GET', 'POST'])
+@app.route('/index/<rsid>/<threshold>/<procopt>/<combine>', methods = ['GET', 'POST'])
+def index(rsid=None, threshold=0.9, combine="combine", procopt=None):
+  """
+  Home page - search by single rsid
+  """
+  form = SearchForm()
+  print "index", procopt
+  msg = ""
+  if form.validate_on_submit():
+    procopt = 'display'
+    if "dbtn" in request.form:
+      procopt = 'download'
+    return redirect(url_for('index', rsid=form.rs.data, threshold=form.threshold.data, procopt=procopt))
+  marker_data = []
+  threshold = float(threshold)
+  if rsid != None:
+    if procopt == 'download':
+      (sample_return_data, snp_return_data, msg) = ds.get_rslist_data([rsid], threshold, combine)
+      print "Make zip data (r)"
+      zipfilename = "single_snp_results.zip"
+      body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+      response = make_response(body)
+      response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
+      return response
+
+    (marker_data, msg) = ds.get_marker_summary_probs(rsid, threshold)
+    form.rs.data = rsid
+    form.threshold.data = threshold
+  return render_template('index.html',
+    title = 'Home',
+    form = form,
+    marker_data = marker_data,
+    msg = msg,
+    db_name = ds.get_db_name())
+
+@app.route('/range', methods = ['GET', 'POST'])
+@app.route('/range/<chr>/<start>/<end>/<procopt>', methods = ['GET', 'POST'])
+@app.route('/range/<chr>/<start>/<end>/<procopt>/combine', methods = ['GET', 'POST'])
+def range(chr = None, start = None, end=None, combine="combine", procopt=None):
+  """
+  Search by range within chromosome
+  """
+  print "range", procopt
+  form = SearchRangeForm(request.form)
+  msg = ""
+  if form.validate_on_submit():
+    print "range - form validated"
+    procopt = 'display'
+    if "dbtn" in request.form:
+      print "range - download"
+      procopt = 'download'
+    return redirect(url_for('range', 
+      chr=form.chr.data, 
+      start=form.start.data, 
+      end=form.end.data,
+      procopt=procopt))
+  else:
+    print "range - form validation fail"
+  marker_data = []
+  if chr != None:
+    if procopt == 'download':
+      print "range - get range data"
+      (sample_return_data, snp_return_data, msg) = ds.get_range_data(chr, start, end, 0.9, combine, "csv")
+      print "Make zip data (r)"
+      zipfilename = "range_results.zip"
+      body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+      response = make_response(body)
+      response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
+      return response
+      
+    print "range - get marker data"
+    (marker_data, msg) = ds.get_marker_data_by_range(chr, start, end)
+    form.chr.data = chr
+    form.start.data = start
+    form.end.data = end
+  print "range - drop through chr=", chr
+  return render_template('range.html',
+    title = 'Home',
+    form = form,
+    marker_data = marker_data,
+    msg = msg,
+    db_name = ds.get_db_name())
+@app.route('/stats', methods = ['GET'])
+def stats():
+  """
+  Show db statistics - currently not referenced in templates 
+  """
+  #studyname = ds.get_studyname()
+  chrdata = ds.get_marker_totals()
+  #sample_count = ds.get_sample_count()
+  return render_template('stats.html',
+      chrdata=chrdata)
+
+@app.route('/upload', methods = ['GET', 'POST'])
+@app.route('/upload/<filename>', methods = ['GET', 'POST'])
+@app.route('/upload/<filename>/<threshold>/<procopt>', methods = ['GET', 'POST'])
+@app.route('/upload/<filename>/<threshold>', methods = ['GET', 'POST'])
+def upload(filename=None, threshold=0.9, procopt=None):
+  """
+  Upload an rslist file
+  """
+  print "upload filename = ", filename
+  form = UploadForm()
+  msg = ""
+  if form.validate_on_submit():
+    procopt = 'display'
+    if "dbtn" in request.form:
+      procopt = 'download'
+    file = form.filename.data
+    threshold = form.threshold.data
+    if threshold == None:
+      threshold = 0.9
+    if file and allowed_file(file.filename):
+      filename = secure_filename(file.filename)
+      file.save(os.path.join(app.config['UPLOAD_DIR'], filename))
+      return redirect(url_for('upload', filename=filename, threshold=threshold))
+  print "upload filename (1) = ", filename
+  marker_data = []
+  threshold = float(threshold)
+  if "dbtn" in request.form:
+    procopt = 'download'
+  if filename != None:
+    if procopt == 'download':
+      print "Make zip data (l)"
+      (sample_return_data, snp_return_data, msg) = ds.get_rslist_file_data(app.config['UPLOAD_DIR'] + "/" + filename, threshold, "combine")
+      zipfilename = "file_results.zip"
+      body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+      response = make_response(body)
+      response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
+      return response
+    print "upload - get marker data"
+    (marker_data, msg) = ds.get_marker_data_for_file(app.config['UPLOAD_DIR'] + "/" + filename, threshold)
+    form.filename.data = filename
+    form.threshold.data = threshold
+  print "drop-through = ", filename
+  return render_template('upload.html',
+    title = 'Upload',
+    form = form,
+    marker_data = marker_data,
+    msg = msg,
+    db_name = ds.get_db_name())
+

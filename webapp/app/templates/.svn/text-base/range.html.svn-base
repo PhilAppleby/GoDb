@@ -1,0 +1,55 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Chr number, start-end position (range max 250kb)</h2>
+{% include 'flash.html' %}
+<div class="well">
+    <form class="form-horizontal" action="" method="post" name="post">
+        {{form.hidden_tag()}}
+        <div class="control-group{% if form.errors.post %} error{% endif %}">
+            <label class="control-label" for="post">Chromosome #:</label>
+            <div class="controls">
+		{% if form.chr.data != None %} 
+                {{ form.chr(size = 2, maxlength = 2, value = form.chr.data) }}
+                {% else %}
+                {{ form.chr(size = 2, maxlength = 2) }}
+                {% endif %}
+                {% for error in form.errors.chr %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+            <label class="control-label" for="post">Start:</label>
+            <div class="controls">
+		{% if form.start.data != None %} 
+                {{ form.start(size = 6, maxlength = 10,  value = form.start.data) }}
+                {% else %}
+                {{ form.start(size = 6, maxlength = 10) }}
+                {% endif %}
+                {% for error in form.errors.start %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+            <label class="control-label" for="post">End:</label>
+            <div class="controls">
+		{% if form.end.data != None %} 
+                {{ form.end(size = 6, maxlength = 10, value = form.end.data) }}
+                {% else %}
+                {{ form.end(size = 6, maxlength = 10) }}
+                {% endif %}
+                {% for error in form.errors.end %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" name="sbtn" type="submit" value="Search">
+                <input class="btn btn-default" name="dbtn" type="submit" value="Download">
+            </div>
+        </div>
+    </form>
+   {{ msg }}
+</div>
+{% include 'marker_table.html' %}
+{% endblock %}

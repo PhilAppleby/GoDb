@@ -1,0 +1,11 @@
+<tr>
+  <td>{{marker["rsid"]}}</td>
+  <td>{{marker["assaytype"]}}</td>
+  <td>{{marker["chromosome"]}}</td>
+  <td>{{marker["position"]}}</td>
+  <td>{{marker["alleleA"]}}</td>
+  <td>{{marker["alleleB"]}}</td>
+  <td>{{marker["info"]}}</td>
+  <td>{{marker["imputed"]}}</td>
+  <td>{{marker["samplecount"]}}</td>
+</tr>

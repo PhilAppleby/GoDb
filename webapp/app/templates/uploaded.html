@@ -1,0 +1,49 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<div class="well">
+  <h4>Uploaded file of rs#'s</h4>
+</div>
+{% include 'flash.html' %}
+<form class="form-horizontal" action="download" method="post" name="download", enctype=multipart/form-data>
+    <div class="well">
+        {{form.hidden_tag()}}
+        <div class="control-group{% if form.errors.post %} error{% endif %}">
+            <label class="control-label" for="post">File name:</label>
+            <div class="controls">
+                {% if form.filename != None %}
+                {{ form.filename(size=20, maxlength=20, value=form.filename.data, readonly="readonly") }}
+                {% else %}
+                {{ form.filename(size=20, maxlength=20) }}
+                {% endif %}
+                {% for error in form.errors.filename %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+           <label class="control-label" for="post">Threshold:</label>
+            <div class="controls">
+                {% if form.threshold != None %}
+                {{ form.threshold(size=5, maxlength=5, value=form.threshold.data, readonly="readonly") }}
+                {% else %}
+                {{ form.threshold(size=5, maxlength=5) }}
+                {% endif %}
+                {% for error in form.errors.threshold %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+            <div class="controls">
+                {{ form.combine }}
+            </div>
+        </div>
+        <p/>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Download">
+            </div>
+        </div>
+     {{ msg }}
+</div>
+{% include 'variant_table.html' %}
+</form>
+{% endblock %}

@@ -1,0 +1,26 @@
+<div class="table-responsive">
+<table id="markerTable" class="table table-striped table-inverse" width="100%" >
+<thead>
+  <tr>
+    <th></th>
+    <th>RSID</th>
+    <th>Assay</th>
+    <th>Chr</th>
+    <th>Pos</th>
+    <th>Ref</th>
+    <th>Alt</th>
+    <th>HWE</th>
+    <th>Ref AF</th>
+    <th>Alt AF</th>
+    <th>Missing</th>
+    <th>Info</th>
+    <th>Samples</th>
+  </tr>
+</thead>
+<tbody>
+  {% for variant in variant_data %}
+    {% include 'variant.html' %}
+  {% endfor %}
+</tbody>
+</table>
+</div>

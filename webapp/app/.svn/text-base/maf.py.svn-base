@@ -1,0 +1,23 @@
+def maf(obs_hets, obs_hom1, obs_hom2, num_samples):
+  if obs_hom1 < 0 or obs_hom2 < 0 or obs_hets < 0:
+    raise Exception("FATAL ERROR - MAF: Current genotype configuration (%s  %s %s) includes negative count" % (obs_hets, obs_hom1, obs_hom2))
+
+  obs_hom_maj = obs_hom2 if obs_hom1 < obs_hom2 else obs_hom1
+  obs_hom_min = obs_hom1 if obs_hom1 < obs_hom2 else obs_hom2
+
+  gcount = obs_hets + obs_hom_maj + obs_hom_min
+  #gcount = num_samples
+
+  minor_count = (obs_hom_min * 2) + (obs_hets)
+  #print "MAF Numbers = ", gcount, minor_count
+
+  return ("%.6f" % (float(minor_count) / (gcount * 2.0)))
+
+
+def af(obs_hets, obs_hom_interest, obs_hom_other, num_samples):
+  gcount = obs_hets + obs_hom_interest + obs_hom_other
+
+  allele_count = (obs_hom_interest * 2)  + (obs_hets)
+  #print "AF Numbers = ", gcount, allele_count
+
+  return ("%.6f" % (float(allele_count) / (gcount * 2.0)))

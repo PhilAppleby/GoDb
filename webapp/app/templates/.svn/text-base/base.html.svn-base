@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - GenomicsDB Search</title>
+    {% else %}
+    <title>GenomicsDb Search</title>
+    {% endif %}
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/plug-ins/3cfcc339e89/integration/bootstrap/3/dataTables.bootstrap.js"></script>
+    <!-- <script src="/static/js/moment.min.js"></script> -->
+    <script>
+      $(document).ready(function(){
+        $('#markerTable').dataTable({
+          "order": [ 3, 'asc' ]
+	} );
+      });
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <div class="container">
+      <div class="navbar">
+         <a class="navbar-brand" href="#">
+	   <!-- <img src="/static/img/GWASdb.png" height=100 width=100 alt=""> -->
+           [{{db_name}}]
+	   <img src="/static/img/HICLogo.png" height=100 width=100 alt="">
+	   <img src="/static/img/logo_white.gif" height=60 width=60 border=50px alt="">
+	   <img src="/static/img/HICLogo.png" height=100 width=100 alt="">
+	   <img src="/static/img/HICLogoCol.png" height=100 width=100 alt="">
+	   <img src="/static/img/HICLogo.png" height=100 width=100 alt="">
+	   <img src="/static/img/FarrDundee.jpg" height=100 width=200 alt="">
+         </a>
+         <div class="navbar-inner">
+           <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </a>
+             <ul class="nav">
+               <li><a href="{{ url_for('index') }}">Home</a></li>
+               <li><a href="{{ url_for('range') }}">Range Query</a></li>
+               <li><a href="{{ url_for('upload') }}">Rs file upload</a></li>
+             </ul>
+           </div>
+         </div>
+      </div>
+      <div class="container">
+      	<div class="row">
+<!--          <div class="span12"> -->
+            {% block content %}{% endblock %}
+<!--          </div> -->
+      	</div>
+      </div>   
+    </div>   
+  </body>
+</html>

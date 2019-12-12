@@ -1,0 +1,14 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Statistics by Chromosome</h1>
+{% include 'flash.html' %}
+<div class="well">
+</div>
+<table class="table table-hover">
+{% for chrct in chrdata %}
+    {% include 'chrstat.html' %}
+{% endfor %}
+</table>
+{% endblock %}

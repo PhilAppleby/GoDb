@@ -1,0 +1,27 @@
+<div class="table-responsive">
+<table id="markerTable" class="display table" width="100%" >
+<thead>
+  <tr>
+    <th>RSID</th>
+    <th>Assay</th>
+    <th>Chr</th>
+    <th>Pos</th>
+    <th>A</th>
+    <th>B</th>
+    <th>HWE</th>
+    <th>HWE_Calc</th>
+    <th>MAF</th>
+    <th>MAF_Calc</th>
+    <th>Missing</th>
+    <th>Info</th>
+    <th>Imp</th>
+    <th>Samples</th>
+  </tr>
+</thead>
+<tbody>
+  {% for marker in marker_data %}
+    {% include 'marker.html' %}
+  {% endfor %}
+</tbody>
+</table>
+</div>

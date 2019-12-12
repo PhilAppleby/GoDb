@@ -1,0 +1,5 @@
+    <tr>
+        <td>
+          <p><strong>CHR: {{chrct[0]}}, {{chrct[1]}}</strong></p>
+        </td>
+    </tr>

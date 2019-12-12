@@ -1,0 +1,4 @@
+Directory for the web app
+
+Application level code and web root directory, contains
+views, models and templates in a sub-directory

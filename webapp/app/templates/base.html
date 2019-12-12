@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% if title %}
+    <title>{{title}} - GenomicsDB Search</title>
+    {% else %}
+    <title>GenomicsDb Search</title>
+    {% endif %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="//cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/select/1.2.1/js/dataTables.select.min.js"></script>
+    <!-- <script src="/static/js/moment.min.js"></script> -->
+    <script>
+    $(document).ready(function() {
+      $('#markerTable').DataTable( {
+        columnDefs: [ {
+            orderable: false,
+            className: 'select-checkbox',
+            targets:   0
+        } ],
+        select: {
+            style:    'multi',
+            selector: 'td:first-child'
+        },
+        order: [[ 4, 'asc' ]]
+    	} );
+     } );
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+	  </a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li><a href="{{ url_for('index') }}">Home</a></li>
+          <li><a href="{{ url_for('range') }}">Range Query</a></li>
+          <li><a href="{{ url_for('upload') }}">Rs file upload</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p></p>
+    <div class="container">
+      	<!-- <div class="row"> -->
+<!--          <div class="span12"> -->
+            {% block content %}{% endblock %}
+<!--          </div> -->
+    </div>   
+    <footer class="footer">
+      <div class="container">
+        <p>   
+           <img src="/static/img/logo_white.gif" height=60 width=60 border=50px alt="">
+           <img src="/static/img/HICLogo.png" height=50 width=50 alt=""> 
+           <img src="/static/img/HICLogoCol.png" height=100 width=100 alt="">
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

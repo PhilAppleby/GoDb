@@ -1,0 +1,44 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+<h2>dbSNP rs#, Threshold (dflt = 0.9)</h2>
+{% include 'flash.html' %}
+<div class="well">
+    <form class="form-horizontal" action="" method="post" name="post">
+        {{form.hidden_tag()}}
+        <div class="control-group{% if form.errors.post %} error{% endif %}">
+            <label class="control-label" for="post">dbSNP rs #:</label>
+            <div class="controls">
+                {% if form.rs.data != None %}
+                {{ form.rs(size = 6, maxlength = 16, value = form.rs.data) }}
+                {% else %}
+                {{ form.rs(size = 6, maxlength = 16) }}
+                {% endif %}
+                {% for error in form.errors.rs %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+            <label class="control-label" for="post">Threshold:</label>
+            <div class="controls">
+                {% if form.threshold.data != None %}
+                {{ form.threshold(size = 6, maxlength = 8, value = form.threshold.data) }}
+                {% else %}
+                {{ form.threshold(size = 6, maxlength = 8) }}
+                {% endif %}
+                {% for error in form.errors.threshold %}
+                    <span class="help-inline">[{{error}}]</span><br>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input class="btn btn-primary" type="submit" value="Search">
+                <input class="btn btn-default" name="dbtn" type="submit" value="Download">
+            </div>
+        </div>
+    </form>
+  {{ msg }}
+</div>
+{% include 'marker_table.html' %}
+{% endblock %}
