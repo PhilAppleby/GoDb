@@ -1,6 +1,6 @@
 # GoDb - a simple data store system for multiple SNP panels (assays)
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms. The resulting data sets would reside in separate files, possibly in different genptype formats (PLINK BED, Oxoford .gen or VCF for example
+For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms. The resulting data sets would reside in separate files, possibly in different genptype formats (PLINK BED, Oxford .gen or VCF, for example).
 
 
 ## Requirements
@@ -8,15 +8,15 @@ The over-arching requirement is the provision of a simple system architecture an
 
 ### Functional
 Some additional functional requirements were set out at the start of the project:
-* Curation of genomic data from multiple SNP panels
+* Curation of genomic data from multiple SNP panels.
 * Provision of the means to query data using well-known SNP identifiers (dbSNP rsids). 
 * Maximising samples size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets
-* Add genotype data from new assays as they become avaiable.   
+* Add genotype data from new assays as they become available.   
  
 ### Non-Functional
 Two non-functional requirements were identified:
-* Operate in an environment where compute resources may be limited
-* Allow for scaling up of the size of the data, in particular sample-size, with little performance degradation   
+* Operate in an environment where compute resources may be limited.
+* Allow for scaling up of the size of the data, in particular sample-size, with little performance degradatioa.n   
 
 ## Description
 A hybrid data store was built using MongoDb to hold collection of variant, sample and file location data, with genotype data held in VCF files.
@@ -41,9 +41,18 @@ The following subdirectories can be found in the repository:
 - *extract/sh/* bash scripts, wrappers for command-line extract tools
 
 ## Dependencies
-## Running
+- MongoDb community edition (version 3 upwards, tested to 4.2.1)
+- Tabix (0.2.5)
+- pysam python library (0.15.3)
+- pymongo python library (3.9.0)
+- gopkg.in/mgo.v2 golang library
+- gopkg.in/mgo.v2/bson golang library
+- github.com/brentp/bix golang library for tabix index access
+- github.com/brentp/irelate/intercases golang library for tabix index access
 
 ## Data Store Architecture 
+High-level block diagram of the data store and software layers
+
 ![](images/godb_architecture.png)
 
 ## Combining genotype records 
