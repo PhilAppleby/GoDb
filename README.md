@@ -1,6 +1,6 @@
 # GoDb - a simple, hybrid data store system for multiple SNP panels (assays)
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms. The resulting data sets would reside in separate files, possibly in different genptype formats (PLINK BED, Oxford .gen or VCF, for example).
+For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
 
 
 ## Requirements
@@ -14,31 +14,36 @@ Some additional functional requirements were set out at the start of the project
 * Add genotype data from new assays as they become available.   
  
 ### Non-Functional
-Two non-functional requirements were identified:
+Two non-functional requirements were also identified:
 * Operate in an environment where compute resources may be limited.
-* Allow for scaling up of the size of the data, in particular sample-size, with little performance degradatioa.n   
+* Allow for scaling up of the size of the data, in particular sample-size, with little performance degradation   
 
 ## Description
-A hybrid data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data held in VCF files.
+The data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data held in VCF files.
 
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordininates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
 ### This repository 
 The following subdirectories can be found in the repository:
 
-- *cfg/* Config files containing environment variables to locate data, software and database host 
+- *cfg/* Config files containing environment variables to locate data, software and the MongoDb database host 
 
-- *load/py/* Data store load Python scripts
+- *load/py/* Python scripts to load the data store.
 
-- *load/sh/* Data store load bash wrapper scripts
+- *load/sh/* Data store load bash wrapper scripts.
 
-- *webapp/* All Python code, templates and image files related to the web application
+- *webapp/* All Python code, templates, java script, css and image files related to the web application.
 
-- *extract/py/* Command-line Python code for genotype data extract 
+- *extract/py/* Command-line Python code for genotype data extract, from lists of SNPs. 
 
-- *extract/src/* Root directory for Go(lang) source code to build a multi-threaded command-line extract tool
+- *extract/src/* Root directory for Go(lang) source code to build a multi-threaded command-line extract tool. There is also library code to handle MongoDb and tabix-indexed file access.
 
-- *extract/sh/* bash scripts, wrappers for command-line extract tools
+- *extract/sh/* bash scripts, wrappers for command-line extract tools.
+
+- *lib/py/* Python library code, including the python godb API layer and VCFrecord field access.
+
+- *load/sh/* Data store load bash wrapper scripts.
+
 
 ### MongoDb Collection Examples
 variants (one document per variant per SNP panel (assaytype)):
@@ -97,13 +102,11 @@ filepaths (one document per SNP panel (assaytype)):
 			"filename" : "chr19.vcf.gz"
 		}
 	],
-	"fpath_prefix" : "<data root >/godb",
-	"filepath" : "<data root >/affy/",
+	"fpath_prefix" : "<data root>/godb",
+	"filepath" : "<data root>/affy/",
 	"fpath_suffix" : "affy/"
 }
 ```
-
-
 
 ## Dependencies
 - MongoDb community edition (version 3 upwards, tested to 4.2.1)
