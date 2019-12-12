@@ -24,7 +24,7 @@ The data store was designed and built using MongoDb to hold collections of varia
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordininates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
 ### This repository 
-The following subdirectories can be found in the repository:
+The following subdirectories are in the repository:
 
 - *cfg/* Config files containing environment variables to locate data, software and the MongoDb database host 
 
@@ -45,7 +45,7 @@ The following subdirectories can be found in the repository:
 - *load/sh/* Data store load bash wrapper scripts.
 
 
-### MongoDb Collection Examples
+### MongoDb Collections - example documents
 variants (one document per variant per SNP panel (assaytype)):
 ```
 {
@@ -119,11 +119,14 @@ filepaths (one document per SNP panel (assaytype)):
 - github.com/brentp/irelate/intercases golang library for tabix index access
 
 ## Data Store Architecture 
-High-level block diagram of the data store and software layers
+High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers.
 
 ![](images/godb_architecture.png)
 
+
 ## Combining genotype records 
+Genotype records are combined in both Python and Golang code, with sample overpas resoved according to the indicated rules.
+
 ![](images/combining_geno_data.png)
 ## Ackowledgments
 
