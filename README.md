@@ -125,7 +125,7 @@ High-level architecture diagram of the data store and software, showing applicat
 
 
 ## Combining genotype records 
-Genotype records are combined in both Python and Golang code, with sample overpas resoved according to the indicated rules.
+Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules.
 
 ![](images/combining_geno_data.png)
 ## Ackowledgments
