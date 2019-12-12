@@ -41,18 +41,18 @@ The following subdirectories can be found in the repository:
 - *extract/sh/* bash scripts, wrappers for command-line extract tools
 
 ### MongoDb Collection Examples
-variants (one document per variant per SNP panel (assaytype)):
-{
-	"_id" : ObjectId("5dee1245d5d298277178bcfb"),
-	"assaytype" : "metabo",
-	"ref_maf" : 0.6,
-	"rsid" : "rs7294904",
-	"info" : 1,
-	"alleleB" : "C",
-	"position" : 199532,
-	"alleleA" : "T",
-	"chromosome" : "12"
-}
+```variants (one document per variant per SNP panel (assaytype)):
+```{
+```	"_id" : ObjectId("5dee1245d5d298277178bcfb"),
+```	"assaytype" : "metabo",
+```	"ref_maf" : 0.6,
+```	"rsid" : "rs7294904",
+```	"info" : 1,
+```	"alleleB" : "C",
+```	"position" : 199532,
+```	"alleleA" : "T",
+```	"chromosome" : "12"
+```}
 
 samples (one document per sample per SNP panel (assaytype)):
 {
