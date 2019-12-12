@@ -1,7 +1,0 @@
-<table class="table table-hover">
-    <tr>
-        <td>
-            <p><strong>{{summary}}</strong></p>
-        </td>
-    </tr>
-</table>

@@ -1,4 +1,0 @@
-#!/bin/sh
-date
-python run.py > ./logs/server.log 2>&1 &
-
