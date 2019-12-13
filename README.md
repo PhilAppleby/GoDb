@@ -4,7 +4,7 @@ For single institution bio-resources genotyping of subjects may have taken place
 
 
 ## Requirements
-The over-arching requirement is the provision of a simple system architecture and the software to bring together the genomic data for a population, which originate from multiple SNP assay plaftorms.
+The over-arching requirement is the provision of a simple data management architecture and the software to bring together multi SNP panel genomic data for a single cohort.
 
 ### Functional
 Some additional functional requirements were set out at the start of the project:
@@ -19,7 +19,7 @@ Two non-functional requirements were also identified:
 * Allow for scaling up of the size of the data, in particular sample-size, with little performance degradation   
 
 ## Description
-The data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data held in VCF files.
+The data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data retained in VCF files.
 
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordininates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
@@ -46,7 +46,7 @@ The following subdirectories are in the repository:
 
 
 ### MongoDb Collections - example documents
-variants (one document per variant per SNP panel (assaytype)):
+variants - one document per variant per SNP panel (assaytype):
 ```
 {
 	"_id" : ObjectId("5dee1245d5d298277178bcfb"),
@@ -61,7 +61,7 @@ variants (one document per variant per SNP panel (assaytype)):
 }
 ```
 
-samples (one document per sample per SNP panel (assaytype)):
+samples - one document per sample per SNP panel (assaytype):
 ```
 {
 	"_id" : ObjectId("5decf26e64b5031da4b9c5cd"),
@@ -71,7 +71,7 @@ samples (one document per sample per SNP panel (assaytype)):
 }
 ```
 
-filepaths (one document per SNP panel (assaytype)):
+filepaths - one document per SNP panel (assaytype):
 ```
 {
 	"_id" : ObjectId("5decf307339f134beefc2419"),
