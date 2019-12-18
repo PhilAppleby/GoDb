@@ -30,6 +30,10 @@ The following subdirectories are in the repository:
 
 - *load/py/* Python scripts to load the data store.
 
+- *load/pl/* Single perl script for data directory navigation and variant load script execution
+
+- *load/pm/* Perl modules for data directory navigation
+
 - *load/sh/* Data store load bash wrapper scripts.
 
 - *webapp/* All Python code, templates, java script, css and image files related to the web application.
@@ -41,8 +45,6 @@ The following subdirectories are in the repository:
 - *extract/sh/* bash scripts, wrappers for command-line extract tools.
 
 - *lib/py/* Python library code, including the python godb API layer and VCFrecord field access.
-
-- *load/sh/* Data store load bash wrapper scripts.
 
 ### Running database load scripts
 Scripts located in *load/sh*, *load/py* and *load/pl*.
