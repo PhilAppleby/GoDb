@@ -36,6 +36,7 @@ var assayTypeAbbreviation = map[string]string{
 	"metabo":      "M",
 	"exome":       "E",
 	"bigtest":     "T",
+	"biggertest":  "G",
 }
 
 func GetCombinedColumnHeaders(sample_name_map map[string]int) (string, []string) {

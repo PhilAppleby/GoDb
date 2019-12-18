@@ -1,5 +1,8 @@
 from vcfrecord import VCFrecord
-
+#----------------------------------------------------------------------------------
+# Helper methods for maf / af calculations
+# TODO: refactor to move the get_maf_and_cr method, should be 2 methods elsewhere
+#----------------------------------------------------------------------------------
 class Mafhelper():
 
   def get_maf_and_cr(self, vcfr):
@@ -16,6 +19,10 @@ class Mafhelper():
 
     return maf, ma, cr
 
+#----------------------------------------------------------------------------------
+# maf()
+# Returns MAF value and indicates which is the Minor allele
+#----------------------------------------------------------------------------------
   def maf(self, obs_hets, obs_hom1, allele1, obs_hom2, allele2, num_samples):
     if obs_hom1 < 0 or obs_hom2 < 0 or obs_hets < 0:
       raise Exception("FATAL ERROR - MAF: Current genotype configuration (%s  %s %s) includes negative count" % (obs_hets, obs_hom1, obs_hom2))
@@ -36,6 +43,10 @@ class Mafhelper():
       return 0.0, ma
 
 
+#----------------------------------------------------------------------------------
+# af()
+# Returns MAF value and indicates which is the Minor allele
+#----------------------------------------------------------------------------------
   def af(self, obs_hets, obs_hom_interest, obs_hom_other, num_samples):
     gcount = obs_hets + obs_hom_interest + obs_hom_other
 

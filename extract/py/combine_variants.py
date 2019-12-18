@@ -32,6 +32,7 @@ def main(options):
   #supported_assaytypes = {"affy":1, "illumina":1}
   #supported_assaytypes = {"affy":1}
   supported_assaytypes = {"bigtest":1}
+  supported_assaytypes = {"biggertest":1}
   rsids = []
   godb = GoDb()
 

@@ -4,14 +4,14 @@ For single institution bio-resources genotyping of subjects may have taken place
 
 
 ## Requirements
-The over-arching requirement is the provision of a simple data management architecture and the software to bring together multi SNP panel genomic data for a single cohort.
+The over-arching requirement was the provision of a simple data management architecture and the software to bring together multi SNP panel genomic data for a single cohort.
 
 ### Functional
 Some additional functional requirements were set out at the start of the project:
 * Curation of genomic data from multiple SNP panels.
 * Provision of the means to query data using well-known SNP identifiers (dbSNP rsids). 
-* Maximising samples size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets
-* Add genotype data from new assays as they become available.   
+* Maximising samples size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets on demand.
+* Adding genotype data from new assays as they become available.   
  
 ### Non-Functional
 Two non-functional requirements were also identified:
@@ -43,6 +43,18 @@ The following subdirectories are in the repository:
 - *lib/py/* Python library code, including the python godb API layer and VCFrecord field access.
 
 - *load/sh/* Data store load bash wrapper scripts.
+
+### Running database load scripts
+Scripts located in *load/sh*, *load/py* and *load/pl*.
+All scripts rely on the files in the *cfg* directory to find both data and the MongoDb database, there are examples for five ddifferent assay platforms in the *cfg* directory.
+
+Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existant or empty with all indexes dropped three scripts can be run from the *load/sh* directory:
+
+- load_variants.sh <full path to assay platform cfg file> 
+
+- load_samples.sh <full path to assay platform cfg file> 
+
+- load_filepaths.sh <full path to assay platform cfg file> 
 
 
 ### MongoDb Collections - example documents

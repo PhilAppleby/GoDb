@@ -25,6 +25,7 @@ class Multimerge():
     self.assay_abbrev["illumina1KG"] = "I1"
     self.assay_abbrev["broad"] = "B"
     self.assay_abbrev["bigtest"] = "T"
+    self.assay_abbrev["biggertest"] = "G"
     self.assay_expand = {}
     self.assay_expand["A"] = "affy"
     self.assay_expand["I"] = "illumina"
@@ -34,6 +35,7 @@ class Multimerge():
     self.assay_expand["I1"] = "illumina1KG"
     self.assay_expand["B"] = "broad"
     self.assay_expand["T"] = "bigtest"
+    self.assay_expand["G"] = "biggertest"
     self.geno_strings = ["0/0", "0/1", "1/1"]
     self.chisq_count = 0
     self.allele_discord_count = 0
