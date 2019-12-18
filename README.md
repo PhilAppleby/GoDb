@@ -50,7 +50,7 @@ The following subdirectories are in the repository:
 Scripts located in *load/sh*, *load/py* and *load/pl*.
 All scripts rely on the files in the *cfg* directory to find both data and the MongoDb database, there are examples for five ddifferent assay platforms in the *cfg* directory.
 
-Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existant or empty with all indexes dropped three scripts can be run from the *load/sh* directory:
+Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existent or empty with all indexes dropped three scripts can be run from the *load/sh* directory:
 
 - load_variants.sh \<full path to assay platform cfg file\> 
 
