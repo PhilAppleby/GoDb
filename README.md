@@ -52,11 +52,11 @@ All scripts rely on the files in the *cfg* directory to find both data and the M
 
 Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existant or empty with all indexes dropped three scripts can be run from the *load/sh* directory:
 
-- load_variants.sh <full path to assay platform cfg file> 
+- load_variants.sh \<full path to assay platform cfg file\> 
 
-- load_samples.sh <full path to assay platform cfg file> 
+- load_samples.sh \<full path to assay platform cfg file\> 
 
-- load_filepaths.sh <full path to assay platform cfg file> 
+- load_filepaths.sh \<full path to assay platform cfg file\> 
 
 
 ### MongoDb Collections - example documents
