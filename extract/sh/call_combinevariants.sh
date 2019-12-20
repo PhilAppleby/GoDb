@@ -10,7 +10,7 @@ source ${HOME}/devel/godb/cfg/godb.cfg
 #---------------------------------------------------------------------------------------------------------------------
 #echo ${ASSAYTYPES}
 ${GOBIN}/combinevariants -rsfile=$1 -dbhost=${MHOST} \
-	-vcfprfx=${DBDATAPRFX} -threshold=0.9 -parallel=Y \
+	-vcfprfx=${DBDATAPRFX} -threshold=0.9 -parallel=N \
 	-assaytypes=${ASSAYTYPES} \
 	> ${COMBODATADIR}/merge_output.txt
 #---------------------------------------------------------------------------------------------------------------------

@@ -1,17 +1,18 @@
 package main
-
 //
 // Access GoDb via the imported mongo libraries and (in 'vcfmerge')
-// taxx libraries to produce combined vcf records
+// tabix libraries to produce combined vcf records
 //
-// Uses goroutines for file i/o
+// Uses goroutines for file i/o, care need to ba taken over the 
+// number of open file handles as a long list of SNPs can mean 
+// 1000's of file reads
 //
 // Steps:
 // 1) Read in a file of rs numbers
 // 2) For each:
-//    2.1 get 'marker' and file data from mongodb, access VCF records
-//    2.2 save vcf records in arrays or maps of arrays
-// 3) Organise assaytypes found in the data and get a combined column list for all present.
+//    2.1 get 'variants' and 'filepaths' data from mongodb, access VCF records
+//    2.2 save vcf records in maps of arrays
+// 3) Organise assaytypes found in the data and build a combined column list for all present.
 // 4) Build combined VCF records, applying genotype resolution rules
 // 5) Output combined records.
 //
