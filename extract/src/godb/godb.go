@@ -111,11 +111,12 @@ func check(e error) {
 //   Find the relevent filepath, access the file and place the record 
 //   in the 'recs' channel
 //---------------------------------------------------------------------
-func Getvardata(par string, session *mgo.Session, gdb string, vcfPathPref string,
-                rsid string, recs chan string) {
+func Getvardata(par string, session *mgo.Session, gdb string,
+                variant_collection string, filepath_collection string,
+                vcfPathPref string, rsid string, recs chan string) {
 
-	variants := session.DB(gdb).C("variants")
-	filepaths := session.DB(gdb).C("filepaths")
+	variants := session.DB(gdb).C(variant_collection)
+	filepaths := session.DB(gdb).C(filepath_collection)
 
 	variant := Variant{}
 	fdata := FilePath{}
@@ -196,11 +197,11 @@ func accessvcffile(f string, assaytype string, chrom string, posn int, ref strin
 //   assaytype to sample_name to index 
 //   assaytype to inddex to sample_name 
 //---------------------------------------------------------------------
-func GetSamplesByAssaytype(session *mgo.Session, gdb string) (map[string]map[string]int, map[string]map[int]string) {
+func GetSamplesByAssaytype(session *mgo.Session, gdb string, sample_collection string) (map[string]map[string]int, map[string]map[int]string) {
   sampleNamePosn := make(map[string]map[string]int)
   samplePosnName := make(map[string]map[int]string)
 
-  samp := session.DB(gdb).C("samples")
+  samp := session.DB(gdb).C(sample_collection)
 
   sample := Sample{}
 

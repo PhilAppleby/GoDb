@@ -38,6 +38,9 @@ var rsFilePath string
 var vcfPathPref string
 var par string
 var gdb string
+var var_collection string
+var fp_collection string
+var samp_collection string
 var dbhost string
 var threshold float64
 var assayTypes string
@@ -55,6 +58,12 @@ func init() {
 		pusage             = "Y/N flag for using parallel goroutines"
 		defaultGdb         = "genomicsdb"
 		gusage             = "dbname for genomics data"
+		defaultvars        = "variants"
+		varusage           = "variant collection name"
+		defaultfps         = "filepaths"
+		fpusage            = "filepath collection name"
+		defaultsamps       = "samples"
+		sampusage          = "samples collection name"
 		defaultDbhost      = "localhost"
 		dusage             = "mongodb hostname"
 		defaultvcfPathPref = ""
@@ -70,6 +79,12 @@ func init() {
 	flag.StringVar(&par, "p", defaultPar, pusage+" (shorthand)")
 	flag.StringVar(&gdb, "gdb", defaultGdb, gusage)
 	flag.StringVar(&gdb, "g", defaultGdb, gusage+" (shorthand)")
+	flag.StringVar(&var_collection, "variants", defaultvars, varusage)
+	flag.StringVar(&var_collection, "m", defaultvars, varusage+" (shorthand)")
+	flag.StringVar(&fp_collection, "filepaths", defaultfps, fpusage)
+	flag.StringVar(&fp_collection, "f", defaultfps, fpusage+" (shorthand)")
+	flag.StringVar(&samp_collection, "samples", defaultsamps, sampusage)
+	flag.StringVar(&samp_collection, "s", defaultsamps, sampusage+" (shorthand)")
 	flag.StringVar(&dbhost, "dbhost", defaultDbhost, dusage)
 	flag.StringVar(&dbhost, "d", defaultDbhost, dusage+" (shorthand)")
 	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, dusage)
@@ -114,7 +129,7 @@ func main() {
 		rsid := scanner.Text()
 		rsid_count++
 		rsid_list = append(rsid_list, rsid)
-		godb.Getvardata(par, session, gdb, vcfPathPref, rsid, file_records)
+		godb.Getvardata(par, session, gdb, var_collection, fp_collection, vcfPathPref, rsid, file_records)
 	}
 	check(err)
 
@@ -157,7 +172,7 @@ func main() {
 	// Process sample data to:
 	// - build header columns
 	// - get maps to go from source column numbers to numbers in the combined version
-	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb)
+	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb, samp_collection)
 	combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
 	// combocols := sample.GetCombinedSampleMap(sample_name_map)
 

@@ -9,7 +9,8 @@ source ${HOME}/devel/godb/cfg/godb.cfg
 # Get data from the GoDb 
 #---------------------------------------------------------------------------------------------------------------------
 #echo ${ASSAYTYPES}
-${GOBIN}/combinevariants -rsfile=$1 -dbhost=${MHOST} \
+${GOBIN}/combinevariants -rsfile=$1 -dbhost=${MHOST} -gdb=${MDBNAME} \
+	-variants=${VARCOLL} -samples=${SAMPCOLL} -filepaths=${FPCOLL} \
 	-vcfprfx=${DBDATAPRFX} -threshold=0.9 -parallel=N \
 	-assaytypes=${ASSAYTYPES} \
 	> ${COMBODATADIR}/merge_output.txt

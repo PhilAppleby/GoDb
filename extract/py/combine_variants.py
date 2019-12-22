@@ -27,12 +27,12 @@ def load_snpfile_data(fh):
 
 def main(options):
   #supported_assaytypes = {"bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
   #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "exome":1}
   #supported_assaytypes = {"affy":1, "illumina":1}
   #supported_assaytypes = {"affy":1}
-  supported_assaytypes = {"bigtest":1}
-  supported_assaytypes = {"biggertest":1}
+  #supported_assaytypes = {"bigtest":1}
+  #supported_assaytypes = {"biggertest":1}
   rsids = []
   godb = GoDb()
 
@@ -103,7 +103,7 @@ def main(options):
 # combocol is a list [colname1, colname2, ..., colname] again we keep the order of this intact
   combocol = mm.get_combined_columns()
   
-# Step 4 - for each marker by rsid
+# Step 4 - for each variant by rsid
   for rsid in rsid_assaytypes:
     if rsid not in rsid_dict:
       rsid_prfx_dict[rsid] = [[]] * len(atype_list)
@@ -136,24 +136,25 @@ def main(options):
   count = 0
   concordant = True
   for rsid in rsid_dict:
-    if options.check == 'Y':
-      concordant = mm.check_concordancies(rsid_dict[rsid], atype_list, options.chipval)
+    if len(rsid_dict[rsid][0]) > 0:
+      if options.check == 'Y':
+        concordant = mm.check_concordancies(rsid_dict[rsid], atype_list, options.chipval)
 
-    if concordant == True:
-      comborec = mm.get_combined_array(rsid_dict[rsid], rsid_cr_dict[rsid], atype_list)
-      vcfr = VCFrecord(rsid_dict[rsid][0])
-      prfx,sfx = vcfr.get_prfx_sfx()
-      if len(prfx) > 0:
-        logging.info("PRFX = %s, for %s", str(prfx), rsid)
-        prfx[8] += ":AT"
-        outrec = prfx + comborec
-        print "\t".join(outrec)
-        count += 1
+      if concordant == True:
+        comborec = mm.get_combined_array(rsid_dict[rsid], rsid_cr_dict[rsid], atype_list)
+        vcfr = VCFrecord(rsid_dict[rsid][0])
+        prfx,sfx = vcfr.get_prfx_sfx()
+        if len(prfx) > 0:
+          logging.info("PRFX = %s, for %s", str(prfx), rsid)
+          prfx[8] += ":AT"
+          outrec = prfx + comborec
+          print "\t".join(outrec)
+          count += 1
+        else:
+          logging.info("RSID %s NOTFOUND (2)", rsid)
+          pass
       else:
-        logging.info("RSID %s NOTFOUND (2)", rsid)
-        pass
-    else:
-      logging.info("Concordancy check fail for - %s" % (rsid))
+        logging.info("Concordancy check fail for - %s" % (rsid))
 
   #chi_test_count, allele_disc_count, overlap_count, cr_check_count = mm.get_counts()
   #logging.info("Overlap check count = %d, cr_check_count = %d", overlap_count, cr_check_count)
