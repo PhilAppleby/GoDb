@@ -1,5 +1,4 @@
-package main
-//
+//------------------------------------------------------------------------------
 // Access GoDb via the imported mongo libraries and (in 'vcfmerge')
 // tabix libraries to produce combined vcf records
 //
@@ -12,10 +11,13 @@ package main
 // 2) For each:
 //    2.1 get 'variants' and 'filepaths' data from mongodb, access VCF records
 //    2.2 save vcf records in maps of arrays
-// 3) Organise assaytypes found in the data and build a combined column list for all present.
+// 3) Organise assaytypes found in the data and build a combined column list 
+//    for all present.
 // 4) Build combined VCF records, applying genotype resolution rules
 // 5) Output combined records.
-//
+//------------------------------------------------------------------------------
+package main
+
 import (
 	"bufio"
 	"flag"
@@ -31,9 +33,9 @@ import (
 	"vcfmerge"
 )
 
-//-----------------------------------------------
-// global vars, accessed by multiple funcs
-//-----------------------------------------------
+//------------------------------------------------
+// file-scope vars, accessed by multiple funcs
+//------------------------------------------------
 var rsFilePath string
 var vcfPathPref string
 var par string
@@ -44,12 +46,13 @@ var samp_collection string
 var dbhost string
 var threshold float64
 var assayTypes string
-
 var validAssaytypes = map[string]bool{}
-
-//-----------------------------------------------
+//------------------------------------------------
 // main package routines
-//-----------------------------------------------
+//------------------------------------------------
+//------------------------------------------------
+// init() set up and parse cmd line flags
+//------------------------------------------------
 func init() {
 	const (
 		defaultRsFilePath  = "./data/rslist1.txt"
@@ -95,7 +98,9 @@ func init() {
 	flag.StringVar(&assayTypes, "a", defaultAssayTypes, atusage+" (shorthand)")
 	flag.Parse()
 }
-
+//------------------------------------------------
+// check(error) crude general error handler
+//------------------------------------------------
 func check(e error) {
 	//  fmt.Println("check")
 	if e != nil {
@@ -129,7 +134,7 @@ func main() {
 		rsid := scanner.Text()
 		rsid_count++
 		rsid_list = append(rsid_list, rsid)
-		godb.Getvardata(par, session, gdb, var_collection, fp_collection, vcfPathPref, rsid, file_records)
+		godb.Getvardata(par, session, gdb, var_collection, fp_collection, vcfPathPref, rsid, validAssaytypes, file_records)
 	}
 	check(err)
 
@@ -151,6 +156,9 @@ func main() {
 	for record := range file_records {
 		var recdata vcfmerge.Vcfdata
 		fields := strings.Split(record, "\t")
+    if _, ok := validAssaytypes[fields[0]]; !ok {
+      continue
+    }
 		if validAssaytypes[fields[0]] != true {
 			continue
 		}

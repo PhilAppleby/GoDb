@@ -44,7 +44,7 @@ The following subdirectories are in the repository:
 
 - *extract/sh/* bash scripts, wrappers for command-line extract tools.
 
-- *lib/py/* Python library code, including the python godb API layer and VCFrecord field access.
+- *lib/py/* Python library code, including the python godb API layer, VCFrecord field access and production of metrics (MAF, HWEP, CR) for genotype records.
 
 ### Running database load scripts
 Scripts located in *load/sh*, *load/py* and *load/pl*.

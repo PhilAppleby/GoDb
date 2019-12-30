@@ -113,7 +113,7 @@ func check(e error) {
 //---------------------------------------------------------------------
 func Getvardata(par string, session *mgo.Session, gdb string,
                 variant_collection string, filepath_collection string,
-                vcfPathPref string, rsid string, recs chan string) {
+                vcfPathPref string, rsid string, validAssaytypes map[string]bool, recs chan string) {
 
 	variants := session.DB(gdb).C(variant_collection)
 	filepaths := session.DB(gdb).C(filepath_collection)
@@ -132,6 +132,12 @@ func Getvardata(par string, session *mgo.Session, gdb string,
 	for items.Next(&variant) {
 		// query the filepaths collection
     variant_count += 1
+    if _, ok := validAssaytypes[variant.Assaytype]; !ok {
+      continue
+    }
+    if validAssaytypes[variant.Assaytype] != true {
+      continue
+    }
 		err := filepaths.Find(bson.M{"assaytype": variant.Assaytype}).One(&fdata)
 		check(err)
 		if len(variant.Chromosome) == 1 {
