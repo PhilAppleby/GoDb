@@ -258,7 +258,7 @@ class DataStore():
         # first get filepath
         fpath = self.filepaths_coll.get_filepath(doc["assaytype"], chromosome)
         # get raw variant data
-        fullrec = self.var_coll.get_raw_variant_values(fpath, doc["rsid"], chromosome, doc['position'])
+        fullrec = self.var_coll.get_raw_variant_values(fpath, chromosome, doc['position'])
         geno_count = 0
         sample_count = 0
         hwep = 0.0
@@ -439,7 +439,7 @@ class _variants():
       # always force chromosome to 2 digits
       chromosome = "%.2d" % int(doc["chromosome"])
       fpath = self.filepaths_coll.get_filepath(doc["assaytype"], chromosome)
-      fullrec = self.get_raw_variant_values(fpath, doc["rsid"], chromosome, doc['position'])
+      fullrec = self.get_raw_variant_values(fpath, chromosome, doc['position'])
 
       if doc["assaytype"] in assaytype_list_posns:
         vcfr = VCFrecord(fullrec)

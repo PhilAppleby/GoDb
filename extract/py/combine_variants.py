@@ -26,10 +26,14 @@ def load_snpfile_data(fh):
   return snps
 
 def main(options):
+  supported_assaytypes = {"biggertest":1, "bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
   #supported_assaytypes = {"bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
   #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "exome":1}
+  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1}
   #supported_assaytypes = {"affy":1, "illumina":1}
+  #supported_assaytypes = {"broad":1}
+  #supported_assaytypes = {"metabo":1}
   #supported_assaytypes = {"affy":1}
   #supported_assaytypes = {"bigtest":1}
   #supported_assaytypes = {"biggertest":1}

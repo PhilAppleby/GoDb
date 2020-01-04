@@ -29,6 +29,7 @@ import (
 	"os"
 	"sample"
 	"strings"
+	"sync"
 	"variant"
 	"vcfmerge"
 )
@@ -110,7 +111,9 @@ func check(e error) {
 }
 
 func main() {
+  var wg sync.WaitGroup
 	// Control # of active goroutines (in this case also the # of open files)
+  // The godb module exposes Sem (semaphore) 
 	godb.Sem = make(chan struct{}, 64)
 	file_records := make(chan string, 10000)
 
@@ -134,12 +137,22 @@ func main() {
 		rsid := scanner.Text()
 		rsid_count++
 		rsid_list = append(rsid_list, rsid)
-		godb.Getvardata(par, session, gdb, var_collection, fp_collection, vcfPathPref, rsid, validAssaytypes, file_records)
+    variants, filepaths := godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
+    for idx, variant := range variants {
+		  if _, ok := validAssaytypes[variant.Assaytype]; ok {
+        wg.Add(1)
+        if par == "Y" {
+		      go godb.Getvarfiledata(filepaths[idx], variant, file_records, &wg)
+        } else {
+		      godb.Getvarfiledata(filepaths[idx], variant, file_records, &wg)
+        }
+      }
+    }
 	}
 	check(err)
 
 	// Wait for the file-reading go routines (defined in the godb package) to complete
-	godb.Wg.Wait()
+	wg.Wait()
 	close(godb.Sem)
 	close(file_records)
 

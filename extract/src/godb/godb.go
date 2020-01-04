@@ -39,7 +39,7 @@ func (s loc) End() uint32 {
 //------------------------------------------------------
 // Variant: struct for the mongodb variants collection
 //------------------------------------------------------
-type Variant struct {
+type DBVariant struct {
 	//ID           bson.ObjectId `bson:"_id,omitempty"`
 	Assaytype string `bson:"assaytype,omitempty"`
 	//Info         float64       `bson:"info,omitempty"`
@@ -54,7 +54,7 @@ type Variant struct {
 //------------------------------------------------------
 // FilePath: struct for the mongodb filepaths collection
 //------------------------------------------------------
-type FilePath struct {
+type DBFilePath struct {
 	Assaytype    string `bson:"assaytype,omitempty"`
 	Filepath     string `bson:"filepath,omitempty"`
 	Fpath_prefix string `bson:"fpath_prefix,omitempty"`
@@ -70,7 +70,6 @@ type Sample struct {
 }
 
 var Sem chan struct{}
-var Wg sync.WaitGroup
 var fopen_ctr int
 var sglDigitChrom map[string]int
 var geno_strings = []string{"0/0", "0/1", "1/1"}
@@ -106,80 +105,69 @@ func check(e error) {
 	}
 }
 //---------------------------------------------------------------------
-// Getvardata: get variants collection data for an rsid
+// Getvardbdata: get variants collection data for an rsid
 // For each result:
-//   Find the relevent filepath, access the file and place the record 
-//   in the 'recs' channel
+//   Find the relevent filepath and return all co-ordinate data
 //---------------------------------------------------------------------
-func Getvardata(par string, session *mgo.Session, gdb string,
-                variant_collection string, filepath_collection string,
-                vcfPathPref string, rsid string, validAssaytypes map[string]bool, recs chan string) {
+func Getvardbdata(session *mgo.Session, gdb string,
+                  variant_collection string, filepath_collection string,
+                  vcfPathPref string, rsid string) ([]DBVariant, []string) {
 
 	variants := session.DB(gdb).C(variant_collection)
 	filepaths := session.DB(gdb).C(filepath_collection)
 
-	variant := Variant{}
-	fdata := FilePath{}
+	dbvariant := DBVariant{}
+	var variant_list = make([]DBVariant, 0, 10)
+	fdata := DBFilePath{}
+  var filepath_list = make([]string, 0, 10)
   variant_count := 0
 	// TODO if rsid begins with 'rs' proceed as below
-	// else if rsid is of the form chr:posn (eg 2:174000523)
-	// make a range query
-
 	// set up and execute a query on the variants collection 
 	find := variants.Find(bson.M{"rsid": rsid})
 
 	items := find.Iter()
-	for items.Next(&variant) {
+	for items.Next(&dbvariant) {
 		// query the filepaths collection
     variant_count += 1
-    if _, ok := validAssaytypes[variant.Assaytype]; !ok {
-      continue
-    }
-    if validAssaytypes[variant.Assaytype] != true {
-      continue
-    }
-		err := filepaths.Find(bson.M{"assaytype": variant.Assaytype}).One(&fdata)
+    variant_list = append(variant_list, dbvariant)
+		err := filepaths.Find(bson.M{"assaytype": dbvariant.Assaytype}).One(&fdata)
 		check(err)
-		if len(variant.Chromosome) == 1 {
-			variant.Chromosome = "0" + variant.Chromosome
+		if len(dbvariant.Chromosome) == 1 {
+			dbvariant.Chromosome = "0" + dbvariant.Chromosome
 		}
-		filestr := fmt.Sprintf("chr%s.vcf.gz", variant.Chromosome)
+		filestr := fmt.Sprintf("chr%s.vcf.gz", dbvariant.Chromosome)
 		fullfilepath := fdata.Filepath + "/" + filestr
 		if vcfPathPref != "" {
 			fullfilepath = vcfPathPref + "/" + fdata.Fpath_suffix + "/" + filestr
 		}
-		if par == "Y" {
-			// This is where a go routing is started to handle I/O in parallel
-			go accessvcffile(fullfilepath, variant.Assaytype, variant.Chromosome, variant.Position, variant.AlleleA, variant.AlleleB, recs)
-		} else {
-			accessvcffile(fullfilepath, variant.Assaytype, variant.Chromosome, variant.Position, variant.AlleleA, variant.AlleleB, recs)
-		}
+    filepath_list = append(filepath_list, fullfilepath)
 	}
+
   if (variant_count == 0) {
     fmt.Printf("NOT FOUND %s\n", rsid)
   }
+  return variant_list, filepath_list
 }
 //---------------------------------------------------------------------
-// accessvcffile: Internal function to read a single VCF record using 
+// Getvarfiledata: Exported function to read a single VCF record using 
 // the tabix index for the file.
 //---------------------------------------------------------------------
-func accessvcffile(f string, assaytype string, chrom string, posn int, ref string, alt string, recs chan string) {
-	Wg.Add(1)
-	defer Wg.Done()
+func Getvarfiledata(f string, dbv DBVariant, recs chan string, wg *sync.WaitGroup) {
 	Sem <- struct{}{}
 	defer func() { <-Sem }()
+
 	tbx, err := bix.New(f)
 	fopen_ctr++
 	check(err)
-	start := posn - 1
-	end := posn
-	if _, ok := sglDigitChrom[assaytype]; ok {
-		if strings.HasPrefix(chrom, "0") {
-			chrom = chrom[1:]
+	start := dbv.Position - 1
+	end := dbv.Position
+	if _, ok := sglDigitChrom[dbv.Assaytype]; ok {
+		if strings.HasPrefix(dbv.Chromosome, "0") {
+			dbv.Chromosome = dbv.Chromosome[1:]
 		}
 	}
 	// Query returns an io.Reader
-	rdr, err := tbx.Query(loc{chrom, start, end})
+	rdr, err := tbx.Query(loc{dbv.Chromosome, start, end})
 	check(err)
 	for {
 		v, err := rdr.Next()
@@ -189,12 +177,13 @@ func accessvcffile(f string, assaytype string, chrom string, posn int, ref strin
 		vrecord := v.(interfaces.IVariant).String()
 		vrecarr := strings.Split(vrecord, "\t")
 		recref, recalt := variant.GetAlleles(vrecarr)
-		if (recref == ref) && (recalt == alt) {
-			recs <- fmt.Sprintf("%s\t%s", assaytype, vrecord)
+		if (recref == dbv.AlleleA) && (recalt == dbv.AlleleB) {
+			recs <- fmt.Sprintf("%s\t%s", dbv.Assaytype, vrecord)
 		}
 	}
 	tbx.Close()
 	fopen_ctr--
+  wg.Done()
 }
 //---------------------------------------------------------------------
 // GatSamplesByAssaytype: Get all samplea, for all AssayTtypes
