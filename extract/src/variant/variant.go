@@ -66,6 +66,10 @@ func NormaliseChromosome(prfx []string) []string {
 //------------------------------------------------------------------------------
 func Get_geno(geno string, threshold float64, probidx int) string {
 
+  if geno == "." || geno == "./." {
+    return geno
+  }
+
 	mprob, max_prob_idx, genoarray := MaxProb(geno, probidx)
 	//fmt.Printf("GGENO %s,%f,%f,%d\n", geno, mprob, threshold, probidx)
 	if mprob < threshold {
@@ -82,19 +86,19 @@ func Get_geno(geno string, threshold float64, probidx int) string {
 func MaxProb(geno string, probidx int) (float64, int, []string) {
 	g := strings.Split(geno, ":")
 	//if len(g) < (probidx + 1) {
-	//	fmt.Printf("GENO IDX PROBLEM %d, %s\n", probidx, geno)
+	fmt.Printf("GENO IDX PROBLEM %d, %s\n", probidx, geno)
 	//	return 0.0, -9, g
 	//}
-	probs := strings.Split(g[probidx], ",")
 	max_prob := 0.0
 	max_prob_idx := -9
+	probs := strings.Split(g[probidx], ",")
 
 	for i, prob := range probs {
-		probf, _ := strconv.ParseFloat(prob, 64)
-		if probf > max_prob {
-			max_prob = probf
-			max_prob_idx = i
-		}
+	 probf, _ := strconv.ParseFloat(prob, 64)
+	 if probf > max_prob {
+	  max_prob = probf
+	  max_prob_idx = i
+	 }
 	}
 	return max_prob, max_prob_idx, g
 }
@@ -128,6 +132,13 @@ func GetB(recslice []string) string {
 
 func GetProbidx(recslice []string) int {
 	return getStrIdx(recslice[fmtIdx], "GP")
+}
+
+func HasFmt(recslice []string, fmt string) bool {
+  if getStrIdx(recslice[fmtIdx], fmt) == -9 {
+    return false
+  }
+  return true
 }
 
 func GetRefPanelAf(recslice []string) float64 {

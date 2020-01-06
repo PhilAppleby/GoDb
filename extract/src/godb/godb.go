@@ -13,7 +13,6 @@ import (
 	"gopkg.in/mgo.v2/bson"
 	"log"
 	"strings"
-	"sync"
 	"variant"
 )
 
@@ -69,7 +68,6 @@ type Sample struct {
   Sample_id string `bson:"sample_id,omitempty"`
 }
 
-var Sem chan struct{}
 var fopen_ctr int
 var sglDigitChrom map[string]int
 var geno_strings = []string{"0/0", "0/1", "1/1"}
@@ -152,10 +150,7 @@ func Getvardbdata(session *mgo.Session, gdb string,
 // Getvarfiledata: Exported function to read a single VCF record using 
 // the tabix index for the file.
 //---------------------------------------------------------------------
-func Getvarfiledata(f string, dbv DBVariant, recs chan string, wg *sync.WaitGroup) {
-	Sem <- struct{}{}
-	defer func() { <-Sem }()
-
+func Getvarfiledata(f string, dbv DBVariant, recs chan string) {
 	tbx, err := bix.New(f)
 	fopen_ctr++
 	check(err)
@@ -183,7 +178,6 @@ func Getvarfiledata(f string, dbv DBVariant, recs chan string, wg *sync.WaitGrou
 	}
 	tbx.Close()
 	fopen_ctr--
-  wg.Done()
 }
 //---------------------------------------------------------------------
 // GatSamplesByAssaytype: Get all samplea, for all AssayTtypes

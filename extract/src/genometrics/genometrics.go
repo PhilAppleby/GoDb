@@ -22,6 +22,7 @@ type AllMetrics struct {
 	MismatchCount     int
 	MissTestCount     int
 	MissingCount      int
+	NoAssayCount      int
 }
 
 type RunParameters struct {

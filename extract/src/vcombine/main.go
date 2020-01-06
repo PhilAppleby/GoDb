@@ -29,6 +29,7 @@ import (
 	"os"
 	"sample"
 	"strings"
+	"sync"
 	"variant"
 	"vcfmerge"
 )
@@ -46,6 +47,8 @@ var dbhost string
 var threshold float64
 var assayTypes string
 var validAssaytypes = map[string]bool{}
+var fsem chan struct{}
+var csem chan struct{}
 //------------------------------------------------
 // main package routines
 //------------------------------------------------
@@ -105,9 +108,13 @@ func check(e error) {
 }
 
 func main() {
+  var wg sync.WaitGroup
+  var cwg sync.WaitGroup
 	// Control # of active goroutines (in this case also the # of open files)
   // The godb module exposes Sem (semaphore) 
+	fsem = make(chan struct{}, 64)
 	file_records := make(chan string, 10000)
+	combo_records := make(chan string, 10000)
 
 	f, err := os.Open(rsFilePath)
 	check(err)
@@ -132,12 +139,16 @@ func main() {
     variants, filepaths := godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
     for idx, variant := range variants {
 		  if _, ok := validAssaytypes[variant.Assaytype]; ok {
-		    godb.Getvarfiledata(filepaths[idx], variant, file_records)
+        wg.Add(1)
+		    go getvarfiledata(filepaths[idx], variant, file_records, &wg)
       }
     }
-  }
+	}
 	check(err)
 
+	// Wait for the file-reading go routines (defined in the godb package) to complete
+	wg.Wait()
+	close(fsem)
 	close(file_records)
 
 	// Map rsid's to their retrieved vcf file records
@@ -172,6 +183,7 @@ func main() {
 		}
 		rsids[varid] = append(rsids[varid], fields)
 		rsids_data[varid] = append(rsids_data[varid], recdata)
+		fmt.Printf("%s\n", record)
 	}
 
 	// Process sample data to:
@@ -192,33 +204,39 @@ func main() {
 	var genomet genometrics.AllMetrics
 
 	// output the vcf records in input order, can also log the 'NOT FOUND's at this point
-	fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
+	// fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
-			comborec := vcfmerge.Mergeslices_full(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
-			rec_str := strings.Join(comborec, "\t")
-			fmt.Printf("%s\n", "combined"+"\t"+rec_str)
-			cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(comborec, threshold)
-			flag_str := ""
-			if hwep < 0.00001 {
-				flag_str = "***"
-			}
-			fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
-				"combined", rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
-			// output individual assay records
-			for _, rec := range records {
-				assaytype := rec[0]
-				cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(rec[1:], threshold)
-				flag_str := ""
-				if hwep < 0.05 {
-					flag_str = "***"
-				}
-				fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
-					assaytype, rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
-				rec_str := strings.Join(rec, "\t")
-				fmt.Printf("%s\n", rec_str)
-			}
+      cwg.Add(1)
+			go mergeslices(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet, combo_records, &cwg)
 		}
 	}
+
+	// Wait for the record combination go routines to complete
+	cwg.Wait()
+	close(combo_records)
+
+	// Read the channel of combined records
+	for rec_str := range combo_records {
+		fmt.Printf("%s\n", "combined"+"\t"+rec_str)
+  }
 	fmt.Printf("METRICS (ALL),AllGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d\n", genomet.AllGenoCount, genomet.OverlapTestCount, genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount, genomet.MissTestCount, genomet.MissingCount)
+}
+//
+//
+//
+func getvarfiledata(f string, dbv godb.DBVariant, recs chan string, wg *sync.WaitGroup) {
+  fsem <- struct{}{}
+  defer func() { <-fsem }()
+  godb.Getvarfiledata(f, dbv, recs)
+  wg.Done()
+}
+//
+//
+//
+func mergeslices(vcfset [][]string, vcfdataset []vcfmerge.Vcfdata, rsid string,
+  sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
+  combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string, wg *sync.WaitGroup) {
+    vcfmerge.Mergeslices(vcfset, vcfdataset, rsid, sample_names_by_posn, combo_posns, combo_names, threshold, gmetrics, recs)
+    wg.Done()
 }

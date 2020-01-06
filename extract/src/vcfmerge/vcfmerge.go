@@ -72,38 +72,6 @@ func GetColumnHeaders(sample_posn_map map[int]string) string {
 	}
 	return hdr_prfx + strings.Join(sample_names, "\t")
 }
-
-//------------------------------------------------------------------------------
-// Merge version I: naive run through the data, placing genotypes and replacing
-// when a "slot" is alreay occupied
-//------------------------------------------------------------------------------
-func Mergeslices(vcfset [][]string, sample_posns map[string]map[int]string,
-	combo_posns map[string]int) ([]string, []string) {
-
-	var prfx []string
-	var sfx []string
-	comborec := make([]string, len(combo_posns))
-	for i, _ := range comborec {
-		comborec[i] = "."
-	}
-
-	for _, rec := range vcfset {
-		atype := rec[0]
-		prfx, sfx = variant.GetVCFPrfx_Sfx(rec[1:])
-		probidx := variant.GetProbidx(prfx)
-		for j, elem := range sfx {
-			if comborec[combo_posns[sample_posns[atype][j]]] == "." {
-				comborec[combo_posns[sample_posns[atype][j]]] = appendAssayAbbrev(elem, atype)
-			} else {
-				comborec[combo_posns[sample_posns[atype][j]]] =
-					resolveGeno(comborec[combo_posns[sample_posns[atype][j]]], appendAssayAbbrev(elem, atype), probidx)
-			}
-		}
-	}
-	prfx = variant.AppendToFmt(prfx, "AT")
-	return prfx, comborec
-}
-
 //------------------------------------------------------------------------------
 // Merge version II: build out full results arrays for each assay in the vcfset,
 // then process in lockstep to allow comparision of all genotypes for the same
@@ -144,8 +112,10 @@ func Mergeslices_full(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 		refAllele, altAllele := variant.GetAlleles(prfx)
 		if (varid == savedVarid) && (refAllele == savedRefAllele) && (altAllele == savedAltAllele) {
 			for j, elem := range sfx {
-				currec[combo_posns[sample_names_by_posn[atype][j]]] = appendAssayAbbrev(elem, atype)
-			}
+        if !variant.HasFmt(prfx, "AT") {
+			    currec[combo_posns[sample_names_by_posn[atype][j]]] = appendAssayAbbrev(elem, atype)
+			  }
+      }
 			assayrecs = append(assayrecs, currec)
 		} else {
 			log.Printf("REJ: merge mismatch: %v (%s, %s, %s)\n", prfx, savedVarid, savedRefAllele, savedAltAllele)
@@ -184,7 +154,92 @@ func Mergeslices_full(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 	prfx = variant.NormaliseChromosome(prfx)
 	return append(prfx, comborec...)
 }
+//------------------------------------------------------------------------------
+// Merge version III: build out full results arrays for each assay in the vcfset,
+// then process in lockstep to allow comparision of all genotypes for the same
+// sample at the same time
+//------------------------------------------------------------------------------
+func Mergeslices(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
+	sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
+	combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string) {
 
+	var prfx []string
+	var sfx []string
+	probidx := 1
+
+	comborec := make([]string, len(combo_posns))
+	for i, _ := range comborec {
+		comborec[i] = "."
+	}
+
+	assayrecs := make([][]string, 0, len(vcfset))
+	atypes := make([]string, 0, len(vcfset))
+
+	savedVarid := ""
+	savedRefAllele := ""
+	savedAltAllele := ""
+
+	if len(vcfset) > 0 {
+		savedVarid = variant.GetVarid(vcfset[0][1:])
+		savedRefAllele, savedAltAllele = variant.GetAlleles(vcfset[0][1:])
+	}
+
+	for _, rec := range vcfset {
+		atype := rec[0]
+		currec := make([]string, len(combo_posns))
+		atypes = append(atypes, atype)
+		prfx, sfx = variant.GetVCFPrfx_Sfx(rec[1:])
+		probidx = variant.GetProbidx(prfx)
+		varid := variant.GetVarid(prfx)
+		refAllele, altAllele := variant.GetAlleles(prfx)
+		if (varid == savedVarid) && (refAllele == savedRefAllele) && (altAllele == savedAltAllele) {
+			for j, elem := range sfx {
+        if !variant.HasFmt(prfx, "AT") {
+			    currec[combo_posns[sample_names_by_posn[atype][j]]] = appendAssayAbbrev(elem, atype)
+			  }
+      }
+			assayrecs = append(assayrecs, currec)
+		} else {
+			log.Printf("REJ: merge mismatch: %v (%s, %s, %s)\n", prfx, savedVarid, savedRefAllele, savedAltAllele)
+		}
+	}
+	// At this point all "input" genotype data has been captured - now
+	// Look at each possible genotype for the comborec
+	for i, _ := range comborec {
+		geno_list := make([]string, 0, len(assayrecs))
+		for _, genos := range assayrecs {
+			if genos[i] != "" {
+				geno_list = append(geno_list, variant.Get_geno(genos[i], threshold, probidx))
+			}
+		}
+		//fmt.Printf("%s: %s\n", combo_names[i], geno_list)
+		(*gmetrics).AllGenoCount += len(geno_list)
+		(*gmetrics).UniqueGenoCount += 1
+		if len(geno_list) > 1 {
+			(*gmetrics).OverlapTestCount++
+			if len(geno_list) == 2 {
+				//fmt.Printf("OVERLAP_TWO %s:%s - %s\n", rsid, combo_names[i], geno_list)
+				(*gmetrics).TwoOverlapCount++
+			} else {
+				//fmt.Printf("OVERLAP_GT2 %s:%s - %s\n", rsid, combo_names[i], geno_list)
+				(*gmetrics).GtTwoOverlapCount++
+			}
+			comborec[i] = get_best_geno(geno_list, probidx, rsid, gmetrics)
+		} else {
+			if len(geno_list) == 1 {
+				comborec[i] = geno_list[0]
+			}
+		}
+	}
+  if !variant.HasFmt(prfx, "AT") {
+	  prfx = variant.AppendToFmt(prfx, "AT")
+  }
+	// no leading chr zeros
+	prfx = variant.NormaliseChromosome(prfx)
+  comborec = append(prfx, comborec...)
+  rec_str := strings.Join(comborec, "\t")
+	recs <- rec_str
+}
 //------------------------------------------------------------------------------
 // Equality test for genotypes
 //------------------------------------------------------------------------------
@@ -229,6 +284,10 @@ func get_best_geno(geno_list []string, probidx int, varid string, gmetrics *geno
 	best_prob := 0.0
 
 	for _, geno := range geno_list {
+    if geno == "." {
+		  (*gmetrics).NoAssayCount += 1
+      continue
+    }
 		genodata := strings.Split(geno, ":")
 		if genodata[0] != rgeno {
 			if rgeno != "" {
