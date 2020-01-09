@@ -101,6 +101,14 @@ class VCFrecord():
     else:
       return None
 
+  def has_fmt(self, req_fmt):
+    """
+    Does this VCF rec have this fmt?
+    """
+    if req_fmt in self.get_fmts():
+      return True
+    return False
+
   def get_fmts(self):
     """
     Fmts getter

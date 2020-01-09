@@ -99,10 +99,13 @@ class Multimerge():
         prfx, data_list = vcfr.get_prfx_sfx()
         probidx = vcfr.get_probidx()
         rsid = vcfr.get_varid()
+        hasAT = vcfr.has_fmt("AT")
         for j, dataelem in enumerate(data_list):
           if data_list[j] != ".":
             cpos = self.combined_positions[self.file_positions[i][j]]
-            geno = self.call_geno_for_threshold(data_list[j], probidx, threshold) + ":" + self.assay_abbrev[assay_list[i]]
+            geno = self.call_geno_for_threshold(data_list[j], probidx, threshold)
+            if (hasAT == False):
+              geno = geno + ":" + self.assay_abbrev[assay_list[i]]
             if combo_array[cpos] != ".":
               self.geno_overlap_count += 1
               #print "OVERLAP %s:%s - %s vs %s" % (rsid, self.file_positions[i][j], combo_array[cpos], geno)

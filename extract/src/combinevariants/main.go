@@ -195,16 +195,8 @@ func main() {
 	fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
-			comborec := vcfmerge.Mergeslices_full(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
-			rec_str := strings.Join(comborec, "\t")
+			rec_str := vcfmerge.Mergeslices_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
 			fmt.Printf("%s\n", "combined"+"\t"+rec_str)
-			cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(comborec, threshold)
-			flag_str := ""
-			if hwep < 0.00001 {
-				flag_str = "***"
-			}
-			fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
-				"combined", rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
 			// output individual assay records
 			for _, rec := range records {
 				assaytype := rec[0]
