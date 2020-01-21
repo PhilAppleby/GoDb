@@ -142,5 +142,14 @@ High-level architecture diagram of the data store and software, showing applicat
 Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules.
 
 ![](images/combining_geno_data.png)
+
+
+## Performance
+Performance for extracting and combining genotype records for one SNP (rs7412, present on all platforms) for 100 iterations
+
+![](images/extraction_performance.png)
+
+
+ 
 ## Ackowledgments
 
