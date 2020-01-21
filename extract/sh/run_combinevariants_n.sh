@@ -7,7 +7,7 @@
 source ${HOME}/devel/godb/cfg/godb.cfg
 
 
-for i in {1..100}
+for i in {1..1}
 do
 	${SHEDIR}/call_combinevariants.sh $1
 done

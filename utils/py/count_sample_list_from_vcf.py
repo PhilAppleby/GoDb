@@ -12,23 +12,31 @@ start_time = time.time()
 
 def main():
   count = 0
+  rcount = 0
+  gcount = 0
   for line in sys.stdin:
     line = line.strip()
     if (line.startswith('##')):
       pass
-    else:
-      if (line.startswith('#')):
-        vcfr = VCFrecord(line)
-        prfx, sfx = vcfr.get_prfx_sfx()
-        for samp in sfx:
-          count += 1
-        break
+    elif (line.startswith('#')):
+      rcount += 1
+      vcfr = VCFrecord(line)
+      prfx, sfx = vcfr.get_prfx_sfx()
+      for samp in sfx:
+        #print samp
+        count += 1
+    elif (rcount == 1):
+      vcfr = VCFrecord(line)
+      prfx, sfx = vcfr.get_prfx_sfx()
+      for geno in sfx:
+        gcount += 1
+      break
 
-  return count
+  return count, gcount
 
 
 # execution flow starts here
 #
-rec_count = main()
-print "END:", time.time() - start_time, "seconds", rec_count
+scount, gcount = main()
+print "END:", time.time() - start_time, "seconds", scount, gcount
 

@@ -10,9 +10,9 @@
 // 1) Read in a file of rs numbers
 // 2) For each:
 //    2.1 get 'variants' and 'filepaths' data from mongodb, access VCF records
-//    2.2 save vcf records in maps of arrays
-// 3) Organise assaytypes found in the data and build a combined column list 
-//    for all present.
+//    2.2 save vcf records in maps of arrays (rsid -> array of VCF records
+// 3) Organise assaytypes found in the data and build a combined column list and 
+//    VCF header record for all present.
 // 4) Build combined VCF records, applying genotype resolution rules
 // 5) Output combined records.
 //------------------------------------------------------------------------------
@@ -33,7 +33,6 @@ import (
 	"variant"
 	"vcfmerge"
 )
-
 //------------------------------------------------
 // file-scope vars, accessed by multiple funcs
 //------------------------------------------------
@@ -106,15 +105,15 @@ func check(e error) {
 		log.Fatal(e)
 	}
 }
-
+//------------------------------------------------
+// main() program entry point
+//------------------------------------------------
 func main() {
   var wg sync.WaitGroup
-  var cwg sync.WaitGroup
 	// Control # of active goroutines (in this case also the # of open files)
-  // The godb module exposes Sem (semaphore) 
 	fsem = make(chan struct{}, 64)
+	// 10,000 here is arbitrary, needs a re-think
 	file_records := make(chan string, 10000)
-	combo_records := make(chan string, 10000)
 
 	f, err := os.Open(rsFilePath)
 	check(err)
@@ -124,7 +123,6 @@ func main() {
 	defer session.Close()
 
 	atList := strings.Split(assayTypes, ",")
-	fmt.Printf("%v\n", atList)
 	for at := range atList {
 		validAssaytypes[atList[at]] = true
 	}
@@ -132,13 +130,16 @@ func main() {
 	rsid_list := make([]string, 0, 1000)
 	rsid_count := 0
 	scanner := bufio.NewScanner(f)
+  // For each rsid, access godb and get the lists of variants vs filepaths
 	for scanner.Scan() {
 		rsid := scanner.Text()
 		rsid_count++
 		rsid_list = append(rsid_list, rsid)
     variants, filepaths := godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
+    // For each variant, filepath combination get a file record
     for idx, variant := range variants {
 		  if _, ok := validAssaytypes[variant.Assaytype]; ok {
+        //log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
         wg.Add(1)
 		    go getvarfiledata(filepaths[idx], variant, file_records, &wg)
       }
@@ -183,60 +184,39 @@ func main() {
 		}
 		rsids[varid] = append(rsids[varid], fields)
 		rsids_data[varid] = append(rsids_data[varid], recdata)
-		fmt.Printf("%s\n", record)
 	}
-
-	// Process sample data to:
-	// - build header columns
-	// - get maps to go from source column numbers to numbers in the combined version
+  // get all sample data from godb and organise into maps of maps: 
+  // assaytype -> sample name -> sample posn (sample_name_map)
+  // assaytype -> sample posn -> sample name (sample_posn_map)
 	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb, samp_collection)
+  // Condense all sample_names into a combined map samplename -> record position
 	combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
-	// combocols := sample.GetCombinedSampleMap(sample_name_map)
-
-	// Get column headers
+	// Get column headers as a single tab delimited string, with prefix in place, and as a list, both in postion order
 	colhdr_str, combo_names := vcfmerge.GetCombinedColumnHeaders(combocols)
-	fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
+	//fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
+	fmt.Printf("%s\n", colhdr_str)
 
-	for _, atype := range assaytype_list {
-		name_str := vcfmerge.GetColumnHeaders(sample_posn_map[atype])
-		fmt.Printf("%s\n", atype+"\t"+name_str)
-	}
 	var genomet genometrics.AllMetrics
 
 	// output the vcf records in input order, can also log the 'NOT FOUND's at this point
-	// fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
-      cwg.Add(1)
-			go mergeslices(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet, combo_records, &cwg)
+      rec_str := vcfmerge.Mergeslices_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
+      //fmt.Printf("%s\n", "combined"+"\t"+rec_str)
+      fmt.Printf("%s\n", rec_str)
 		}
 	}
-
-	// Wait for the record combination go routines to complete
-	cwg.Wait()
-	close(combo_records)
-
-	// Read the channel of combined records
-	for rec_str := range combo_records {
-		fmt.Printf("%s\n", "combined"+"\t"+rec_str)
-  }
-	fmt.Printf("METRICS (ALL),AllGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d\n", genomet.AllGenoCount, genomet.OverlapTestCount, genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount, genomet.MissTestCount, genomet.MissingCount)
+	log.Printf("##METRICS (ALL),AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d,NoAssay=%d\n", 
+      genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount, 
+      genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount, 
+      genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount)
 }
-//
-//
-//
+//------------------------------------------------------------------------------
+// wrap the godb.Getvarfiledata func, for use as a goroutine
+//------------------------------------------------------------------------------
 func getvarfiledata(f string, dbv godb.DBVariant, recs chan string, wg *sync.WaitGroup) {
   fsem <- struct{}{}
   defer func() { <-fsem }()
   godb.Getvarfiledata(f, dbv, recs)
   wg.Done()
-}
-//
-//
-//
-func mergeslices(vcfset [][]string, vcfdataset []vcfmerge.Vcfdata, rsid string,
-  sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
-  combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string, wg *sync.WaitGroup) {
-    vcfmerge.Mergeslices(vcfset, vcfdataset, rsid, sample_names_by_posn, combo_posns, combo_names, threshold, gmetrics, recs)
-    wg.Done()
 }

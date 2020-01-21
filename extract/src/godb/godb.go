@@ -142,7 +142,7 @@ func Getvardbdata(session *mgo.Session, gdb string,
 	}
 
   if (variant_count == 0) {
-    fmt.Printf("NOT FOUND %s\n", rsid)
+    log.Printf("##NOT FOUND %s\n", rsid)
   }
   return variant_list, filepath_list
 }
@@ -184,7 +184,7 @@ func Getvarfiledata(f string, dbv DBVariant, recs chan string) {
 // and their array indexes in the relevant VCF data
 // NOTE:  this returns two maps of map: 
 //   assaytype to sample_name to index 
-//   assaytype to inddex to sample_name 
+//   assaytype to index to sample_name 
 //---------------------------------------------------------------------
 func GetSamplesByAssaytype(session *mgo.Session, gdb string, sample_collection string) (map[string]map[string]int, map[string]map[int]string) {
   sampleNamePosn := make(map[string]map[string]int)

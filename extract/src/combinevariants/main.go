@@ -117,7 +117,7 @@ func main() {
 	defer session.Close()
 
 	atList := strings.Split(assayTypes, ",")
-	fmt.Printf("%v\n", atList)
+  //fmt.Printf("%v\n", atList)
 	for at := range atList {
 		validAssaytypes[atList[at]] = true
 	}
@@ -183,34 +183,39 @@ func main() {
 
 	// Get column headers
 	colhdr_str, combo_names := vcfmerge.GetCombinedColumnHeaders(combocols)
-	fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
+	//fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
+	fmt.Printf("%s\n", colhdr_str)
 
-	for _, atype := range assaytype_list {
-		name_str := vcfmerge.GetColumnHeaders(sample_posn_map[atype])
-		fmt.Printf("%s\n", atype+"\t"+name_str)
-	}
+	//for _, atype := range assaytype_list {
+	//	name_str := vcfmerge.GetColumnHeaders(sample_posn_map[atype])
+    //fmt.Printf("%s\n", atype+"\t"+name_str)
+	//}
 	var genomet genometrics.AllMetrics
 
 	// output the vcf records in input order, can also log the 'NOT FOUND's at this point
-	fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
+	//fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
 			rec_str := vcfmerge.Mergeslices_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
-			fmt.Printf("%s\n", "combined"+"\t"+rec_str)
+			//fmt.Printf("%s\n", "combined"+"\t"+rec_str)
+			fmt.Printf("%s\n", rec_str)
 			// output individual assay records
-			for _, rec := range records {
-				assaytype := rec[0]
-				cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(rec[1:], threshold)
-				flag_str := ""
-				if hwep < 0.05 {
-					flag_str = "***"
-				}
-				fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
-					assaytype, rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
-				rec_str := strings.Join(rec, "\t")
-				fmt.Printf("%s\n", rec_str)
-			}
+			//for _, rec := range records {
+			//	assaytype := rec[0]
+			//	cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(rec[1:], threshold)
+			//	flag_str := ""
+			//	if hwep < 0.05 {
+			//		flag_str = "***"
+			//	}
+				//fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
+				//	assaytype, rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
+			//	rec_str := strings.Join(rec, "\t")
+				//fmt.Printf("%s\n", rec_str)
+			//}
 		}
 	}
-	fmt.Printf("METRICS (ALL),AllGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d\n", genomet.AllGenoCount, genomet.OverlapTestCount, genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount, genomet.MissTestCount, genomet.MissingCount)
+  log.Printf("##METRICS (ALL),AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d,NoAssay=%d\n",
+      genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount,
+      genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount,
+      genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount)
 }

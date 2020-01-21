@@ -26,17 +26,17 @@ def load_snpfile_data(fh):
   return snps
 
 def main(options):
-  supported_assaytypes = {"biggertest":1, "bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  #supported_assaytypes = {"bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1, "exome":1}
-  #supported_assaytypes = {"affy":1, "illumina":1, "broad":1}
-  #supported_assaytypes = {"affy":1, "illumina":1}
-  #supported_assaytypes = {"broad":1}
-  #supported_assaytypes = {"metabo":1}
-  #supported_assaytypes = {"affy":1}
-  #supported_assaytypes = {"bigtest":1}
-  #supported_assaytypes = {"biggertest":1}
+  #included_assaytypes = {"biggertest":1, "bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  #included_assaytypes = {"bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  included_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  #included_assaytypes = {"affy":1, "illumina":1, "broad":1, "exome":1}
+  #included_assaytypes = {"affy":1, "illumina":1, "broad":1}
+  #included_assaytypes = {"affy":1, "illumina":1}
+  #included_assaytypes = {"broad":1}
+  #included_assaytypes = {"metabo":1}
+  #included_assaytypes = {"affy":1}
+  #included_assaytypes = {"bigtest":1}
+  #included_assaytypes = {"biggertest":1}
   rsids = []
   godb = GoDb()
 
@@ -85,7 +85,7 @@ def main(options):
   # At this point we're establishing a list order which must be observed throughout.
     for doc in docs:
       #logging.info("%s", str(doc))
-      if doc["assaytype"] not in supported_assaytypes:
+      if doc["assaytype"] not in included_assaytypes:
         continue
       if doc["assaytype"] not in atype_list:
         atype_list.append(doc["assaytype"])

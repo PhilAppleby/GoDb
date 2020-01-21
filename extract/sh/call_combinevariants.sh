@@ -17,4 +17,4 @@ ${GOBIN}/combinevariants -rsfile=$1 -dbhost=${MHOST} -gdb=${MDBNAME} \
 #---------------------------------------------------------------------------------------------------------------------
 # Separate output files
 #---------------------------------------------------------------------------------------------------------------------
-grep -w combined ${COMBODATADIR}/merge_output.txt | grep -v METRICS | cut -f2- > ${COMBODATADIR}/combined.vcf
+#grep -w combined ${COMBODATADIR}/merge_output.txt | grep -v METRICS | cut -f2- > ${COMBODATADIR}/combined.vcf

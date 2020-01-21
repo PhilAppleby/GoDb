@@ -38,7 +38,10 @@ var assayTypeAbbreviation = map[string]string{
 	"bigtest":     "T",
 	"biggertest":  "G",
 }
-
+//---------------------------------------------------------------------------------
+// Input is samplenames
+//
+//---------------------------------------------------------------------------------
 func GetCombinedColumnHeaders(sample_name_map map[string]int) (string, []string) {
 
 	posns := make(map[int]string, len(sample_name_map))
@@ -87,7 +90,6 @@ func Mergeslices_one(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
   for rec := range file_records {
     rtn_string = rec
   }
-
   return rtn_string
 }
 //------------------------------------------------------------------------------
@@ -122,26 +124,31 @@ func Mergeslices(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 
 	for _, rec := range vcfset {
 		atype := rec[0]
+    // currec will have slots in the same order as the combined record
 		currec := make([]string, len(combo_posns))
 		atypes = append(atypes, atype)
 		prfx, sfx = variant.GetVCFPrfx_Sfx(rec[1:])
+    (*gmetrics).AllGenoCount += len(sfx)
 		probidx = variant.GetProbidx(prfx)
 		varid := variant.GetVarid(prfx)
 		refAllele, altAllele := variant.GetAlleles(prfx)
     hasAT := variant.HasFmt(prfx, "AT")
 		if (varid == savedVarid) && (refAllele == savedRefAllele) && (altAllele == savedAltAllele) {
 			for j, elem := range sfx {
-        if !hasAT {
-			    currec[combo_posns[sample_names_by_posn[atype][j]]] = appendAssayAbbrev(elem, atype)
+        if (!hasAT) {
+			    elem = appendAssayAbbrev(elem, atype)
 			  }
+        // this is the crux map from sample_name at slot j in the assay type record to the position 
+        // aligned with the combination record
+			  currec[combo_posns[sample_names_by_posn[atype][j]]] = elem
       }
 			assayrecs = append(assayrecs, currec)
 		} else {
 			log.Printf("REJ: merge mismatch: %v (%s, %s, %s)\n", prfx, savedVarid, savedRefAllele, savedAltAllele)
 		}
 	}
-	// At this point all "input" genotype data has been captured - now
-	// Look at each possible genotype for the comborec
+	// At this point all "input" genotype data has been captured and is lined up with the comborec
+  // Now look at each possible genotype for the comborec
 	for i, _ := range comborec {
 		geno_list := make([]string, 0, len(assayrecs))
 		for _, genos := range assayrecs {
@@ -149,16 +156,12 @@ func Mergeslices(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 				geno_list = append(geno_list, variant.Get_geno(genos[i], threshold, probidx))
 			}
 		}
-		//fmt.Printf("%s: %s\n", combo_names[i], geno_list)
-		(*gmetrics).AllGenoCount += len(geno_list)
 		(*gmetrics).UniqueGenoCount += 1
 		if len(geno_list) > 1 {
 			(*gmetrics).OverlapTestCount++
 			if len(geno_list) == 2 {
-				//fmt.Printf("OVERLAP_TWO %s:%s - %s\n", rsid, combo_names[i], geno_list)
 				(*gmetrics).TwoOverlapCount++
 			} else {
-				//fmt.Printf("OVERLAP_GT2 %s:%s - %s\n", rsid, combo_names[i], geno_list)
 				(*gmetrics).GtTwoOverlapCount++
 			}
 			comborec[i] = get_best_geno(geno_list, probidx, rsid, gmetrics)
@@ -242,8 +245,11 @@ func get_best_geno(geno_list []string, probidx int, varid string, gmetrics *geno
 		}
 	}
 	bgenodata := strings.Split(bgeno, ":")
-	if (bgeno == ".") || (bgenodata[0] == "./.") {
+	if (bgenodata[0] == "./.") {
 		(*gmetrics).MissingCount += 1
+	}
+	if (bgeno == ".") {
+		(*gmetrics).NoAssayCount += 1
 	}
 	return bgeno
 }

@@ -27,9 +27,10 @@ func MakeSamplesByAssaytype(sample_header_map map[string][]string) (map[string]m
 	}
 	return sampleNamePosn, samplePosnName
 }
-
-//---------------------------------------------------
-//---------------------------------------------------
+//------------------------------------------------------------------------------
+// Condense all the lists by assayttpe into a single map (sample_name to int)
+// called by the filemerge code
+//------------------------------------------------------------------------------
 func GetCombinedSampleMap(samplesByAssayType map[string]map[string]int) map[string]int {
 	sample_list := make([]string, 0, len(samplesByAssayType))
 	sample_index := make(map[string]int, len(samplesByAssayType))
@@ -49,12 +50,13 @@ func GetCombinedSampleMap(samplesByAssayType map[string]map[string]int) map[stri
 			i++
 		}
 	}
-	//fmt.Printf("(1) %v\n", sample_index)
 	return sample_index
 }
-
-//---------------------------------------------------
-//---------------------------------------------------
+//------------------------------------------------------------------------------
+// Condense all the lists by assayttpe into a single map (sample_name to int)
+// goes through each required assaytype and places samples in a master combined
+// list of the sample_name is not already there, whilc incrementing the idx
+//------------------------------------------------------------------------------
 func GetCombinedSampleMapByAssaytypes(samplesByAssayType map[string]map[string]int, assayTypeList []string) map[string]int {
 	sample_index := make(map[string]int, len(samplesByAssayType))
 
@@ -68,10 +70,8 @@ func GetCombinedSampleMapByAssaytypes(samplesByAssayType map[string]map[string]i
 				}
 			}
 		} else {
-			fmt.Printf("Horrible error %s (assaytype) not found in samples\n", atype)
+			fmt.Printf("##Horrible error %s (assaytype) not found in samples\n", atype)
 		}
 	}
-	//fmt.Printf("(2) %v\n", sample_index)
-
 	return sample_index
 }
