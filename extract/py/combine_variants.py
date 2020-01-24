@@ -28,11 +28,11 @@ def load_snpfile_data(fh):
 def main(options):
   #included_assaytypes = {"biggertest":1, "bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
   #included_assaytypes = {"bigtest":1, "affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
-  included_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
+  #included_assaytypes = {"affy":1, "illumina":1, "broad":1, "metabo":1, "exome":1}
   #included_assaytypes = {"affy":1, "illumina":1, "broad":1, "exome":1}
   #included_assaytypes = {"affy":1, "illumina":1, "broad":1}
   #included_assaytypes = {"affy":1, "illumina":1}
-  #included_assaytypes = {"broad":1}
+  included_assaytypes = {"broad":1}
   #included_assaytypes = {"metabo":1}
   #included_assaytypes = {"affy":1}
   #included_assaytypes = {"bigtest":1}

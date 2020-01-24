@@ -201,7 +201,7 @@ func main() {
 	// output the vcf records in input order, can also log the 'NOT FOUND's at this point
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
-      rec_str := vcfmerge.Mergeslices_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
+      rec_str := vcfmerge.Combine_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
       //fmt.Printf("%s\n", "combined"+"\t"+rec_str)
       fmt.Printf("%s\n", rec_str)
 		}

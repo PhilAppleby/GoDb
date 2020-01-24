@@ -2,7 +2,7 @@ package vcfmerge
 
 //---------------------------------------------------------
 // File: vcfmerge.go
-// Functions to merge (combine, merge is a misnomer) slices
+// Functions to merge (combine, merge is a misnomer) arrays
 // of VCF genotype data
 // Author: P Appleby, University of Dundee
 //---------------------------------------------------------
@@ -76,15 +76,15 @@ func GetColumnHeaders(sample_posn_map map[int]string) string {
 	return hdr_prfx + strings.Join(sample_names, "\t")
 }
 //------------------------------------------------------------------------------
-// Merge single version : wraps Mergeslices
+// Combine_one single version : wraps Combine
 //------------------------------------------------------------------------------
-func Mergeslices_one(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
+func Combine_one(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 	sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
 	combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics) string {
 
   var rtn_string string
   file_records := make(chan string, 1)
-  Mergeslices(vcfset, vcfdataset, rsid, sample_names_by_posn, combo_posns, combo_names, threshold, gmetrics, file_records)
+  Combine(vcfset, vcfdataset, rsid, sample_names_by_posn, combo_posns, combo_names, threshold, gmetrics, file_records)
 
   close(file_records)
   for rec := range file_records {
@@ -93,11 +93,11 @@ func Mergeslices_one(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
   return rtn_string
 }
 //------------------------------------------------------------------------------
-// Merge version III: build out full results arrays for each assay in the vcfset,
+// Combine version III: build out full results arrays for each assay in the vcfset,
 // then process in lockstep to allow comparision of all genotypes for the same
 // sample at the same time
 //------------------------------------------------------------------------------
-func Mergeslices(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
+func Combine(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 	sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
 	combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string) {
 
