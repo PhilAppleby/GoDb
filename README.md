@@ -1,4 +1,4 @@
-# GoDb - a hybrid genomic data store for multiple SNP panels (assays)
+# GoDb - a hybrid genomic data store for multiple SNP panels
 ## Background
 For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets usually reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
 
