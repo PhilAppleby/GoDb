@@ -1,20 +1,4 @@
 //------------------------------------------------------------------------------
-// Access GoDb via the imported mongo libraries and (in 'vcfmerge')
-// tabix libraries to produce combined vcf records
-//
-// Uses goroutines for file i/o, care need to ba taken over the 
-// number of open file handles as a long list of SNPs can mean 
-// 1000's of file reads
-//
-// Steps:
-// 1) Read in a file of rs numbers or a single rsid
-// 2) For each:
-//    2.1 get 'variants' and 'filepaths' data from mongodb, access VCF records
-//    2.2 save vcf records in maps of arrays (rsid -> array of VCF records
-// 3) Organise assaytypes found in the data and build a combined column list and 
-//    VCF header record for all present.
-// 4) Build combined VCF records, applying genotype resolution rules
-// 5) Output combined records.
 //------------------------------------------------------------------------------
 package main
 
@@ -29,16 +13,15 @@ import (
 	"os"
 	"sample"
 	"strings"
-	"sync"
+	"time"
 	"variant"
 	"vcfmerge"
 )
+
 //------------------------------------------------
 // file-scope vars, accessed by multiple funcs
 //------------------------------------------------
-var logFilePath string
 var rsFilePath string
-var rsId string
 var vcfPathPref string
 var gdb string
 var var_collection string
@@ -47,10 +30,7 @@ var samp_collection string
 var dbhost string
 var threshold float64
 var assayTypes string
-var logLevel int
 var validAssaytypes = map[string]bool{}
-var fsem chan struct{}
-var csem chan struct{}
 //------------------------------------------------
 // main package routines
 //------------------------------------------------
@@ -59,12 +39,8 @@ var csem chan struct{}
 //------------------------------------------------
 func init() {
 	const (
-    defaultLogFilePath   = "./data/vcombine_output.log"
-    lusage               = "Log file"
 		defaultRsFilePath  = "./data/rslist1.txt"
 		rsusage            = "File containing list of rsnumbers"
-		defaultRsId        = ""
-		rsidusage          = "Single rsid"
 		defaultGdb         = "genomicsdb"
 		gusage             = "dbname for genomics data"
 		defaultvars        = "variants"
@@ -81,15 +57,9 @@ func init() {
 		thrusage           = "Prob threshold"
 		defaultAssayTypes  = "affy,illumina,broad,metabo,exome"
 		atusage            = "Assay types"
-		defaultLogLevel    = 0
-		loglusage          = "0=Minimal 1=Sum 2=max"
 	)
-  flag.StringVar(&logFilePath, "logfile", defaultLogFilePath, lusage)
-  flag.StringVar(&logFilePath, "l", defaultLogFilePath, lusage+" (shorthand)")
 	flag.StringVar(&rsFilePath, "rsfile", defaultRsFilePath, rsusage)
 	flag.StringVar(&rsFilePath, "r", defaultRsFilePath, rsusage+" (shorthand)")
-	flag.StringVar(&rsId, "rsid", defaultRsId, rsidusage)
-	flag.StringVar(&rsId, "i", defaultRsId, rsidusage+" (shorthand)")
 	flag.StringVar(&gdb, "gdb", defaultGdb, gusage)
 	flag.StringVar(&gdb, "g", defaultGdb, gusage+" (shorthand)")
 	flag.StringVar(&var_collection, "variants", defaultvars, varusage)
@@ -106,8 +76,6 @@ func init() {
 	flag.Float64Var(&threshold, "t", defaultThreshold, thrusage+" (shorthand)")
 	flag.StringVar(&assayTypes, "assaytypes", defaultAssayTypes, atusage)
 	flag.StringVar(&assayTypes, "a", defaultAssayTypes, atusage+" (shorthand)")
-	flag.IntVar(&logLevel, "logopt", defaultLogLevel, loglusage)
-	flag.IntVar(&logLevel, "o", defaultLogLevel, loglusage+" (shorthand)")
 	flag.Parse()
 }
 //------------------------------------------------
@@ -120,64 +88,54 @@ func check(e error) {
 		log.Fatal(e)
 	}
 }
-//------------------------------------------------
-// main() program entry point
-//------------------------------------------------
-func main() {
-  // set up logging to a file
-  lf, err := os.OpenFile(logFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0640)
-  check(err)
-  defer lf.Close()
 
-  log.SetOutput(lf)
-  var wg sync.WaitGroup
+func main() {
 	// Control # of active goroutines (in this case also the # of open files)
-	fsem = make(chan struct{}, 64)
-	// 10,000 here is arbitrary, needs a re-think
-	file_records := make(chan string, 10000)
+  start := time.Now()
+	file_records := make(chan string, 1)
+
+	f, err := os.Open(rsFilePath)
+	check(err)
+	defer f.Close()
 	session, err := mgo.Dial(dbhost)
 	check(err)
 	defer session.Close()
 
-	rsid_list := make([]string, 0, 1000)
-	rsid_count := 0
-
-  if rsId == "" {
-	  f, err := os.Open(rsFilePath)
-	  check(err)
-	  defer f.Close()
-	  scanner := bufio.NewScanner(f)
-	  for scanner.Scan() {
-		  rsid := scanner.Text()
-		  rsid_count++
-		  rsid_list = append(rsid_list, rsid)
-    }
-  } else {
-		rsid_list = append(rsid_list, rsId)
-  }
-
 	atList := strings.Split(assayTypes, ",")
+  //fmt.Printf("%v\n", atList)
 	for at := range atList {
 		validAssaytypes[atList[at]] = true
 	}
 
-  for _, rsid := range rsid_list {
-    // For each rsid, access godb and get the lists of variants vs filepaths
-    variants, filepaths := godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
-    // For each variant, filepath combination get a file record
-    for idx, variant := range variants {
-		  if _, ok := validAssaytypes[variant.Assaytype]; ok {
-        //log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
-        wg.Add(1)
-		    go getvarfiledata(filepaths[idx], variant, file_records, &wg)
+	rsid_list := make([]string, 0, 1000)
+	rsid_count := 0
+	scanner := bufio.NewScanner(f)
+  var variants []godb.DBVariant
+  var filepaths []string
+	for scanner.Scan() {
+		rsid := scanner.Text()
+		rsid_count++
+		rsid_list = append(rsid_list, rsid)
+    loop_start := time.Now()
+    for i := 0; i < 1000; i++ {
+      variants, filepaths = godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
+    }
+    elapsed := time.Since(loop_start)
+    log.Printf("Mongo Iteration took %s", elapsed)
+    loop_start = time.Now()
+    for i := 0; i < 100; i++ {
+	    file_records = make(chan string, 100000)
+      for idx, variant := range variants {
+		    if _, ok := validAssaytypes[variant.Assaytype]; ok {
+		      godb.Getvarfiledata(filepaths[idx], variant, file_records)
+        }
       }
     }
-	}
+    elapsed = time.Since(loop_start)
+    log.Printf("VCF Iteration took %s", elapsed)
+  }
 	check(err)
 
-	// Wait for the file-reading go routines (defined in the godb package) to complete
-	wg.Wait()
-	close(fsem)
 	close(file_records)
 
 	// Map rsid's to their retrieved vcf file records
@@ -213,39 +171,56 @@ func main() {
 		rsids[varid] = append(rsids[varid], fields)
 		rsids_data[varid] = append(rsids_data[varid], recdata)
 	}
-  // get all sample data from godb and organise into maps of maps: 
-  // assaytype -> sample name -> sample posn (sample_name_map)
-  // assaytype -> sample posn -> sample name (sample_posn_map)
+
+	// Process sample data to:
+	// - build header columns
+	// - get maps to go from source column numbers to numbers in the combined version
 	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb, samp_collection)
-  // Condense all sample_names into a combined map samplename -> record position
 	combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
-	// Get column headers as a single tab delimited string, with prefix in place, and as a list, both in postion order
+	// combocols := sample.GetCombinedSampleMap(sample_name_map)
+
+	// Get column headers
 	colhdr_str, combo_names := vcfmerge.GetCombinedColumnHeaders(combocols)
 	//fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
 	fmt.Printf("%s\n", colhdr_str)
 
+	//for _, atype := range assaytype_list {
+	//	name_str := vcfmerge.GetColumnHeaders(sample_posn_map[atype])
+    //fmt.Printf("%s\n", atype+"\t"+name_str)
+	//}
 	var genomet genometrics.AllMetrics
 
 	// output the vcf records in input order, can also log the 'NOT FOUND's at this point
-  var snpcount int
+	//fmt.Printf("METRICS,platform,rsid,CR,RAF,AAF,MAF,HWEP,HET,COMMON,RARE,N,MISS,DOT,REFPAF,OK\n")
 	for _, rsid := range rsid_list {
 		if records, ok := rsids[rsid]; ok {
-	    var rsid_genomet genometrics.AllMetrics
-      rec_str := vcfmerge.Combine_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &rsid_genomet)
-      fmt.Printf("%s\n", rec_str)
-      snpcount  += 1
-      genometrics.Increment(&genomet, &rsid_genomet)
-      genometrics.Log_metrics(logLevel, rsid, 1, "##VARIANT", &rsid_genomet)
+      loop_start := time.Now()
+      for i := 0; i < 1000; i++ {
+			  _ = vcfmerge.Combine_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, threshold, &genomet)
+      }
+      elapsed := time.Since(loop_start)
+      log.Printf("Combo Iteration took %s", elapsed)
+			//fmt.Printf("%s\n", "combined"+"\t"+rec_str)
+			//fmt.Printf("%s\n", rec_str)
+			// output individual assay records
+			//for _, rec := range records {
+			//	assaytype := rec[0]
+			//	cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf := genometrics.Metrics_for_record(rec[1:], threshold)
+			//	flag_str := ""
+			//	if hwep < 0.05 {
+			//		flag_str = "***"
+			//	}
+				//fmt.Printf("METRICS,%s,%s,%f,%f,%f,%f,%.6f,%d,%d,%d,%d,%d,%d,%f,%s\n",
+				//	assaytype, rsid, cr, raf, aaf, maf, hwep, het, common, rare, n, miss, dot, refpaf, flag_str)
+			//	rec_str := strings.Join(rec, "\t")
+				//fmt.Printf("%s\n", rec_str)
+			//}
 		}
 	}
-  genometrics.Log_metrics(3, "all", snpcount, "##TOTAL", &genomet)
-}
-//------------------------------------------------------------------------------
-// wrap the godb.Getvarfiledata func, for use as a goroutine
-//------------------------------------------------------------------------------
-func getvarfiledata(f string, dbv godb.DBVariant, recs chan string, wg *sync.WaitGroup) {
-  fsem <- struct{}{}
-  defer func() { <-fsem }()
-  godb.Getvarfiledata(f, dbv, recs)
-  wg.Done()
+  log.Printf("##METRICS (ALL),AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d,Odiff=%d,OMiss=%d,OMissRes=%d,NoAssay=%d\n",
+      genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount,
+      genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount,
+      genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount)
+  all_elapsed := time.Since(start)
+  log.Printf("END: %s", all_elapsed)
 }

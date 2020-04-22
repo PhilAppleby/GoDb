@@ -1,6 +1,6 @@
-# GoDb - a simple, hybrid genomic data store system for multiple SNP panels (assays)
+# GoDb - a hybrid genomic data store system for multiple SNP panels (assays)
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
+For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets usually reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
 
 
 ## Requirements
@@ -21,7 +21,7 @@ Two non-functional requirements were also identified:
 ## Description
 The data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data retained in VCF files.
 
-Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordininates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
+Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
 ### This repository 
 The following subdirectories are in the repository:
@@ -40,7 +40,7 @@ The following subdirectories are in the repository:
 
 - *extract/py/* Command-line Python code for genotype data extract, from lists of SNPs. 
 
-- *extract/src/* Root directory for Go(lang) source code to build a multi-threaded command-line extract tool. There is also library code to handle MongoDb and tabix-indexed file access.
+- *extract/src/* Root directory for Go(lang) source code to build command-line data extraction tools. There is also library code to handle MongoDb and tabix-indexed file access plus VCF file parsing and metrics (for example, MAF, HWEP, CR).
 
 - *extract/sh/* bash scripts, wrappers for command-line extract tools.
 
@@ -132,6 +132,11 @@ filepaths - one document per SNP panel (assaytype):
 - github.com/brentp/bix golang library for tabix index access
 - github.com/brentp/irelate/intercases golang library for tabix index access
 
+## Index Web-Page
+Front page displayed by the prototype web-application
+
+![](images/godb_webapp.jpg)
+ 
 ## Data Store Architecture 
 High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers.
 
@@ -139,9 +144,11 @@ High-level architecture diagram of the data store and software, showing applicat
 
 
 ## Combining genotype records 
-Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules.
+Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules.If there were no sample overlaps this would be a matter of concatenating the genotype arrays and writing the combined record. Sample overlaps mean that the genotype for every sample must be checked across the record sets. This is explained further below and summarised in the figure.
 
 ![](images/combining_geno_data.png)
+
+The figure shows in-memory arrays built prior to writing the output. Data for each of the input arrays is copied to expanded intermediate arrays, in the same order as the combined array, before comparison is done, followed by a final copy step to the output array. 
 
 
 ## Performance

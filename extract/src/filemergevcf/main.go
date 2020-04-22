@@ -188,12 +188,17 @@ func main() {
 	outctr := 0
 	// process until all files exhausted
 	for records_remain(keys) {
-		records, keys, varids = check_low_key_records(records, keys, varids)
 		output_from_low_key_records(records, keys, sample_posn_map, combocols, combo_names, threshold, &genomet)
 		outctr += 1
 		records, keys, varids = read_from_low_key_records(records, keys, freaders, varids)
 	}
-	log.Printf("EXIT,wrt=%d,allgeno=%d,2ol=%d,gt2ol=%d,mmc=%d,misstested=%d,missing=%d\n", outctr, genomet.AllGenoCount, genomet.TwoOverlapCount, genomet.GtTwoOverlapCount, genomet.MismatchCount, genomet.MissTestCount, genomet.MissingCount)
+  errorPct := (float64(genomet.MismatchCount) / float64(genomet.OverlapTestCount)) * 100
+  log.Printf("EXIT,wrt=%d,AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d\n",
+      outctr,genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount,
+      genomet.TwoOverlapCount, genomet.GtTwoOverlapCount)
+  log.Printf("EXIT,OverlapGenoDiffs=%d,DiffProbDiffs=%d, SameProbDiffs=%d,MissingGenoTested=%d,MissingUnresolved=%d,NoAssay=%d,ErrorPct=%.3f\n",
+      genomet.MismatchCount, genomet.DiffProbDiffs, genomet.SameProbDiffs,
+      genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount, errorPct)
 }
 
 //-------------------------------------------------------------
@@ -249,21 +254,9 @@ func records_remain(keys map[string]int64) bool {
 	}
 	return false
 }
-
 //-------------------------------------------------------------
-// Cross check low key records to match alleles (when there
-// are more than one)
+// Write output from low-key records
 //-------------------------------------------------------------
-func check_low_key_records(records map[string][]string, keys map[string]int64,
-	varids map[string]string) (map[string][]string, map[string]int64, map[string]string) {
-	low_keys := get_low_keys(keys)
-	key_count := 0
-	if len(low_keys) > 1 {
-		if key_count == 0 {
-		}
-	}
-	return records, keys, varids
-}
 func output_from_low_key_records(records map[string][]string, keys map[string]int64,
 	sample_posn_map map[string]map[int]string,
 	combocols map[string]int, combo_names []string, threshold float64, genomet *genometrics.AllMetrics) {
@@ -274,7 +267,7 @@ func output_from_low_key_records(records map[string][]string, keys map[string]in
 	for at, _ := range low_keys {
 		low_key_at = append(low_key_at, at)
 	}
-	sort.Strings(low_key_at)
+  sort.Sort(sort.Reverse(sort.StringSlice(low_key_at)))
 
 	vcfrecords := make([][]string, 0, len(records))
 	rsid := ""
@@ -290,7 +283,9 @@ func output_from_low_key_records(records map[string][]string, keys map[string]in
 	rec_str := vcfmerge.Combine_one(vcfrecords, vcfd, rsid, sample_posn_map, combocols, combo_names, threshold, genomet)
 	fmt.Printf("%s\n", rec_str)
 }
-
+//-------------------------------------------------------------
+// Inititiate the next cycle
+//-------------------------------------------------------------
 func read_from_low_key_records(records map[string][]string, keys map[string]int64, rdrs map[string]*bufio.Reader, varids map[string]string) (map[string][]string, map[string]int64, map[string]string) {
 	low_keys := get_low_keys(keys)
 	for assaytype, _ := range low_keys {

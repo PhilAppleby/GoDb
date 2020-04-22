@@ -7,7 +7,7 @@ package genometrics
 //
 //
 import (
-	//	"fmt"
+	"log"
 	"strconv"
 	"strings"
 	"variant"
@@ -17,9 +17,12 @@ type AllMetrics struct {
 	AllGenoCount      int
 	UniqueGenoCount   int
 	OverlapTestCount  int
+	OverlapSampCount  int
 	TwoOverlapCount   int
 	GtTwoOverlapCount int
 	MismatchCount     int
+	DiffProbDiffs     int
+	SameProbDiffs     int
 	MissTestCount     int
 	MissingCount      int
 	NoAssayCount      int
@@ -31,7 +34,47 @@ type RunParameters struct {
 	CallRate  float64
 	InfoScore float64
 }
-
+//-----------------------------------------------------------------------------
+// Increment - add the values from sr to tgt 
+//-----------------------------------------------------------------------------
+func Increment(tgt *AllMetrics, src *AllMetrics) {
+  (*tgt).AllGenoCount  += (*src).AllGenoCount
+  (*tgt).UniqueGenoCount  += (*src).UniqueGenoCount
+  (*tgt).OverlapTestCount  += (*src).OverlapTestCount
+  (*tgt).OverlapSampCount  += (*src).OverlapSampCount
+  (*tgt).TwoOverlapCount  += (*src).TwoOverlapCount
+  (*tgt).GtTwoOverlapCount  += (*src).GtTwoOverlapCount
+  (*tgt).MismatchCount  += (*src).MismatchCount
+  (*tgt).DiffProbDiffs  += (*src).DiffProbDiffs
+  (*tgt).SameProbDiffs  += (*src).SameProbDiffs
+  (*tgt).MissTestCount  += (*src).MissTestCount
+  (*tgt).MissTestCount  += (*src).MissTestCount
+  (*tgt).MissingCount  += (*src).MissingCount
+  (*tgt).NoAssayCount  += (*src).NoAssayCount
+}
+//-----------------------------------------------------------------------------
+// Log_metrics - log metrics output, detail depends on evel
+//-----------------------------------------------------------------------------
+func Log_metrics(logLevel int, varid string, snpcount int, msg string, genomet *AllMetrics) {
+  errorPct := (float64((*genomet).MismatchCount) / float64((*genomet).OverlapTestCount)) * 100
+  if logLevel > 0 {
+    log.Printf("%s,%s,SNPCount=%d\n", msg, varid, snpcount)
+    log.Printf("%s,%s,ErrPct=%.3f\n", msg, varid, errorPct)
+  }
+  if logLevel > 1 {
+    log.Printf("%s,%s,AllGenos=%d\n", msg, varid, (*genomet).AllGenoCount)
+    log.Printf("%s,%s,UniqueGenos=%d\n", msg, varid, (*genomet).UniqueGenoCount)
+    log.Printf("%s,%s,Alloverlap=%d\n", msg, varid, (*genomet).OverlapTestCount)
+    log.Printf("%s,%s,Two=%d\n", msg, varid, (*genomet).TwoOverlapCount)
+    log.Printf("%s,%s,GTTwo=%d\n", msg, varid, (*genomet).GtTwoOverlapCount)
+    log.Printf("%s,%s,OverlapGenoDiffs=%d\n", msg, varid, (*genomet).MismatchCount)
+    log.Printf("%s,%s,DiffProbDiffs=%d\n", msg, varid, (*genomet).DiffProbDiffs)
+    log.Printf("%s,%s,SameProbDiffs=%d\n", msg, varid, (*genomet).SameProbDiffs)
+    log.Printf("%s,%s,MissingGenoTested=%d\n", msg, varid, (*genomet).MissTestCount)
+    log.Printf("%s,%s,MissingUnresolved=%d\n", msg, varid, (*genomet).MissingCount)
+    log.Printf("%s,%s,NoAssay=%d\n", msg, varid, (*genomet).NoAssayCount)
+  }
+}
 // caller passes a string array representing a whole VCF
 // record, including prefix
 // Return the results for the SNPHWE fn.
@@ -44,8 +87,9 @@ func Hwe_exact_for_record(rec []string, threshold float64) float64 {
 // CR, RAF, AAF, MAF, HWE_P
 func Metrics_for_record(rec []string, threshold float64) (float64, float64,
 	float64, float64, float64, int, int, int, int, int, int, float64) {
-	homref, homalt, het, n, miss, dot, refPAF := get_genotype_counts(rec, threshold)
-	cr := float64(homref+het+homalt) / float64(n)
+	homref, homalt, het, alln, miss, dot, refPAF := get_genotype_counts(rec, threshold)
+  n := alln - (miss + dot)
+  cr := float64(homref+het+homalt) / float64(alln)
 	raf := float64(2*homref+het) / float64(2*n)
 	aaf := float64(2*homalt+het) / float64(2*n)
 	maf := aaf
@@ -84,7 +128,6 @@ func GetRunParams(testnum string, mafdelta string, callrate string, infoscore st
 
 	return runParams
 }
-
 // Following is translated from the 'C' routine from UMICH
 // Original comments:
 //
@@ -170,7 +213,7 @@ func get_genotype_counts(rec []string, threshold float64) (int, int, int, int, i
 
 	prfx, sfx := variant.GetVCFPrfx_Sfx(rec)
 	probidx := variant.GetProbidx(prfx)
-	refPAF := variant.GetRefPanelAf(prfx)
+	refPAF := variant.GetRefPanelAF(prfx)
 
 	for _, geno := range sfx {
 		if geno != "." {

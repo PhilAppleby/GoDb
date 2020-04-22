@@ -1,5 +1,4 @@
 package vcfmerge
-
 //---------------------------------------------------------
 // File: vcfmerge.go
 // Functions to merge (combine, merge is a misnomer) arrays
@@ -168,6 +167,9 @@ func Combine(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 		} else {
 			if len(geno_list) == 1 {
 				comborec[i] = geno_list[0]
+        if strings.HasPrefix(comborec[i], "./.") {
+          (*gmetrics).MissingCount += 1
+        }
 			}
 		}
 	}
@@ -217,12 +219,16 @@ func resolveGeno(geno1 string, geno2 string, probidx int) string {
 }
 
 //------------------------------------------------------------------------------
+// Get the best genotype based on imputation probability
 //------------------------------------------------------------------------------
 func get_best_geno(geno_list []string, probidx int, varid string, gmetrics *genometrics.AllMetrics) string {
 	rgeno := ""
 	bgeno := "."
 	best_prob := 0.0
 
+  gcount, mcount := count_diff_genos(geno_list)
+  (*gmetrics).MismatchCount += (gcount - 1)
+  (*gmetrics).MissTestCount += mcount
 	for _, geno := range geno_list {
     if geno == "." {
 		  (*gmetrics).NoAssayCount += 1
@@ -230,26 +236,53 @@ func get_best_geno(geno_list []string, probidx int, varid string, gmetrics *geno
     }
 		genodata := strings.Split(geno, ":")
 		if genodata[0] != rgeno {
-			if rgeno != "" {
-				(*gmetrics).MismatchCount += 1
-			}
-			if genodata[0] == "./." {
-				(*gmetrics).MissTestCount += 1
-			}
 			prob, _, _ := variant.MaxProb(geno, probidx)
-			if prob > best_prob {
+			if prob == best_prob {
+        (*gmetrics).SameProbDiffs++
+      } else {
+        if best_prob != 0.0 {
+          (*gmetrics).DiffProbDiffs++
+        }
 				rgeno = genodata[0]
 				bgeno = geno
 				best_prob = prob
-			}
+      }
 		}
 	}
 	bgenodata := strings.Split(bgeno, ":")
 	if (bgenodata[0] == "./.") {
 		(*gmetrics).MissingCount += 1
 	}
-	if (bgeno == ".") {
-		(*gmetrics).NoAssayCount += 1
-	}
 	return bgeno
 }
+//------------------------------------------------------------------------------
+// Count the number of genotypes in a genotype list 
+//------------------------------------------------------------------------------
+func count_diff_genos(geno_list []string) (int, int) {
+  var gcount, mcount int
+  gmap := make(map[string]bool, len(geno_list))
+  for _, genoinfo := range(geno_list) {
+    geno := strings.Split(genoinfo, ":")
+    if _, ok := gmap[geno[0]]; !ok {
+      gmap[geno[0]] = true
+      gcount += 1
+    }
+    if geno[0] == "./." {
+      mcount += 1
+    }
+  }
+  return gcount, mcount
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

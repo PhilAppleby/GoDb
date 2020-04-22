@@ -110,6 +110,10 @@ func GetVCFPrfx_Sfx(recslice []string) ([]string, []string) {
 	return recslice[:firstGenoIdx], recslice[firstGenoIdx:]
 }
 
+func GetChrom(recslice []string) string {
+	return recslice[chrIdx]
+}
+
 func GetVarid(recslice []string) string {
 	return recslice[varIdx]
 }
@@ -118,6 +122,11 @@ func GetPosn(recslice []string) int64 {
 	value, _ := strconv.ParseInt(recslice[posnIdx], 0, 64)
 	return value
 }
+
+func GetPosnStr(recslice []string) string {
+	return recslice[posnIdx]
+}
+
 func GetAlleles(recslice []string) (string, string) {
 	return recslice[refIdx], recslice[altIdx]
 }
@@ -141,13 +150,22 @@ func HasFmt(recslice []string, fmt string) bool {
   return true
 }
 
-func GetRefPanelAf(recslice []string) float64 {
+func GetRefPanelAF(recslice []string) float64 {
 	infomap := parseInfoStr(GetInfo(recslice))
 	if maf, ok := infomap["RefPanelAF"]; ok {
 		refpaf, _ := strconv.ParseFloat(maf, 64)
 		return refpaf
 	}
 	return 0.0
+}
+
+func GetInfoScore(recslice []string) float64 {
+	infomap := parseInfoStr(GetInfo(recslice))
+	if maf, ok := infomap["INFO"]; ok {
+		infoscore, _ := strconv.ParseFloat(maf, 64)
+		return infoscore
+	}
+	return 1.0
 }
 
 func GetInfo(recslice []string) string {

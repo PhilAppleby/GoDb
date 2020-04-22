@@ -34,9 +34,8 @@ func (s loc) Start() uint32 {
 func (s loc) End() uint32 {
 	return uint32(s.end)
 }
-
 //------------------------------------------------------
-// Variant: struct for the mongodb variants collection
+// DBVariant: struct for the mongodb variants collection
 //------------------------------------------------------
 type DBVariant struct {
 	//ID           bson.ObjectId `bson:"_id,omitempty"`
@@ -51,7 +50,7 @@ type DBVariant struct {
 	//All_maf      float64       `bson:"all_maf,omitempty"`
 }
 //------------------------------------------------------
-// FilePath: struct for the mongodb filepaths collection
+// DBFilePath: struct for the mongodb filepaths collection
 //------------------------------------------------------
 type DBFilePath struct {
 	Assaytype    string `bson:"assaytype,omitempty"`
@@ -60,12 +59,23 @@ type DBFilePath struct {
 	Fpath_suffix string `bson:"fpath_suffix,omitempty"`
 }
 //------------------------------------------------------
-// Sample: struct for the mongodb samples collection
+// DBSample: struct for the mongodb samples collection
 //------------------------------------------------------
-type Sample struct {
+type DBSample struct {
   Assaytype string `bson:"assaytype,omitempty"`
   List_posn int    `bson:"list_posn,omitempty"`
   Sample_id string `bson:"sample_id,omitempty"`
+}
+//------------------------------------------------------
+// DBGeneMap: struct for the mongodb genemap collection
+//------------------------------------------------------
+type DBGeneMap struct {
+	Genename   string `bson:"genename,omitempty"`
+	Name       string `bson:"name,omitempty"`
+	Chrom      string `bson:"chrom,omitempty"`
+	Strand     string `bson:"strand,omitempty"`
+	txStart    int    `bson:"txStart,omitempty"`
+	txEnd      int    `bson:"txEnd,omitempty"`
 }
 
 var fopen_ctr int
@@ -192,7 +202,7 @@ func GetSamplesByAssaytype(session *mgo.Session, gdb string, sample_collection s
 
   samp := session.DB(gdb).C(sample_collection)
 
-  sample := Sample{}
+  sample := DBSample{}
 
   find := samp.Find(bson.M{})
 

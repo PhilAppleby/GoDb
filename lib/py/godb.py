@@ -2,44 +2,137 @@ import pymongo
 import pysam
 from dbconfig import DBSERVER
 from dbconfig import DBNAME
+from dbconfig import VARIANTS
 import re
 import os, sys
 from vcfrecord import VCFrecord
 #
 # Collection of methods to assist with GoDb management
-# Loading methos for variants, samples, filedata and filepaths 
-# (these last 2 are alternative versions of the same collection)
+# Loading methods for variants, samples, 
+# filedata, filepaths and genemap 
+# (filedata. filepaths are alternative versions for file location data)
 #
 class GoDb():
   def __init__(self):
     try:
       connection = pymongo.MongoClient(DBSERVER)
-      login_str = "connection." + DBNAME
-      db = eval(login_str)
+      db = eval("connection." + DBNAME)
+      variants = eval("db." + VARIANTS)
     except:
       raise Exception("Unexpected error connecting to %s @ %s" % (DBNAME, DBSERVER))
 
     self.db = db
-    self.variants = db.variants
+    self.variants = variants
     self.samples = db.samples
     self.filedata = db.filedata
     self.filepaths = db.filepaths
+    self.genemap = db.genemap
     self.dbname = DBNAME
     self.variantbuff = []
     self.samplebuff = []
     self.filebuff = []
+    self.genemapbuff = []
     self.int_fields = ["position"]
     self.flt_fields = ["all_maf", "info", "cohort_1_hwe"]
     self.p = re.compile('\d+')
 
   def get_dbname(self):
     return self.dbname
+  
+  # methods relating to the genemap collection
+  
+  def process_genemap_detail(self, record):
+    """Process  ucsc refFlat file records
+       Set up a json document and add it to the 
+      genemap buffer
+      format: 0;genename, 1;name, 2;chrom (in chr<N> format), 3;strand,
+      4;txStart, 5;txEnd, 6:cdsStart, 7;cdsEnd, 8:exonCount, 9:exonStarts, 10:exonEnds
+    """
+    data = record.split()
+    doc = {}
+    exonStarts = []
+    exonEnds = []
+
+    doc["genename"] = data[0]
+    doc["name"] = data[1]
+    doc["chrom"] = data[2][3:]
+    doc["strand"] = data[3]
+    doc["txStart"] = int(data[4])
+    doc["txEnd"] = int(data[5])
+    doc["cdsStart"] = int(data[6])
+    doc["cdsEnd"] = int(data[7])
+    doc["exonCount"] = int(data[8])
+    exStarts = data[9].split(",")
+    for elem in exStarts:
+      try:
+        exonStarts.append(int(elem))
+      except:
+        pass
+    doc["exonStarts"] = exonStarts
+    exEnds = data[10].split(",")
+    for elem in exEnds:
+      try:
+        exonEnds.append(int(elem))
+      except:
+        pass
+    doc["exonEnds"] = exonEnds
+
+    self.genemapbuff.append(doc)
+
+  def flush_genemap_buff(self):
+    try:
+      if (len(self.genemapbuff) > 0):
+        self.genemap.insert(self.genemapbuff)
+    except:
+      print "Unexpected error writing to genemap collection:", sys.exc_info()[0]
+      sys.exit()
+
+    self.genemapbuff = []
+
+  def get_genemap_len(self):
+    return len(self.genemapbuff)
+
+  def get_one_genemap(self, genename):
+    query = {}
+    query["genename"] = genename
+
+    try:
+      doc = self.genemap.find_one(query)
+    except:
+      print "Unexpected error (get_one_genemap):", sys.exc_info()[0]
+      sys.exit()
+       
+    # can return 'None' if query fails
+    return doc
+
+  def get_genemap_data_by_buffered_range(self, chrom, posn, upstream, downstream):
+    query = {}
+    docs = []
+    # This is effectively widening the range checked by shifting the
+    # genomic postion being testes
+    query['txStart'] = {}
+    query['txEnd'] = {}
+    query['chrom'] = chrom
+    query['txStart']['$lte'] = posn + upstream
+    query['txEnd']['$gte'] = posn - downstream
+
+    try:
+      curs = self.genemap.find(query)
+      curs = curs.sort([('genename',pymongo.ASCENDING), ('txStart',pymongo.ASCENDING), ('txEnd',pymongo.ASCENDING)])
+    except:
+      print "Unexpected error (get_genemap_data_by_buffered_range):", sys.exc_info()[0]
+      sys.exit()
+    for doc in curs:
+      #print "%s,%s,%d,%d" % (doc["genename"], doc["chrom"], doc["txStart"], doc["txEnd"])
+      docs.append(doc)
+    # can return 'None' if query fails
+    return docs
 
   # methods relating to the variants collection
 
   def process_variant_detail(self, hdr, record, assaytype):
     """Process info file variant detail records
-       Set up a json-stype document and add it to the 
+       Set up a json document and add it to the 
       variant buffer
     """
     doc = {}
