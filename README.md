@@ -156,8 +156,7 @@ Performance for extracting and combining genotype records for one SNP (rs7412, p
 
 ![](images/extraction_performance.png)
 
-The 'X' axis is sample-size, the 'Y' axis time in seconds
-Tests were run on an iMAC i7 with 16Gb of memory and 4 cores.
+The 'X' axis is sample-size, the 'Y' axis time in seconds. Tests were run on an iMAC i7 with 16Gb of memory and 4 cores. As the numbers of samples rises, so does the number of SNP panels involved meaning parallel I/O in the Go paralell version (red-line) confers more of an advantage.
 
 
  
