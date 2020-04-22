@@ -157,6 +157,7 @@ Performance for extracting and combining genotype records for one SNP (rs7412, p
 ![](images/extraction_performance.png)
 
 The 'X' axis is sample-size, the 'Y' axis time in seconds
+Tests were run on an iMAC i7 with 16Gb of memory and 4 cores.
 
 
  
