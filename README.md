@@ -1,4 +1,4 @@
-# GoDb - a hybrid genomic data store system for multiple SNP panels (assays)
+# GoDb - a hybrid genomic data store for multiple SNP panels (assays)
 ## Background
 For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets usually reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
 
@@ -24,7 +24,7 @@ The data store was designed and built using MongoDb to hold collections of varia
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
 ### This repository 
-The following subdirectories are in the repository:
+Repository sub-directories:
 
 - *cfg/* Config files containing environment variables to locate data, software and the MongoDb database host 
 
@@ -155,6 +155,8 @@ The figure shows in-memory arrays built prior to writing the output. Data for ea
 Performance for extracting and combining genotype records for one SNP (rs7412, present on all platforms) for 100 iterations
 
 ![](images/extraction_performance.png)
+
+The 'X' axis is sample-size, the 'Y' axis time in seconds
 
 
  
