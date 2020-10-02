@@ -18,6 +18,8 @@ sub scan_dir {
 
   opendir(my $dh, $dir) or die "Can't open dir [$dir]";
 
+  print "SCAN: " . $dir . "\n";
+
   my @files= grep{/${suffix}$/} readdir $dh;
 
   for my $file (@files) {

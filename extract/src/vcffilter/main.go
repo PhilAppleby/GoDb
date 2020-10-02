@@ -50,8 +50,10 @@ func init() {
 		thrusage             = "Prob threshold"
 		defaultMaf           = 0.05
 		mafusage             = "Minor allele frequency"
+		defaultMaffact       = 0.0
+		maffactusage         = "MAF mult / division factor"
 		defaultHwe           = 0.000001
-		hweusage             = "Hardy weinberg equ via exact test"
+		hweusage             = "Hardy weinberg equilibrium via exact test"
 		defaultCr            = 0.9
 		crusage              = "Call Rate"
 		defaultInfo          = 0.9
@@ -67,6 +69,8 @@ func init() {
 	flag.Float64Var(&threshold, "t", defaultThreshold, thrusage+" (shorthand)")
 	flag.Float64Var(&maf, "maf", defaultMaf, mafusage)
 	flag.Float64Var(&maf, "m", defaultMaf, mafusage+" (shorthand)")
+	flag.Float64Var(&maffactor, "maffactor", defaultMaffact, maffactusage)
+	flag.Float64Var(&maffactor, "f", defaultMaffact, maffactusage+" (shorthand)")
 	flag.Float64Var(&hwe, "hwe", defaultHwe, hweusage)
 	flag.Float64Var(&hwe, "w", defaultHwe, hweusage+" (shorthand)")
 	flag.Float64Var(&cr, "cr", defaultCr, crusage)
@@ -74,8 +78,6 @@ func init() {
 	flag.Float64Var(&infoscore, "info", defaultInfo, infousage)
 	flag.Float64Var(&infoscore, "i", defaultInfo, infousage+" (shorthand)")
 	flag.Parse()
-  // Just hard-coded default for this for now
-  maffactor = 5
 }
 //------------------------------------------------
 // check(error) crude general error handler
@@ -96,7 +98,8 @@ func main() {
 	defer lf.Close()
 
 	log.SetOutput(lf)
-	log.Printf("START filter MAF=%f,CR=%.2f,HWE=%f,INFO=%.2f,threshold=%.2f,maffactor=%.2f\n", maf, cr, hwe, infoscore, threshold, maffactor)
+	//log.Printf("START filter MAF=%f,CR=%.2f,HWE=%f,INFO=%.2f,threshold=%.2f,maffactor=%.2f\n", maf, cr, hwe, infoscore, threshold, maffactor)
+	log.Printf("START filter MAF=%f,CR=%.2f,HWE=%f,INFO=%.2f,threshold=%.2f\n", maf, cr, hwe, infoscore, threshold)
   rcount := 0
   wcount := 0
   pcount := 0
@@ -162,10 +165,12 @@ func main() {
       icount += 1
       found_error = true
     }
-    rec_rpaf := variant.GetRefPanelAF(data)
-    if (rec_maf < (rec_rpaf / maffactor)) || (rec_maf > (rec_rpaf * maffactor)) {
-      mfcount += 1
-      found_error = true
+    if maffactor != 0.0 {
+      rec_rpaf := variant.GetRefPanelAF(data)
+      if (rec_maf < (rec_rpaf / maffactor)) || (rec_maf > (rec_rpaf * maffactor)) {
+        mfcount += 1
+        found_error = true
+      }
     }
     if varid == "." {
       dcount += 1
@@ -211,7 +216,7 @@ func get_next_record(rdr *bufio.Reader) (string, []string, int64, string, error)
   if err == nil {
     text = strings.TrimRight(text, "\n")
     data = strings.Split(text, "\t")
-    posn = variant.GetPosn(data)
+    posn = int64(variant.GetPosn(data))
     varid = variant.GetVarid(data)
   }
   return text, data, posn, varid, err

@@ -7,7 +7,7 @@ class SearchForm(Form):
   threshold = DecimalField('threshold', validators = [Optional(),NumberRange(min=0.0, max=1.0, message="Must be in range 0.0 to 1.0")])
 
 class SearchRangeForm(Form):
-  chr = IntegerField('chr', validators = [Required(),NumberRange(min=1, max=22, message="Must be in range 1 to 22")])
+  chromosome = IntegerField('chromosome', validators = [Required(),NumberRange(min=1, max=22, message="Must be in range 1 to 22")])
   start = IntegerField('start', validators = [Required(),NumberRange(min=0, message="Must be a +ve integer")])
   end = IntegerField('end', validators = [Required(),NumberRange(min=0, message="Must be a +ve integer")])
 

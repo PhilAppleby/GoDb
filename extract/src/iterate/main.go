@@ -1,4 +1,7 @@
 //------------------------------------------------------------------------------
+// Test test application to iterate over a list of rsid's, to
+// Get genotype data from the GoDb data store, main pupose is to time 
+// iterations to produce performance statistics.
 //------------------------------------------------------------------------------
 package main
 
@@ -7,7 +10,6 @@ import (
 	"flag"
 	"fmt"
 	"genometrics"
-	"gopkg.in/mgo.v2"
 	"log"
 	"godb"
 	"os"
@@ -23,11 +25,6 @@ import (
 //------------------------------------------------
 var rsFilePath string
 var vcfPathPref string
-var gdb string
-var var_collection string
-var fp_collection string
-var samp_collection string
-var dbhost string
 var threshold float64
 var assayTypes string
 var validAssaytypes = map[string]bool{}
@@ -41,16 +38,6 @@ func init() {
 	const (
 		defaultRsFilePath  = "./data/rslist1.txt"
 		rsusage            = "File containing list of rsnumbers"
-		defaultGdb         = "genomicsdb"
-		gusage             = "dbname for genomics data"
-		defaultvars        = "variants"
-		varusage           = "variant collection name"
-		defaultfps         = "filepaths"
-		fpusage            = "filepath collection name"
-		defaultsamps       = "samples"
-		sampusage          = "samples collection name"
-		defaultDbhost      = "localhost"
-		dusage             = "mongodb hostname"
 		defaultvcfPathPref = ""
 		vusage             = "default path prefix for vcf files"
 		defaultThreshold   = 0.9
@@ -60,18 +47,8 @@ func init() {
 	)
 	flag.StringVar(&rsFilePath, "rsfile", defaultRsFilePath, rsusage)
 	flag.StringVar(&rsFilePath, "r", defaultRsFilePath, rsusage+" (shorthand)")
-	flag.StringVar(&gdb, "gdb", defaultGdb, gusage)
-	flag.StringVar(&gdb, "g", defaultGdb, gusage+" (shorthand)")
-	flag.StringVar(&var_collection, "variants", defaultvars, varusage)
-	flag.StringVar(&var_collection, "m", defaultvars, varusage+" (shorthand)")
-	flag.StringVar(&fp_collection, "filepaths", defaultfps, fpusage)
-	flag.StringVar(&fp_collection, "f", defaultfps, fpusage+" (shorthand)")
-	flag.StringVar(&samp_collection, "samples", defaultsamps, sampusage)
-	flag.StringVar(&samp_collection, "s", defaultsamps, sampusage+" (shorthand)")
-	flag.StringVar(&dbhost, "dbhost", defaultDbhost, dusage)
-	flag.StringVar(&dbhost, "d", defaultDbhost, dusage+" (shorthand)")
-	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, dusage)
-	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, dusage+" (shorthand)")
+	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, vusage)
+	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, vusage+" (shorthand)")
 	flag.Float64Var(&threshold, "threshold", defaultThreshold, thrusage)
 	flag.Float64Var(&threshold, "t", defaultThreshold, thrusage+" (shorthand)")
 	flag.StringVar(&assayTypes, "assaytypes", defaultAssayTypes, atusage)
@@ -90,16 +67,12 @@ func check(e error) {
 }
 
 func main() {
-	// Control # of active goroutines (in this case also the # of open files)
   start := time.Now()
 	file_records := make(chan string, 1)
 
 	f, err := os.Open(rsFilePath)
 	check(err)
 	defer f.Close()
-	session, err := mgo.Dial(dbhost)
-	check(err)
-	defer session.Close()
 
 	atList := strings.Split(assayTypes, ",")
   //fmt.Printf("%v\n", atList)
@@ -118,7 +91,7 @@ func main() {
 		rsid_list = append(rsid_list, rsid)
     loop_start := time.Now()
     for i := 0; i < 1000; i++ {
-      variants, filepaths = godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
+      variants, filepaths = godb.Getvardbdata(vcfPathPref, rsid)
     }
     elapsed := time.Since(loop_start)
     log.Printf("Mongo Iteration took %s", elapsed)
@@ -175,7 +148,7 @@ func main() {
 	// Process sample data to:
 	// - build header columns
 	// - get maps to go from source column numbers to numbers in the combined version
-	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb, samp_collection)
+	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype()
 	combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
 	// combocols := sample.GetCombinedSampleMap(sample_name_map)
 

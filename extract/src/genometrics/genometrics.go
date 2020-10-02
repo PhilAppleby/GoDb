@@ -88,7 +88,7 @@ func Hwe_exact_for_record(rec []string, threshold float64) float64 {
 func Metrics_for_record(rec []string, threshold float64) (float64, float64,
 	float64, float64, float64, int, int, int, int, int, int, float64) {
 	homref, homalt, het, alln, miss, dot, refPAF := get_genotype_counts(rec, threshold)
-  n := alln - (miss + dot)
+  n := alln - miss
   cr := float64(homref+het+homalt) / float64(alln)
 	raf := float64(2*homref+het) / float64(2*n)
 	aaf := float64(2*homalt+het) / float64(2*n)

@@ -1,0 +1,7 @@
+{
+  "Dbhost":"localhost",
+  "Dbname":"godb_test",
+  "Var_collection": "variants",
+  "Fp_collection":"filepaths",
+  "Samp_collection":"samples"
+}

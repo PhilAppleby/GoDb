@@ -34,7 +34,7 @@ class DataStore():
       f = open(filepath, "r")
     except IOError as e:
       msg = filepath + ":" + e.strerror
-      return([],[],msg)
+      return([],msg)
     count = 0
     
     rslist = []
@@ -42,7 +42,7 @@ class DataStore():
       count += 1
       if count > self.maxrslist:
         msg = "line count for %s gt the limit (%d)" % (filepath, self.maxrslist)  
-        return ([], [], msg)
+        return ([], msg)
       line = line.strip()
       pattern.sub('', line)
       if line.startswith("rs"):
@@ -374,7 +374,7 @@ class _variants():
     Get the data for variants within a genomic range 
     """
     # delegate to godb
-    return self.godb.get_variants_by_range(chromosome, start, end)
+    return self.godb.get_variant_data_by_range(chromosome, start, end)
 
   def get_raw_variant_values(self, filepath, chromosome, posn):
     """

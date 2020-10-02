@@ -5,5 +5,7 @@
 # -*- coding: utf-8 -*-
 
 DBSERVER = 'mongodb://localhost'
-DBNAME = 'genomicsdb'
+#DBNAME = 'genomicsdb'
+DBNAME = 'godb_test'
+VARIANTS = 'variants'
 DBNAME_TEST = 'genomicsdb_test'

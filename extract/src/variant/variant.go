@@ -60,6 +60,13 @@ func NormaliseChromosome(prfx []string) []string {
 	}
 	return prfx
 }
+// set INFO
+func SetInfoValue(prfx []string, infoscore float64) []string {
+	infomap := parseInfoStr(GetInfo(prfx))
+  infomap["INFO"] = fmt.Sprintf("%.5f", infoscore)
+  prfx[infoIdx] = buildinfoStr(infomap)
+	return prfx
+}
 
 //------------------------------------------------------------------------------
 // get geno based on threshold
@@ -118,9 +125,9 @@ func GetVarid(recslice []string) string {
 	return recslice[varIdx]
 }
 
-func GetPosn(recslice []string) int64 {
-	value, _ := strconv.ParseInt(recslice[posnIdx], 0, 64)
-	return value
+func GetPosn(recslice []string) int {
+	value, _ := strconv.ParseInt(recslice[posnIdx], 0, 32)
+	return int(value)
 }
 
 func GetPosnStr(recslice []string) string {
@@ -161,8 +168,8 @@ func GetRefPanelAF(recslice []string) float64 {
 
 func GetInfoScore(recslice []string) float64 {
 	infomap := parseInfoStr(GetInfo(recslice))
-	if maf, ok := infomap["INFO"]; ok {
-		infoscore, _ := strconv.ParseFloat(maf, 64)
+	if info, ok := infomap["INFO"]; ok {
+		infoscore, _ := strconv.ParseFloat(info, 64)
 		return infoscore
 	}
 	return 1.0
@@ -182,6 +189,10 @@ func parseInfoStr(info_str string) map[string]string {
 		}
 	}
 	return infomap
+}
+func buildinfoStr(infomap map[string]string) string {
+  infostr := ""
+  return infostr
 }
 
 func getStrIdx(str string, match_str string) int {

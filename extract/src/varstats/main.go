@@ -1,5 +1,5 @@
 //--------------------------------------------------------------------------------------
-// Filter vcf files based on common attributes
+// Print stats for a variant file (VCF file)
 //--------------------------------------------------------------------------------------
 package main
 
@@ -76,7 +76,7 @@ func main() {
 	check(err)
 	//scanner := bufio.NewScanner(gr)
   reader := bufio.NewReader(gr)
-  fmt.Printf("chr,rsid,posn,CR,MAF,HWEP,INFO,N,MISS\n")
+  fmt.Printf("chr,posn,varid,CR,MAF,HWEP,INFO,N,MISS\n")
   skip_headers(reader)
   for {
     rcount += 1
@@ -125,7 +125,7 @@ func get_next_record(rdr *bufio.Reader) (string, []string, int64, string, error)
   if err == nil {
     text = strings.TrimRight(text, "\n")
     data = strings.Split(text, "\t")
-    posn = variant.GetPosn(data)
+    posn = int64(variant.GetPosn(data))
     varid = variant.GetVarid(data)
   }
   return text, data, posn, varid, err

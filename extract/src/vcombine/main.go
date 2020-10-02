@@ -23,7 +23,6 @@ import (
 	"flag"
 	"fmt"
 	"genometrics"
-	"gopkg.in/mgo.v2"
 	"log"
 	"godb"
 	"os"
@@ -40,12 +39,8 @@ var logFilePath string
 var rsFilePath string
 var rsId string
 var vcfPathPref string
-var gdb string
-var var_collection string
-var fp_collection string
-var samp_collection string
-var dbhost string
 var threshold float64
+var errpctthr float64
 var assayTypes string
 var logLevel int
 var validAssaytypes = map[string]bool{}
@@ -65,16 +60,6 @@ func init() {
 		rsusage            = "File containing list of rsnumbers"
 		defaultRsId        = ""
 		rsidusage          = "Single rsid"
-		defaultGdb         = "genomicsdb"
-		gusage             = "dbname for genomics data"
-		defaultvars        = "variants"
-		varusage           = "variant collection name"
-		defaultfps         = "filepaths"
-		fpusage            = "filepath collection name"
-		defaultsamps       = "samples"
-		sampusage          = "samples collection name"
-		defaultDbhost      = "localhost"
-		dusage             = "mongodb hostname"
 		defaultvcfPathPref = ""
 		vusage             = "default path prefix for vcf files"
 		defaultThreshold   = 0.9
@@ -90,18 +75,8 @@ func init() {
 	flag.StringVar(&rsFilePath, "r", defaultRsFilePath, rsusage+" (shorthand)")
 	flag.StringVar(&rsId, "rsid", defaultRsId, rsidusage)
 	flag.StringVar(&rsId, "i", defaultRsId, rsidusage+" (shorthand)")
-	flag.StringVar(&gdb, "gdb", defaultGdb, gusage)
-	flag.StringVar(&gdb, "g", defaultGdb, gusage+" (shorthand)")
-	flag.StringVar(&var_collection, "variants", defaultvars, varusage)
-	flag.StringVar(&var_collection, "m", defaultvars, varusage+" (shorthand)")
-	flag.StringVar(&fp_collection, "filepaths", defaultfps, fpusage)
-	flag.StringVar(&fp_collection, "f", defaultfps, fpusage+" (shorthand)")
-	flag.StringVar(&samp_collection, "samples", defaultsamps, sampusage)
-	flag.StringVar(&samp_collection, "s", defaultsamps, sampusage+" (shorthand)")
-	flag.StringVar(&dbhost, "dbhost", defaultDbhost, dusage)
-	flag.StringVar(&dbhost, "d", defaultDbhost, dusage+" (shorthand)")
-	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, dusage)
-	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, dusage+" (shorthand)")
+	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, vusage)
+	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, vusage+" (shorthand)")
 	flag.Float64Var(&threshold, "threshold", defaultThreshold, thrusage)
 	flag.Float64Var(&threshold, "t", defaultThreshold, thrusage+" (shorthand)")
 	flag.StringVar(&assayTypes, "assaytypes", defaultAssayTypes, atusage)
@@ -124,7 +99,7 @@ func check(e error) {
 // main() program entry point
 //------------------------------------------------
 func main() {
-  // set up logging to a file
+  // set up logging to a file, TODO move to init()
   lf, err := os.OpenFile(logFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0640)
   check(err)
   defer lf.Close()
@@ -135,9 +110,6 @@ func main() {
 	fsem = make(chan struct{}, 64)
 	// 10,000 here is arbitrary, needs a re-think
 	file_records := make(chan string, 10000)
-	session, err := mgo.Dial(dbhost)
-	check(err)
-	defer session.Close()
 
 	rsid_list := make([]string, 0, 1000)
 	rsid_count := 0
@@ -163,7 +135,7 @@ func main() {
 
   for _, rsid := range rsid_list {
     // For each rsid, access godb and get the lists of variants vs filepaths
-    variants, filepaths := godb.Getvardbdata(session, gdb, var_collection, fp_collection, vcfPathPref, rsid)
+    variants, filepaths := godb.Getvardbdata(vcfPathPref, rsid)
     // For each variant, filepath combination get a file record
     for idx, variant := range variants {
 		  if _, ok := validAssaytypes[variant.Assaytype]; ok {
@@ -216,7 +188,7 @@ func main() {
   // get all sample data from godb and organise into maps of maps: 
   // assaytype -> sample name -> sample posn (sample_name_map)
   // assaytype -> sample posn -> sample name (sample_posn_map)
-	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype(session, gdb, samp_collection)
+	sample_name_map, sample_posn_map := godb.GetSamplesByAssaytype()
   // Condense all sample_names into a combined map samplename -> record position
 	combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
 	// Get column headers as a single tab delimited string, with prefix in place, and as a list, both in postion order

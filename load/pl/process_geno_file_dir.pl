@@ -56,7 +56,6 @@ sub process_dir {
   $scanner->scan_dir($dir, $file_sfx, \&load_markers, \@params);
 }
 
-my $script_tmplt = "%s/load_markers_from_single_info_file.sh %s %s";
 process_dir($options{dirname}, $options{tmplt}, $options{fsfx}, $options{bindir}, $options{cfgfile}, $options{printonly})
 
 

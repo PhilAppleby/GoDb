@@ -36,7 +36,7 @@ import (
 
 // max_posn is intended to be greater than any
 // value for genomic position
-const max_posn int64 = 9999999999
+const max_posn int64 = 999999999999
 
 var empty_record = []string{}
 
@@ -49,6 +49,7 @@ var logFilePath string
 var vcfPathPref string
 var chr string
 var threshold float64
+var errpctthr float64
 
 //-----------------------------------------------
 // main package routines
@@ -63,6 +64,8 @@ func init() {
 		lusage               = "Log file"
 		defaultvcfPathPref   = "/var/data"
 		vusage               = "default path prefix for vcf files"
+		defaultErrPct        = 10.0
+		epctusage            = "ErrPct threshold"
 		defaultThreshold     = 0.9
 		thrusage             = "Prob threshold"
 		defaultChr           = "22"
@@ -78,6 +81,8 @@ func init() {
 	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, vusage+" (shorthand)")
 	flag.Float64Var(&threshold, "threshold", defaultThreshold, thrusage)
 	flag.Float64Var(&threshold, "h", defaultThreshold, thrusage+" (shorthand)")
+	flag.Float64Var(&errpctthr, "errpct", defaultErrPct, epctusage)
+	flag.Float64Var(&errpctthr, "e", defaultErrPct, epctusage+" (shorthand)")
 	flag.StringVar(&chr, "chr", defaultChr, chrusage)
 	flag.StringVar(&chr, "c", defaultChr, chrusage+" (shorthand)")
 	flag.Parse()
@@ -192,13 +197,13 @@ func main() {
 		outctr += 1
 		records, keys, varids = read_from_low_key_records(records, keys, freaders, varids)
 	}
-  errorPct := (float64(genomet.MismatchCount) / float64(genomet.OverlapTestCount)) * 100
-  log.Printf("EXIT,wrt=%d,AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d\n",
-      outctr,genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount,
-      genomet.TwoOverlapCount, genomet.GtTwoOverlapCount)
-  log.Printf("EXIT,OverlapGenoDiffs=%d,DiffProbDiffs=%d, SameProbDiffs=%d,MissingGenoTested=%d,MissingUnresolved=%d,NoAssay=%d,ErrorPct=%.3f\n",
-      genomet.MismatchCount, genomet.DiffProbDiffs, genomet.SameProbDiffs,
-      genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount, errorPct)
+	errorPct := (float64(genomet.MismatchCount) / float64(genomet.OverlapTestCount)) * 100
+	log.Printf("EXIT,wrt=%d,AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d\n",
+		outctr, genomet.AllGenoCount, genomet.UniqueGenoCount, genomet.OverlapTestCount,
+		genomet.TwoOverlapCount, genomet.GtTwoOverlapCount)
+	log.Printf("EXIT,OverlapGenoDiffs=%d,DiffProbDiffs=%d, SameProbDiffs=%d,MissingGenoTested=%d,MissingUnresolved=%d,NoAssay=%d,ErrorPct=%.3f\n",
+		genomet.MismatchCount, genomet.DiffProbDiffs, genomet.SameProbDiffs,
+		genomet.MissTestCount, genomet.MissingCount, genomet.NoAssayCount, errorPct)
 }
 
 //-------------------------------------------------------------
@@ -237,7 +242,7 @@ func get_next_record_slice(rdr *bufio.Reader) ([]string, int64, string) {
 	if err == nil {
 		text = strings.TrimRight(text, "\n")
 		data = strings.Split(text, "\t")
-		posn = variant.GetPosn(data)
+		posn = int64(variant.GetPosn(data))
 		varid = variant.GetVarid(data)
 	}
 	return data, posn, varid
@@ -254,6 +259,7 @@ func records_remain(keys map[string]int64) bool {
 	}
 	return false
 }
+
 //-------------------------------------------------------------
 // Write output from low-key records
 //-------------------------------------------------------------
@@ -267,7 +273,7 @@ func output_from_low_key_records(records map[string][]string, keys map[string]in
 	for at, _ := range low_keys {
 		low_key_at = append(low_key_at, at)
 	}
-  sort.Sort(sort.Reverse(sort.StringSlice(low_key_at)))
+	sort.Sort(sort.Reverse(sort.StringSlice(low_key_at)))
 
 	vcfrecords := make([][]string, 0, len(records))
 	rsid := ""
@@ -280,9 +286,20 @@ func output_from_low_key_records(records map[string][]string, keys map[string]in
 		//fmt.Printf("LOWKEY OUTPUT %s, %d\n", at, key)
 	}
 	var vcfd []vcfmerge.Vcfdata
-	rec_str := vcfmerge.Combine_one(vcfrecords, vcfd, rsid, sample_posn_map, combocols, combo_names, threshold, genomet)
-	fmt.Printf("%s\n", rec_str)
+	var rsid_genomet genometrics.AllMetrics
+	rec_str := vcfmerge.Combine_one(vcfrecords, vcfd, rsid, sample_posn_map, combocols, combo_names, threshold, &rsid_genomet)
+	genometrics.Increment(genomet, &rsid_genomet)
+	errorPct := 0.0
+	if rsid_genomet.MismatchCount > 0 {
+		errorPct = (float64(rsid_genomet.MismatchCount) / float64(rsid_genomet.OverlapTestCount)) * 100
+	}
+	if errorPct < errpctthr {
+		fmt.Printf("%s\n", rec_str)
+	} else {
+		genometrics.Log_metrics(1, rsid, 1, "##ERRPCT", &rsid_genomet)
+	}
 }
+
 //-------------------------------------------------------------
 // Inititiate the next cycle
 //-------------------------------------------------------------

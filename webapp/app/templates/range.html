@@ -12,12 +12,12 @@
         <div class="control-group{% if form.errors.post %} error{% endif %}">
             <label class="control-label" for="post">Chromosome #:</label>
             <div class="controls">
-		{% if form.chr.data != None %} 
-                {{ form.chr(size = 2, maxlength = 2, value = form.chr.data) }}
+		{% if form.chromosome.data != None %} 
+                {{ form.chromosome(size = 2, maxlength = 2, value = form.chromosome.data) }}
                 {% else %}
-                {{ form.chr(size = 2, maxlength = 2) }}
+                {{ form.chromosome(size = 2, maxlength = 2) }}
                 {% endif %}
-                {% for error in form.errors.chr %}
+                {% for error in form.errors.chromosome %}
                     <span class="help-inline">[{{error}}]</span><br>
                 {% endfor %}
             </div>

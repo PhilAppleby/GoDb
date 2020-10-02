@@ -20,7 +20,7 @@ class GoDb():
       variants = eval("db." + VARIANTS)
     except:
       raise Exception("Unexpected error connecting to %s @ %s" % (DBNAME, DBSERVER))
-
+    print "Connected to db: " + DBSERVER + ", " + DBNAME
     self.db = db
     self.variants = variants
     self.samples = db.samples
@@ -265,7 +265,7 @@ class GoDb():
         doc["alleleA"] = doc["alleleA"][0:10] + " ..."
       if len(doc["alleleB"]) > 10: 
         doc["alleleB"] = doc["alleleB"][0:10] + " ..."
-      doc["samplecount"] = self.sample_coll.get_count(doc["assaytype"])
+      doc["samplecount"] = self.get_sample_count(doc["assaytype"])
       docs.append(doc)
     # can return [] if query fails
     if len(docs) == 0:
