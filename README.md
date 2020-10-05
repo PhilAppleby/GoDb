@@ -1,13 +1,13 @@
 # GoDb - a hybrid genomic data store for multiple SNP panels
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place over a period of some years and on differing SNP assay platforms (resulting in data referered to as belonging to different *SNP panels* or *assaytype*s). Genotype data sets usually reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen or VCF, for example).
+For single institution bio-resources genotyping of subjects may have taken place in phases over a period of some years and on differing SNP assay platforma,s resulting in multiple data sets belonging to different *SNP panels* or *assaytype*s. While genotype data sets can reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen, VCF or BCF, for example), this project is aimed at VCF files comressed using bgzip and indexed using tabix.
 
 
 ## Requirements
-The over-arching requirement was the provision of a simple data management architecture and the software to bring together multi SNP panel genomic data for a single cohort.
+The over-arching requirement is the provision of a simple data management architecture and the software to bring together multi SNP panel genomic data for a single cohort.
 
 ### Functional
-Some additional functional requirements were set out at the start of the project:
+Some additional functional requirements are:
 * Curation of genomic data from multiple SNP panels.
 * Provision of the means to query data using well-known SNP identifiers (dbSNP rsids). 
 * Maximising samples size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets on demand.
@@ -19,7 +19,7 @@ Two non-functional requirements were also identified:
 * Allow for scaling up of the size of the data, in particular sample-size, with little performance degradation   
 
 ## Description
-The data store was designed and built using MongoDb to hold collections of variant, sample and file location data, with genotype data retained in VCF files.
+The data store was designed and built using MongoDb to hold collections of variant, sample and file-location data, with genotype data retained in VCF files.
 
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
 
@@ -40,7 +40,7 @@ Repository sub-directories:
 
 - *extract/py/* Command-line Python code for genotype data extract, from lists of SNPs. 
 
-- *extract/src/* Root directory for Go(lang) source code to build command-line data extraction tools. There is also library code to handle MongoDb and tabix-indexed file access plus VCF file parsing and metrics (for example, MAF, HWEP, CR).
+- *extract/src/* Root directory for Go(lang) source code to build command-line data extraction tools. There is also library code to handle MongoDb and tabix-indexed file access plus VCF file parsing and metrics (for example calculation of MAF, HWEP, CR).
 
 - *extract/sh/* bash scripts, wrappers for command-line extract tools.
 
