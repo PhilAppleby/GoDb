@@ -1,6 +1,6 @@
 {
   "Dbhost":"localhost",
-  "Dbname":"godb_test",
+  "Dbname":"genomicsdb",
   "Var_collection": "variants",
   "Fp_collection":"filepaths",
   "Samp_collection":"samples"

@@ -45,7 +45,6 @@ var assayTypes string
 var logLevel int
 var validAssaytypes = map[string]bool{}
 var fsem chan struct{}
-var csem chan struct{}
 //------------------------------------------------
 // main package routines
 //------------------------------------------------

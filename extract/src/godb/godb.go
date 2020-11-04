@@ -162,7 +162,8 @@ func check(e error) {
 //---------------------------------------------------------------------
 // Getallvardata: get all var data 
 //---------------------------------------------------------------------
-func Getallvardata(vcfPathPref string, rsid_list []string, requested_assaytypes map[string]bool) ([]DBVariant) {
+func Getallvardata(vcfPathPref string, rsid_list []string, requested_assaytypes map[string]bool, pthr float64) ([]DBVariant) {
+
   var wg sync.WaitGroup
   // Control # of active goroutines (in this case also the # of open files)
   fsem = make(chan struct{}, 64)
@@ -216,7 +217,7 @@ func Getallvardata(vcfPathPref string, rsid_list []string, requested_assaytypes 
     dbvar.Chromosome = variant.GetChrom(prfx)
     dbvar.Position = variant.GetPosn(prfx)
     dbvar.AlleleA, dbvar.AlleleB = variant.GetAlleles(prfx)
-    dbvar.CR, dbvar.Ref_AF, dbvar.Alt_AF, dbvar.MAF, dbvar.HWEP, _, _, _, dbvar.NumSamples, dbvar.Missing, _, _ = genometrics.Metrics_for_record(fields[1:], 0.9)
+    dbvar.CR, dbvar.Ref_AF, dbvar.Alt_AF, dbvar.MAF, dbvar.HWEP, _, _, _, dbvar.NumSamples, dbvar.Missing, _, _ = genometrics.Metrics_for_record(fields[1:], pthr)
     dbvar.Infoscore = variant.GetInfoScore(prfx)
     recdata.Probidx = variant.GetProbidx(prfx)
     // for determining combined rec size
@@ -246,7 +247,7 @@ func Getallvardata(vcfPathPref string, rsid_list []string, requested_assaytypes 
     if records, ok := rsids[rsid]; ok {
       var rsid_genomet genometrics.AllMetrics
       var dbvar DBVariant
-      rec_str := vcfmerge.Combine_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, 0.9, &rsid_genomet)
+      rec_str := vcfmerge.Combine_one(records, rsids_data[rsid], rsid, sample_posn_map, combocols, combo_names, pthr, &rsid_genomet)
       fields := strings.Split(rec_str, "\t")
       prfx, sfx := variant.GetVCFPrfx_Sfx(fields)
       //log.Printf("SFX = %v\n", sfx)
@@ -256,7 +257,7 @@ func Getallvardata(vcfPathPref string, rsid_list []string, requested_assaytypes 
       dbvar.Chromosome = variant.GetChrom(prfx)
       dbvar.Position = variant.GetPosn(prfx)
       dbvar.AlleleA, dbvar.AlleleB = variant.GetAlleles(prfx)
-      dbvar.CR, dbvar.Ref_AF, dbvar.Alt_AF, dbvar.MAF, dbvar.HWEP, _, _, _, dbvar.NumSamples, dbvar.Missing, dot, _ = genometrics.Metrics_for_record(fields, 0.9)
+      dbvar.CR, dbvar.Ref_AF, dbvar.Alt_AF, dbvar.MAF, dbvar.HWEP, _, _, _, dbvar.NumSamples, dbvar.Missing, dot, _ = genometrics.Metrics_for_record(fields, pthr)
       dbvar.Infoscore = variant.GetInfoScore(prfx)
       dbvar.Errpct = (float64(rsid_genomet.MismatchCount) / float64(rsid_genomet.OverlapTestCount)) * 100
       log.Printf("%s combined, SFX len = %d, samples=%d, miss=%d, dot=%d\n", rsid, len(sfx), dbvar.NumSamples, dbvar.Missing, dot)

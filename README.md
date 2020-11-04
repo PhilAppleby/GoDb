@@ -1,6 +1,6 @@
 # GoDb - a hybrid genomic data store for multiple SNP panels
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place in phases over a period of some years and on differing SNP assay platforma,s resulting in multiple data sets belonging to different *SNP panels* or *assaytype*s. While genotype data sets can reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen, VCF or BCF, for example), this project is aimed at VCF files comressed using bgzip and indexed using tabix.
+For single institution bio-resources genotyping of subjects may have taken place in phases over a period of some years and on differing SNP assay platforma,s resulting in multiple data sets belonging to different *SNP panels* or *assaytype*s. While genotype data sets can reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen, VCF or BCF, for example), this project is aimed at VCF files compressed using bgzip and indexed using tabix.
 
 
 ## Requirements
@@ -21,7 +21,7 @@ Two non-functional requirements were also identified:
 ## Description
 The data store was designed and built using MongoDb to hold collections of variant, sample and file-location data, with genotype data retained in VCF files.
 
-Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a web application to allow querying of the data store by variant_id and lists of variant ids and command line tools for bulk data extract.
+Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a prototype web application for querying of the data store by variant_id(s), plus a collection of command line tools for use in bulk data extraction.
 
 ### This repository 
 Repository sub-directories:
@@ -50,13 +50,16 @@ Repository sub-directories:
 Scripts located in *load/sh*, *load/py* and *load/pl*.
 All scripts rely on the files in the *cfg* directory to find both data and the MongoDb database, there are examples for five ddifferent assay platforms in the *cfg* directory.
 
-Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existent or empty with all indexes dropped three scripts can be run from the *load/sh* directory:
+Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existent or do not already contain data for the assay type in question with all indexes dropped three scripts can be run from the *load/sh* directory:
 
-- load_variants.sh \<full path to assay platform cfg file\> 
+- load_variants_from_vcf_files.sh \<full path to assay platform cfg file\> 
 
 - load_samples.sh \<full path to assay platform cfg file\> 
 
 - load_filepaths.sh \<full path to assay platform cfg file\> 
+
+NOTES:
+- *assay type* is an assigned tag which must be unique for each assay type (SNP Panel)
 
 
 ### MongoDb Collections - example documents
