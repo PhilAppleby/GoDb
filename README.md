@@ -1,6 +1,6 @@
 # GoDb - a hybrid genomic data store for multiple SNP panels
 ## Background
-For single institution bio-resources genotyping of subjects may have taken place in phases over a period of some years and on differing SNP assay platforma,s resulting in multiple data sets belonging to different *SNP panels* or *assaytype*s. While genotype data sets can reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen, VCF or BCF, for example), this project is aimed at VCF files compressed using bgzip and indexed using tabix.
+For single institution bio-resources genotyping of subjects may have taken place in phases over a period of some years and on differing SNP assay platforms, resulting in multiple data sets belonging to different *SNP panels* or *assaytype*s. While genotype data sets can reside in file system files, possibly in different genotype formats (PLINK BED, Oxford .gen, VCF or BCF, for example), this project is aimed at VCF files compressed using bgzip and indexed using tabix.
 
 
 ## Requirements
@@ -59,7 +59,7 @@ Once the cfg files are set up and, assuming the MongoDb collections listed in th
 - load_filepaths.sh \<full path to assay platform cfg file\> 
 
 NOTES:
-- *assay type* is an assigned tag which must be unique for each assay type (SNP Panel)
+- *assay type* is an assigned tag which must be unique for each assay type (SNP Panel) - assaytype examples in use in the current implementation are: "affy", "illumina", "broad", "metabo".
 
 
 ### MongoDb Collections - example documents
