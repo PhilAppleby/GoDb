@@ -1,4 +1,5 @@
 package vcfmerge
+
 //---------------------------------------------------------
 // File: vcfmerge.go
 // Functions to merge (combine, merge is a misnomer) arrays
@@ -6,7 +7,6 @@ package vcfmerge
 // Author: P Appleby, University of Dundee
 //---------------------------------------------------------
 import (
-	//"fmt"
 	"genometrics"
 	"log"
 	"sort"
@@ -14,8 +14,8 @@ import (
 	"variant"
 )
 
-//-----------------------------------------------
-// Vcfdata: data extracted from a record
+// Vcfdata ...
+// selected data extracted from a record
 //-----------------------------------------------
 type Vcfdata struct {
 	Assaytype string
@@ -24,7 +24,7 @@ type Vcfdata struct {
 	Infoscore float64
 }
 
-const hdr_prfx = "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t"
+const hdrPrfx = "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\t"
 
 var assayTypeAbbreviation = map[string]string{
 	"affy":        "A",
@@ -37,80 +37,84 @@ var assayTypeAbbreviation = map[string]string{
 	"bigtest":     "T",
 	"biggertest":  "G",
 }
-//---------------------------------------------------------------------------------
-// Input is samplenames
+
+// GetCombinedColumnHeaders ...
 //
-//---------------------------------------------------------------------------------
-func GetCombinedColumnHeaders(sample_name_map map[string]int) (string, []string) {
+func GetCombinedColumnHeaders(sampleNameMap map[string]int) (string, []string) {
 
-	posns := make(map[int]string, len(sample_name_map))
-	sample_posns := make([]int, 0, len(sample_name_map))
-	sample_names := make([]string, 0, len(sample_name_map))
+	posns := make(map[int]string, len(sampleNameMap))
+	samplePosns := make([]int, 0, len(sampleNameMap))
+	sampleNames := make([]string, 0, len(sampleNameMap))
 
-	for name, posn := range sample_name_map {
-		sample_posns = append(sample_posns, posn)
+	for name, posn := range sampleNameMap {
+		samplePosns = append(samplePosns, posn)
 		posns[posn] = name
 	}
-	sort.Ints(sample_posns)
+	sort.Ints(samplePosns)
 
-	for _, posn := range sample_posns {
-		sample_names = append(sample_names, posns[posn])
+	for _, posn := range samplePosns {
+		sampleNames = append(sampleNames, posns[posn])
 	}
-	return hdr_prfx + strings.Join(sample_names, "\t"), sample_names
+	return hdrPrfx + strings.Join(sampleNames, "\t"), sampleNames
 }
 
-func GetColumnHeaders(sample_posn_map map[int]string) string {
+// GetColumnHeaders ...
+// Get single-string column header record
+func GetColumnHeaders(samplePosnMap map[int]string) string {
 
-	sample_posns := make([]int, 0, len(sample_posn_map))
-	sample_names := make([]string, 0, len(sample_posn_map))
+	samplePosns := make([]int, 0, len(samplePosnMap))
+	sampleNames := make([]string, 0, len(samplePosnMap))
 
-	for posn, _ := range sample_posn_map {
-		sample_posns = append(sample_posns, posn)
+	for posn := range samplePosnMap {
+		samplePosns = append(samplePosns, posn)
 	}
-	sort.Ints(sample_posns)
+	sort.Ints(samplePosns)
 
-	for _, posn := range sample_posns {
-		sample_names = append(sample_names, sample_posn_map[posn])
+	for _, posn := range samplePosns {
+		sampleNames = append(sampleNames, samplePosnMap[posn])
 	}
-	return hdr_prfx + strings.Join(sample_names, "\t")
+	return hdrPrfx + strings.Join(sampleNames, "\t")
 }
-//------------------------------------------------------------------------------
-// Combine_one single version : wraps Combine
-//------------------------------------------------------------------------------
-func Combine_one(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
-	sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
-	combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics) string {
 
-  var rtn_string string
-  file_records := make(chan string, 1)
-  Combine(vcfset, vcfdataset, rsid, sample_names_by_posn, combo_posns, combo_names, threshold, gmetrics, file_records)
+// CombineOne ...
+// single SNP version : wraps Combine
+//------------------------------------------------------------------------------
+func CombineOne(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
+	sampleNamesByPosn map[string]map[int]string, comboPosns map[string]int,
+	comboNames []string, threshold float64, gmetrics *genometrics.AllMetrics) string {
 
-  close(file_records)
-  for rec := range file_records {
-    rtn_string = rec
-  }
-  return rtn_string
+	var rtnString string
+	fileRecords := make(chan string, 1)
+	Combine(vcfset, vcfdataset, rsid, sampleNamesByPosn, comboPosns, comboNames, threshold, gmetrics, fileRecords)
+
+	close(fileRecords)
+	for rec := range fileRecords {
+		rtnString = rec
+	}
+	return rtnString
 }
-//------------------------------------------------------------------------------
-// Combine version III: build out full results arrays for each assay in the vcfset,
+
+// Combine ...
+// version III: build out full results arrays for each assay in the vcfset,
 // then process in lockstep to allow comparision of all genotypes for the same
 // sample at the same time
 //------------------------------------------------------------------------------
 func Combine(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
-	sample_names_by_posn map[string]map[int]string, combo_posns map[string]int,
-	combo_names []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string) {
+	sampleNamesByPosn map[string]map[int]string, comboPosns map[string]int,
+	comboNames []string, threshold float64, gmetrics *genometrics.AllMetrics, recs chan string) {
 
 	var prfx []string
 	var sfx []string
 	probidx := 1
 
-	comborec := make([]string, len(combo_posns))
-	for i, _ := range comborec {
+	comborec := make([]string, len(comboPosns))
+	for i := range comborec {
 		comborec[i] = "."
 	}
 
 	assayrecs := make([][]string, 0, len(vcfset))
-	atypes := make([]string, 0, len(vcfset))
+	atypeList := make([]string, 0, len(vcfset))
+	atypeMap := make(map[string][]string)
 
 	savedVarid := ""
 	savedRefAllele := ""
@@ -123,65 +127,71 @@ func Combine(vcfset [][]string, vcfdataset []Vcfdata, rsid string,
 
 	for _, rec := range vcfset {
 		atype := rec[0]
-    // currec will have slots in the same order as the combined record
-		currec := make([]string, len(combo_posns))
-		atypes = append(atypes, atype)
-		prfx, sfx = variant.GetVCFPrfx_Sfx(rec[1:])
-    (*gmetrics).AllGenoCount += len(sfx)
-		probidx = variant.GetProbidx(prfx)
+		// currentRecord will have slots in the same order as the combined record
+		currentRecord := make([]string, len(comboPosns))
+
+		prfx, sfx = variant.GetVCFPrfxSfx(rec[1:])
+		atypeList = append(atypeList, atype)
+		atypeMap[atype] = prfx
+		(*gmetrics).AllGenoCount += len(sfx)
+		probidx = variant.GetProbIdx(prfx)
 		varid := variant.GetVarid(prfx)
 		refAllele, altAllele := variant.GetAlleles(prfx)
-    hasAT := variant.HasFmt(prfx, "AT")
+		hasAT := variant.HasFmt(prfx, "AT")
 		if (varid == savedVarid) && (refAllele == savedRefAllele) && (altAllele == savedAltAllele) {
 			for j, elem := range sfx {
-        if (!hasAT) {
-			    elem = appendAssayAbbrev(elem, atype)
-			  }
-        // this is the crux map from sample_name at slot j in the assay type record to the position 
-        // aligned with the combination record
-			  currec[combo_posns[sample_names_by_posn[atype][j]]] = elem
-      }
-			assayrecs = append(assayrecs, currec)
+				if !hasAT {
+					elem = appendAssayAbbrev(elem, atype)
+				}
+				// this is the crux: map from sample_name at slot j in the assay type record to the position
+				// aligned with the combination record
+				currentRecord[comboPosns[sampleNamesByPosn[atype][j]]] = elem
+			}
+			assayrecs = append(assayrecs, currentRecord)
 		} else {
 			log.Printf("REJ: merge mismatch: %v (%s, %s, %s)\n", prfx, savedVarid, savedRefAllele, savedAltAllele)
 		}
 	}
 	// At this point all "input" genotype data has been captured and is lined up with the comborec
-  // Now look at each possible genotype for the comborec
-	for i, _ := range comborec {
-		geno_list := make([]string, 0, len(assayrecs))
-		for _, genos := range assayrecs {
+	// Now look at each possible genotype for the comborec
+	for i := range comborec {
+		genoList := make([]string, 0, len(assayrecs))
+		aList := make([]string, 0, len(assayrecs))
+		for j, genos := range assayrecs {
 			if genos[i] != "" {
-				geno_list = append(geno_list, variant.Get_geno(genos[i], threshold, probidx))
+				genoList = append(genoList, variant.GetGeno(genos[i], threshold, probidx))
+				aList = append(aList, atypeList[j])
 			}
 		}
-		(*gmetrics).UniqueGenoCount += 1
-		if len(geno_list) > 1 {
+		(*gmetrics).UniqueGenoCount++
+		if len(genoList) > 1 {
 			(*gmetrics).OverlapTestCount++
-			if len(geno_list) == 2 {
+			if len(genoList) == 2 {
 				(*gmetrics).TwoOverlapCount++
 			} else {
 				(*gmetrics).GtTwoOverlapCount++
 			}
-			comborec[i] = get_best_geno(geno_list, probidx, rsid, gmetrics)
+			comborec[i] = getBestGeno(genoList, aList, atypeMap, probidx, rsid, gmetrics)
 		} else {
-			if len(geno_list) == 1 {
-				comborec[i] = geno_list[0]
-        if strings.HasPrefix(comborec[i], "./.") {
-          (*gmetrics).MissingCount += 1
-        }
+			if len(genoList) == 1 {
+				comborec[i] = genoList[0]
+				if strings.HasPrefix(comborec[i], "./.") {
+					(*gmetrics).MissingCount++
+				}
 			}
 		}
+
 	}
-  if !variant.HasFmt(prfx, "AT") {
-	  prfx = variant.AppendToFmt(prfx, "AT")
-  }
+	if !variant.HasFmt(prfx, "AT") {
+		prfx = variant.AppendToFmt(prfx, "AT")
+	}
 	// no leading chr zeros
 	prfx = variant.NormaliseChromosome(prfx)
-  comborec = append(prfx, comborec...)
-  rec_str := strings.Join(comborec, "\t")
-	recs <- rec_str
+	comborec = append(prfx, comborec...)
+	recStr := strings.Join(comborec, "\t")
+	recs <- recStr
 }
+
 //------------------------------------------------------------------------------
 // Equality test for genotypes
 //------------------------------------------------------------------------------
@@ -221,68 +231,68 @@ func resolveGeno(geno1 string, geno2 string, probidx int) string {
 //------------------------------------------------------------------------------
 // Get the best genotype based on imputation probability
 //------------------------------------------------------------------------------
-func get_best_geno(geno_list []string, probidx int, varid string, gmetrics *genometrics.AllMetrics) string {
-	rgeno := ""
-	bgeno := "."
-	best_prob := 0.0
+func getBestGeno(genoList []string, assayList []string, assayTypeMap map[string][]string,
+	probidx int, varid string, gmetrics *genometrics.AllMetrics) string {
+	currentGeno := ""     // will contain just a genotype, for example "0/0" or "./."
+	bestGenoString := "." // will be returned either as "." or as a gentoype string of the form "0/0:0:1,0,0"
+	bestProb := 0.0
+	bestInfoScore := 0.0
 
-  gcount, mcount := count_diff_genos(geno_list)
-  (*gmetrics).MismatchCount += (gcount - 1)
-  (*gmetrics).MissTestCount += mcount
-	for _, geno := range geno_list {
-    if geno == "." {
-		  (*gmetrics).NoAssayCount += 1
-      continue
-    }
+	gcount, mcount := countDiffGenos(genoList)
+	(*gmetrics).MismatchCount += (gcount - 1)
+	(*gmetrics).MissTestCount += mcount
+	for i, geno := range genoList {
+		if geno == "." {
+			(*gmetrics).NoAssayCount++
+			continue
+		}
 		genodata := strings.Split(geno, ":")
-		if genodata[0] != rgeno {
+		if genodata[0] != currentGeno {
 			prob, _, _ := variant.MaxProb(geno, probidx)
-			if prob == best_prob {
-        (*gmetrics).SameProbDiffs++
-      } else {
-        if best_prob != 0.0 {
-          (*gmetrics).DiffProbDiffs++
-        }
-				rgeno = genodata[0]
-				bgeno = geno
-				best_prob = prob
-      }
+			if prob == bestProb {
+				(*gmetrics).SameProbDiffs++
+				infoScore := variant.GetInfoScore(assayTypeMap[assayList[i]])
+				if infoScore > bestInfoScore {
+					currentGeno = genodata[0]
+					bestGenoString = geno
+					bestProb = prob
+					bestInfoScore = infoScore
+				}
+			} else {
+				if bestProb != 0.0 {
+					(*gmetrics).DiffProbDiffs++
+				}
+				if prob > bestProb {
+					currentGeno = genodata[0]
+					bestGenoString = geno
+					bestProb = prob
+					bestInfoScore = variant.GetInfoScore(assayTypeMap[assayList[i]])
+				}
+			}
 		}
 	}
-	bgenodata := strings.Split(bgeno, ":")
-	if (bgenodata[0] == "./.") {
-		(*gmetrics).MissingCount += 1
+	bestGenodata := strings.Split(bestGenoString, ":")
+	if bestGenodata[0] == "./." {
+		(*gmetrics).MissingCount++
 	}
-	return bgeno
-}
-//------------------------------------------------------------------------------
-// Count the number of genotypes in a genotype list 
-//------------------------------------------------------------------------------
-func count_diff_genos(geno_list []string) (int, int) {
-  var gcount, mcount int
-  gmap := make(map[string]bool, len(geno_list))
-  for _, genoinfo := range(geno_list) {
-    geno := strings.Split(genoinfo, ":")
-    if _, ok := gmap[geno[0]]; !ok {
-      gmap[geno[0]] = true
-      gcount += 1
-    }
-    if geno[0] == "./." {
-      mcount += 1
-    }
-  }
-  return gcount, mcount
+	return bestGenoString
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
+//------------------------------------------------------------------------------
+// Count the number of genotypes in a genotype list
+//------------------------------------------------------------------------------
+func countDiffGenos(genoList []string) (int, int) {
+	var gcount, mcount int
+	gmap := make(map[string]bool, len(genoList))
+	for _, genoinfo := range genoList {
+		geno := strings.Split(genoinfo, ":")
+		if _, ok := gmap[geno[0]]; !ok {
+			gmap[geno[0]] = true
+			gcount++
+		}
+		if geno[0] == "./." {
+			mcount++
+		}
+	}
+	return gcount, mcount
+}

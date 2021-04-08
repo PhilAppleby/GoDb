@@ -1,0 +1,1998 @@
+2021/03/19 15:02:15 ##NOT FOUND rs63418562
+2021/03/19 15:02:15 ##NOT FOUND rs115231027
+2021/03/19 15:03:03 rs603424 combined, mismatch=186, overlaps=3764, ErrPct=4.94155
+2021/03/19 15:03:03 rs36006409 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:03 rs11197813 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:03 rs72842207 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:03 rs4411245 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:03:03 rs7096563 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:03 rs1133400 combined, mismatch=451, overlaps=3373, ErrPct=13.37089
+2021/03/19 15:03:03 rs10906391 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:03 rs11010905 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:03 rs72795925 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:03 rs10732433 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:03 rs34130368 combined, mismatch=169, overlaps=512, ErrPct=33.00781
+2021/03/19 15:03:03 rs56352451 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:03 rs7090758 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:03 rs12572586 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:03 rs10887914 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:03 rs77413490 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:03 rs61892344 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:03 rs12807220 combined, mismatch=45, overlaps=512, ErrPct=8.78906
+2021/03/19 15:03:03 rs4754196 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:03 rs17119370 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:03 rs1076485 combined, mismatch=47, overlaps=3764, ErrPct=1.24867
+2021/03/19 15:03:03 rs11222386 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:03 rs11026586 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:03 rs871004 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:03 rs11031051 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:03:04 rs190194639 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:04 rs17224476 combined, mismatch=132, overlaps=6400, ErrPct=2.06250
+2021/03/19 15:03:04 rs1585453 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:04 rs2688716 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:04 rs75905900 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:04 rs11607056 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:04 rs2929184 combined, mismatch=74, overlaps=512, ErrPct=14.45312
+2021/03/19 15:03:04 rs4980515 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs67976715 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:03:04 rs875106 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:04 rs4420291 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:03:04 rs10743086 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:04 rs10830963 combined, mismatch=382, overlaps=6400, ErrPct=5.96875
+2021/03/19 15:03:04 rs11021221 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:04 rs360153 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:04 rs10778174 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:04 rs11112548 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:04 rs11571376 combined, mismatch=86, overlaps=512, ErrPct=16.79688
+2021/03/19 15:03:04 rs11615689 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:04 rs3898618 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs1271309 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:03:04 rs2024385 combined, mismatch=93, overlaps=512, ErrPct=18.16406
+2021/03/19 15:03:04 rs7313556 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:04 rs73080726 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:04 rs704191 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:04 rs7976167 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:04 rs1098708 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:04 rs10842991 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:04 rs117233107 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:04 rs78998485 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:04 rs11168245 combined, mismatch=73, overlaps=512, ErrPct=14.25781
+2021/03/19 15:03:04 rs2261608 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:04 rs61926181 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:04 rs75507123 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:04 rs7137749 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:04 rs10437954 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:04 rs513177 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:04 rs7963801 combined, mismatch=103, overlaps=512, ErrPct=20.11719
+2021/03/19 15:03:04 rs7132012 combined, mismatch=137, overlaps=3764, ErrPct=3.63974
+2021/03/19 15:03:04 rs10858966 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:04 rs7977311 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:04 rs7134060 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:04 rs3742182 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs7331680 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:04 rs606950 combined, mismatch=47, overlaps=512, ErrPct=9.17969
+2021/03/19 15:03:04 rs9532243 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:04 rs73187288 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:04 rs912434 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:04 rs12583615 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:04 rs9526707 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:04 rs9563529 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs78474310 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:04 rs4304924 combined, mismatch=53, overlaps=512, ErrPct=10.35156
+2021/03/19 15:03:04 rs7988232 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:03:04 rs55684003 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:04 rs28470843 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:03:04 rs8014182 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:04 rs17880989 combined, mismatch=217, overlaps=3373, ErrPct=6.43344
+2021/03/19 15:03:04 rs17115145 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs4424827 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:04 rs72683923 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:04 rs210381 combined, mismatch=48, overlaps=3373, ErrPct=1.42307
+2021/03/19 15:03:04 rs7144602 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:03:04 rs11628933 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:04 rs11623535 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:05 rs4903064 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:05 rs11159091 combined, mismatch=78, overlaps=512, ErrPct=15.23438
+2021/03/19 15:03:05 rs8013933 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:05 rs34756251 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:05 rs11629850 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:03:05 rs2925345 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:05 rs4924570 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:03:05 rs3098186 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:05 rs3191402 combined, mismatch=231, overlaps=512, ErrPct=45.11719
+2021/03/19 15:03:05 rs832890 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:05 rs2289261 combined, mismatch=47, overlaps=512, ErrPct=9.17969
+2021/03/19 15:03:05 rs62004794 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:05 rs11853359 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:05 rs11634028 combined, mismatch=101, overlaps=512, ErrPct=19.72656
+2021/03/19 15:03:05 rs899927 combined, mismatch=11, overlaps=3764, ErrPct=0.29224
+2021/03/19 15:03:05 rs7180952 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:05 rs3743157 combined, mismatch=59, overlaps=3373, ErrPct=1.74918
+2021/03/19 15:03:05 rs11632436 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:05 rs28611491 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:03:05 rs873122 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:03:05 rs4984496 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:05 rs11642631 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:05 rs11248862 combined, mismatch=61, overlaps=512, ErrPct=11.91406
+2021/03/19 15:03:05 rs3915425 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:03:05 rs4782211 combined, mismatch=273, overlaps=512, ErrPct=53.32031
+2021/03/19 15:03:05 rs28590346 combined, mismatch=196, overlaps=512, ErrPct=38.28125
+2021/03/19 15:03:05 rs6565174 combined, mismatch=195, overlaps=3764, ErrPct=5.18066
+2021/03/19 15:03:05 rs37060 combined, mismatch=59, overlaps=3764, ErrPct=1.56748
+2021/03/19 15:03:05 rs28633979 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:05 rs45474499 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:05 rs35450617 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:05 rs7185555 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:05 rs9932866 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:05 rs62053102 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:03:05 rs7187540 combined, mismatch=150, overlaps=512, ErrPct=29.29688
+2021/03/19 15:03:05 rs4925159 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:03:05 rs7502046 combined, mismatch=196, overlaps=512, ErrPct=38.28125
+2021/03/19 15:03:05 rs4480845 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:03:05 rs138285687 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:05 rs11080134 combined, mismatch=213, overlaps=3373, ErrPct=6.31485
+2021/03/19 15:03:05 rs1551355 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:03:05 rs3135967 combined, mismatch=48, overlaps=3764, ErrPct=1.27524
+2021/03/19 15:03:05 rs7215084 combined, mismatch=35, overlaps=3764, ErrPct=0.92986
+2021/03/19 15:03:05 rs56228409 combined, mismatch=102, overlaps=512, ErrPct=19.92188
+2021/03/19 15:03:05 rs9904409 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:05 rs62076103 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:05 rs12325702 combined, mismatch=76, overlaps=512, ErrPct=14.84375
+2021/03/19 15:03:05 rs34430710 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:05 rs1036902 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:05 rs6504213 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:05 rs35504735 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:05 rs9302885 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:05 rs112280096 combined, mismatch=242, overlaps=512, ErrPct=47.26562
+2021/03/19 15:03:05 rs8069739 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:05 rs11665020 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:03:05 rs963920 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:05 rs4800420 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:05 rs61735998 combined, mismatch=144, overlaps=3373, ErrPct=4.26920
+2021/03/19 15:03:05 rs11876341 combined, mismatch=89, overlaps=512, ErrPct=17.38281
+2021/03/19 15:03:05 rs34163044 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:03:05 rs10048404 combined, mismatch=146, overlaps=512, ErrPct=28.51562
+2021/03/19 15:03:05 rs12172847 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:06 rs12454712 combined, mismatch=1350, overlaps=3764, ErrPct=35.86610
+2021/03/19 15:03:06 rs34413141 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:03:06 rs10409243 combined, mismatch=305, overlaps=3764, ErrPct=8.10308
+2021/03/19 15:03:06 rs1529744 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:06 rs1077795 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:03:06 rs1821295 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:06 rs2656523 combined, mismatch=148, overlaps=512, ErrPct=28.90625
+2021/03/19 15:03:06 rs1800470 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:06 rs7412 combined, mismatch=384, overlaps=6400, ErrPct=6.00000
+2021/03/19 15:03:06 rs34783010 combined, mismatch=85, overlaps=512, ErrPct=16.60156
+2021/03/19 15:03:06 rs2613765 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:06 rs138877676 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:06 rs7250835 combined, mismatch=230, overlaps=512, ErrPct=44.92188
+2021/03/19 15:03:06 rs12078697 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:06 rs7553422 combined, mismatch=23, overlaps=3764, ErrPct=0.61105
+2021/03/19 15:03:06 rs72704264 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:03:06 rs76719272 combined, mismatch=90, overlaps=512, ErrPct=17.57812
+2021/03/19 15:03:06 rs12118102 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:06 rs10913934 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:06 rs1043069 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:03:06 rs4651224 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:06 rs12042924 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:06 rs882624 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:03:06 rs33996239 combined, mismatch=55, overlaps=512, ErrPct=10.74219
+2021/03/19 15:03:06 rs7555285 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:06 rs35981664 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:06 rs260508 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:06 rs2820443 combined, mismatch=25, overlaps=3764, ErrPct=0.66419
+2021/03/19 15:03:06 rs2807337 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:06 rs150266910 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:06 rs4926499 combined, mismatch=122, overlaps=512, ErrPct=23.82812
+2021/03/19 15:03:06 rs79598313 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:06 rs143167197 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:06 rs1565716 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:06 rs4652875 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:06 rs72659998 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:06 rs839755 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:06 rs512083 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:06 rs12142296 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:06 rs6681713 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:06 rs20354 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:06 rs34517439 combined, mismatch=126, overlaps=512, ErrPct=24.60938
+2021/03/19 15:03:06 rs2252865 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:06 rs12034319 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:06 rs385437 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:06 rs7514579 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:06 rs17396055 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:06 rs680515 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:06 rs1232482 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:06 rs6141767 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:06 rs6141479 combined, mismatch=103, overlaps=512, ErrPct=20.11719
+2021/03/19 15:03:06 rs4811601 combined, mismatch=80, overlaps=512, ErrPct=15.62500
+2021/03/19 15:03:06 rs4810332 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:06 rs6021247 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:06 rs35213536 combined, mismatch=109, overlaps=512, ErrPct=21.28906
+2021/03/19 15:03:06 rs11087740 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:06 rs1882961 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:03:06 rs11909120 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:06 rs9976596 combined, mismatch=68, overlaps=512, ErrPct=13.28125
+2021/03/19 15:03:06 rs62229372 combined, mismatch=152, overlaps=512, ErrPct=29.68750
+2021/03/19 15:03:06 rs2277788 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:06 rs11701512 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:06 rs134041 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:06 rs737721 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:06 rs5750482 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:06 rs77692990 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:06 rs28578714 combined, mismatch=129, overlaps=512, ErrPct=25.19531
+2021/03/19 15:03:07 rs28377357 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:07 rs6723509 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:07 rs13001283 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:07 rs72844590 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:07 rs7606205 combined, mismatch=62, overlaps=512, ErrPct=12.10938
+2021/03/19 15:03:07 rs34570306 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:07 rs4664080 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:07 rs1220128 combined, mismatch=136, overlaps=512, ErrPct=26.56250
+2021/03/19 15:03:07 rs79523138 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:07 rs2390258 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:07 rs560887 combined, mismatch=209, overlaps=6400, ErrPct=3.26562
+2021/03/19 15:03:07 rs151054210 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:07 rs72914576 combined, mismatch=45, overlaps=512, ErrPct=8.78906
+2021/03/19 15:03:07 rs60148403 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:03:07 rs1486236 combined, mismatch=233, overlaps=3764, ErrPct=6.19022
+2021/03/19 15:03:07 rs12473688 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:07 rs28558491 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:07 rs11901929 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:07 rs67720684 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:07 rs1469760 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:07 rs12694277 combined, mismatch=79, overlaps=512, ErrPct=15.42969
+2021/03/19 15:03:07 rs4674114 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:07 rs1996992 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:07 rs1044822 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:07 rs12052878 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:03:07 rs139354822 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:03:07 rs1607644 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:07 rs4850047 combined, mismatch=342, overlaps=3764, ErrPct=9.08608
+2021/03/19 15:03:07 rs2707238 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:03:07 rs35590893 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:07 rs6545155 combined, mismatch=13, overlaps=3764, ErrPct=0.34538
+2021/03/19 15:03:07 rs2920899 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:07 rs6730325 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:07 rs72816333 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:07 rs2631669 combined, mismatch=4, overlaps=3764, ErrPct=0.10627
+2021/03/19 15:03:07 rs2300481 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:07 rs6731373 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:03:07 rs72847885 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:07 rs2175337 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:07 rs4851462 combined, mismatch=65, overlaps=512, ErrPct=12.69531
+2021/03/19 15:03:07 rs11923667 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:07 rs1882289 combined, mismatch=12, overlaps=3764, ErrPct=0.31881
+2021/03/19 15:03:07 rs6438857 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:03:07 rs9875380 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:07 rs590198 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:07 rs729639 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:07 rs62278541 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:07 rs6772704 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:07 rs9833313 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:03:07 rs78151625 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:07 rs1706003 combined, mismatch=185, overlaps=512, ErrPct=36.13281
+2021/03/19 15:03:07 rs6777317 combined, mismatch=531, overlaps=3764, ErrPct=14.10733
+2021/03/19 15:03:07 rs189267552 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:07 rs4634143 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:07 rs12638085 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:07 rs4678915 combined, mismatch=64, overlaps=512, ErrPct=12.50000
+2021/03/19 15:03:07 rs267517 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:07 rs6801957 combined, mismatch=137, overlaps=3764, ErrPct=3.63974
+2021/03/19 15:03:07 rs6788984 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:03:07 rs141979279 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:07 rs113134141 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:07 rs73082337 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:03:07 rs12486605 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:07 rs7630745 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:07 rs4499560 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:08 rs9857362 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:08 rs9865843 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:03:08 rs1375564 combined, mismatch=10, overlaps=3764, ErrPct=0.26567
+2021/03/19 15:03:08 rs9860290 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:03:08 rs3822239 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:08 rs17248480 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:08 rs223361 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:08 rs7694643 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:08 rs7439567 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:03:08 rs72719160 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:08 rs4835266 combined, mismatch=56, overlaps=512, ErrPct=10.93750
+2021/03/19 15:03:08 rs10305838 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:08 rs13122790 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:08 rs17035181 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:08 rs2610990 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:08 rs55829085 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:08 rs28667801 combined, mismatch=116, overlaps=512, ErrPct=22.65625
+2021/03/19 15:03:08 rs231708 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:08 rs2498323 combined, mismatch=174, overlaps=3373, ErrPct=5.15861
+2021/03/19 15:03:08 rs12511987 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:08 rs1718845 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:08 rs10008637 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:08 rs6823199 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:08 rs13149209 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:03:08 rs7694000 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:08 rs1347345 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:08 rs286809 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:08 rs79409628 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:08 rs1432457 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:08 rs9885577 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:03:08 rs62373688 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:08 rs10069690 combined, mismatch=218, overlaps=512, ErrPct=42.57812
+2021/03/19 15:03:08 rs55747751 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:03:08 rs702395 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:08 rs62385385 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:08 rs74774746 combined, mismatch=48, overlaps=512, ErrPct=9.37500
+2021/03/19 15:03:08 rs954767 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:08 rs7710854 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:03:08 rs6867399 combined, mismatch=234, overlaps=3764, ErrPct=6.21679
+2021/03/19 15:03:08 rs1694068 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:03:08 rs13179413 combined, mismatch=130, overlaps=512, ErrPct=25.39062
+2021/03/19 15:03:08 rs12515541 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:08 rs10062049 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:08 rs3121685 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:08 rs4286632 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:08 rs246973 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:08 rs72761109 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:03:08 rs4443403 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:08 rs709668 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:08 rs3822857 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:03:08 rs2693560 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:03:08 rs2498586 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:08 rs9401090 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:08 rs6925750 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:08 rs1630736 combined, mismatch=697, overlaps=3764, ErrPct=18.51753
+2021/03/19 15:03:08 rs10782230 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:08 rs9885632 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:08 rs4896104 combined, mismatch=73, overlaps=512, ErrPct=14.25781
+2021/03/19 15:03:08 rs668459 combined, mismatch=17, overlaps=3764, ErrPct=0.45165
+2021/03/19 15:03:08 rs7763294 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:08 rs6941056 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:08 rs598682 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:08 rs2745599 combined, mismatch=155, overlaps=512, ErrPct=30.27344
+2021/03/19 15:03:08 rs4342401 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:08 rs9368222 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:03:08 rs115245297 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:08 rs3176336 combined, mismatch=43, overlaps=512, ErrPct=8.39844
+2021/03/19 15:03:08 rs4714224 combined, mismatch=43, overlaps=512, ErrPct=8.39844
+2021/03/19 15:03:09 rs9472135 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:09 rs631441 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:09 rs1334576 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:03:09 rs12195276 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:09 rs9392172 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:09 rs114275780 combined, mismatch=67, overlaps=512, ErrPct=13.08594
+2021/03/19 15:03:09 rs12705090 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:09 rs115172170 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:09 rs1997571 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:09 rs73033340 combined, mismatch=94, overlaps=512, ErrPct=18.35938
+2021/03/19 15:03:09 rs34072724 combined, mismatch=92, overlaps=3764, ErrPct=2.44421
+2021/03/19 15:03:09 rs1722886 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:09 rs12703989 combined, mismatch=78, overlaps=512, ErrPct=15.23438
+2021/03/19 15:03:09 rs11771693 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:03:09 rs9638084 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:09 rs6959688 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:03:09 rs2069833 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:09 rs10274928 combined, mismatch=237, overlaps=3764, ErrPct=6.29649
+2021/03/19 15:03:09 rs10233127 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:03:09 rs12701929 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:09 rs1004558 combined, mismatch=274, overlaps=3764, ErrPct=7.27949
+2021/03/19 15:03:09 rs71543920 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:09 rs73049928 combined, mismatch=71, overlaps=512, ErrPct=13.86719
+2021/03/19 15:03:09 rs6593297 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:09 rs2222544 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:09 rs34324971 combined, mismatch=115, overlaps=512, ErrPct=22.46094
+2021/03/19 15:03:09 rs6963105 combined, mismatch=113, overlaps=512, ErrPct=22.07031
+2021/03/19 15:03:09 rs848445 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:03:09 rs11770630 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:09 rs1947228 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:09 rs1986971 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:03:09 rs28499085 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:09 rs2205260 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:03:09 rs62523863 combined, mismatch=343, overlaps=3764, ErrPct=9.11265
+2021/03/19 15:03:09 rs4598218 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:03:09 rs10087782 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:09 rs4129585 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:09 rs56233017 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:03:09 rs1047030 combined, mismatch=647, overlaps=3373, ErrPct=19.18174
+2021/03/19 15:03:09 rs62503324 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:09 rs11991469 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:09 rs1906672 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:09 rs4873492 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:09 rs6996733 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:09 rs1350100 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:03:09 rs72688070 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:09 rs56345595 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:09 rs7009170 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:09 rs4582532 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:03:09 rs62491354 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:09 rs10988442 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:09 rs7020564 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:09 rs13290326 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:03:09 rs10982910 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:03:09 rs7023828 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:09 rs1891730 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:03:09 rs7869756 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:03:09 rs184457 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:09 rs11789875 combined, mismatch=55, overlaps=512, ErrPct=10.74219
+2021/03/19 15:03:09 rs4977492 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:09 rs28558845 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:03:09 rs1332813 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:09 rs7045409 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:09 rs880315 combined, mismatch=345, overlaps=6400, ErrPct=5.39062
+2021/03/19 15:03:09 rs17030613 combined, mismatch=16, overlaps=3373, ErrPct=0.47436
+2021/03/19 15:03:09 rs2932538 combined, mismatch=5, overlaps=3764, ErrPct=0.13284
+2021/03/19 15:03:09 rs17367504 combined, mismatch=30, overlaps=6400, ErrPct=0.46875
+2021/03/19 15:03:10 rs3820068 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:10 rs2076328 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:03:10 rs2157597 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:10 rs12405515 combined, mismatch=128, overlaps=3764, ErrPct=3.40064
+2021/03/19 15:03:10 rs4245739 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:03:10 rs2761436 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:03:10 rs12408022 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:10 rs73091767 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:10 rs2004776 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:10 rs6429422 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:10 rs6686889 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:10 rs2493292 combined, mismatch=375, overlaps=6400, ErrPct=5.85938
+2021/03/19 15:03:10 rs9729719 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:10 rs7515635 combined, mismatch=6, overlaps=3764, ErrPct=0.15940
+2021/03/19 15:03:10 rs147696085 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:10 rs112557609 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:10 rs2404715 combined, mismatch=38, overlaps=3764, ErrPct=1.00956
+2021/03/19 15:03:10 rs60199046 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:10 rs709209 combined, mismatch=520, overlaps=6400, ErrPct=8.12500
+2021/03/19 15:03:10 rs10922502 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:10 rs9662255 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:10 rs112184198 combined, mismatch=72, overlaps=512, ErrPct=14.06250
+2021/03/19 15:03:10 rs11191548 combined, mismatch=15, overlaps=6400, ErrPct=0.23438
+2021/03/19 15:03:10 rs4387287 combined, mismatch=35, overlaps=3373, ErrPct=1.03765
+2021/03/19 15:03:10 rs34872471 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:03:10 rs2782980 combined, mismatch=214, overlaps=3764, ErrPct=5.68544
+2021/03/19 15:03:10 rs4373814 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:10 rs1813353 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:10 rs9337951 combined, mismatch=198, overlaps=512, ErrPct=38.67188
+2021/03/19 15:03:10 rs11008355 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:10 rs10826995 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:03:10 rs2246438 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:10 rs1530440 combined, mismatch=22, overlaps=6400, ErrPct=0.34375
+2021/03/19 15:03:10 rs7914287 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:10 rs932764 combined, mismatch=56, overlaps=3764, ErrPct=1.48778
+2021/03/19 15:03:10 rs4494250 combined, mismatch=29, overlaps=3373, ErrPct=0.85977
+2021/03/19 15:03:10 rs633185 combined, mismatch=133, overlaps=3764, ErrPct=3.53348
+2021/03/19 15:03:10 rs7129220 combined, mismatch=50, overlaps=3764, ErrPct=1.32837
+2021/03/19 15:03:10 rs8258 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:03:10 rs900145 combined, mismatch=35, overlaps=6400, ErrPct=0.54688
+2021/03/19 15:03:10 rs4757391 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:10 rs381815 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:10 rs5219 combined, mismatch=19, overlaps=6400, ErrPct=0.29688
+2021/03/19 15:03:10 rs661348 combined, mismatch=490, overlaps=3764, ErrPct=13.01807
+2021/03/19 15:03:10 rs11030119 combined, mismatch=17, overlaps=3764, ErrPct=0.45165
+2021/03/19 15:03:10 rs7480089 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:10 rs7103648 combined, mismatch=38, overlaps=3764, ErrPct=1.00956
+2021/03/19 15:03:10 rs11537751 combined, mismatch=7, overlaps=6400, ErrPct=0.10938
+2021/03/19 15:03:10 rs11229457 combined, mismatch=0, overlaps=3373, ErrPct=0.00000
+2021/03/19 15:03:10 rs751984 combined, mismatch=150, overlaps=3764, ErrPct=3.98512
+2021/03/19 15:03:10 rs3741378 combined, mismatch=37, overlaps=3764, ErrPct=0.98300
+2021/03/19 15:03:11 rs67330701 combined, mismatch=81, overlaps=512, ErrPct=15.82031
+2021/03/19 15:03:11 rs7927515 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:11 rs110419 combined, mismatch=83, overlaps=3373, ErrPct=2.46072
+2021/03/19 15:03:11 rs7126805 combined, mismatch=400, overlaps=3373, ErrPct=11.85888
+2021/03/19 15:03:11 rs2289125 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:03:11 rs3184504 combined, mismatch=110, overlaps=3373, ErrPct=3.26119
+2021/03/19 15:03:11 rs10850411 combined, mismatch=25, overlaps=3764, ErrPct=0.66419
+2021/03/19 15:03:11 rs35444 combined, mismatch=3, overlaps=3373, ErrPct=0.08894
+2021/03/19 15:03:11 rs11067763 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:11 rs1060105 combined, mismatch=10, overlaps=3373, ErrPct=0.29647
+2021/03/19 15:03:11 rs12579720 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:11 rs6487543 combined, mismatch=302, overlaps=3373, ErrPct=8.95345
+2021/03/19 15:03:11 rs1126930 combined, mismatch=221, overlaps=3373, ErrPct=6.55203
+2021/03/19 15:03:11 rs7977389 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:11 rs7302981 combined, mismatch=12, overlaps=6400, ErrPct=0.18750
+2021/03/19 15:03:11 rs73099903 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:11 rs7297416 combined, mismatch=77, overlaps=512, ErrPct=15.03906
+2021/03/19 15:03:11 rs17249754 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:03:11 rs76785029 combined, mismatch=49, overlaps=512, ErrPct=9.57031
+2021/03/19 15:03:11 rs9549328 combined, mismatch=52, overlaps=512, ErrPct=10.15625
+2021/03/19 15:03:11 rs1475130 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:11 rs452036 combined, mismatch=464, overlaps=3373, ErrPct=13.75630
+2021/03/19 15:03:11 rs8904 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:11 rs9888615 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:11 rs9323988 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:03:11 rs1036477 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:11 rs956006 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:03:11 rs7178615 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:11 rs1378942 combined, mismatch=16, overlaps=6400, ErrPct=0.25000
+2021/03/19 15:03:11 rs62011052 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:11 rs2759308 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:11 rs2034618 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:11 rs2521501 combined, mismatch=627, overlaps=3764, ErrPct=16.65781
+2021/03/19 15:03:11 rs12906962 combined, mismatch=91, overlaps=512, ErrPct=17.77344
+2021/03/19 15:03:11 rs13333226 combined, mismatch=29, overlaps=6400, ErrPct=0.45312
+2021/03/19 15:03:11 rs11639856 combined, mismatch=12, overlaps=3373, ErrPct=0.35577
+2021/03/19 15:03:11 rs72799341 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:03:11 rs12921187 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:03:11 rs33063 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:11 rs35261357 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:11 rs8059962 combined, mismatch=84, overlaps=512, ErrPct=16.40625
+2021/03/19 15:03:11 rs7500448 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:11 rs12941318 combined, mismatch=143, overlaps=512, ErrPct=27.92969
+2021/03/19 15:03:11 rs79089478 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:11 rs12946454 combined, mismatch=184, overlaps=6400, ErrPct=2.87500
+2021/03/19 15:03:11 rs17608766 combined, mismatch=255, overlaps=6400, ErrPct=3.98437
+2021/03/19 15:03:11 rs7406910 combined, mismatch=77, overlaps=3373, ErrPct=2.28283
+2021/03/19 15:03:11 rs12940887 combined, mismatch=21, overlaps=3764, ErrPct=0.55792
+2021/03/19 15:03:11 rs2645466 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:11 rs2240736 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:11 rs740698 combined, mismatch=118, overlaps=512, ErrPct=23.04688
+2021/03/19 15:03:11 rs4308 combined, mismatch=87, overlaps=512, ErrPct=16.99219
+2021/03/19 15:03:11 rs28427409 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:03:11 rs2467099 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:03:11 rs57927100 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:11 rs78378222 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:11 rs12958173 combined, mismatch=14, overlaps=3764, ErrPct=0.37194
+2021/03/19 15:03:12 rs7236548 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:12 rs745821 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:12 rs36010659 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:12 rs167479 combined, mismatch=2465, overlaps=3373, ErrPct=73.08034
+2021/03/19 15:03:12 rs17638167 combined, mismatch=101, overlaps=3764, ErrPct=2.68332
+2021/03/19 15:03:12 rs10418305 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:12 rs2304130 combined, mismatch=213, overlaps=6400, ErrPct=3.32812
+2021/03/19 15:03:12 rs740406 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:12 rs62104477 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:12 rs8105753 combined, mismatch=141, overlaps=512, ErrPct=27.53906
+2021/03/19 15:03:12 rs7248104 combined, mismatch=31, overlaps=6400, ErrPct=0.48438
+2021/03/19 15:03:12 rs4247374 combined, mismatch=1528, overlaps=3764, ErrPct=40.59511
+2021/03/19 15:03:12 rs1438896 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:03:12 rs1446468 combined, mismatch=40, overlaps=512, ErrPct=7.81250
+2021/03/19 15:03:12 rs79146658 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:03:12 rs16823124 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:12 rs7592578 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:12 rs1344653 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:12 rs55780018 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:03:12 rs7255 combined, mismatch=242, overlaps=3764, ErrPct=6.42933
+2021/03/19 15:03:12 rs1063281 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:12 rs2972146 combined, mismatch=25, overlaps=6400, ErrPct=0.39062
+2021/03/19 15:03:12 rs55701159 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:12 rs1275988 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:12 rs9678851 combined, mismatch=19, overlaps=3373, ErrPct=0.56330
+2021/03/19 15:03:12 rs7562 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:03:12 rs13420463 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:12 rs4952611 combined, mismatch=95, overlaps=512, ErrPct=18.55469
+2021/03/19 15:03:12 rs76326501 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:03:12 rs11690961 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:12 rs1975487 combined, mismatch=349, overlaps=3764, ErrPct=9.27205
+2021/03/19 15:03:12 rs3771371 combined, mismatch=19, overlaps=6400, ErrPct=0.29688
+2021/03/19 15:03:12 rs1876487 combined, mismatch=99, overlaps=512, ErrPct=19.33594
+2021/03/19 15:03:12 rs11689667 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:12 rs2579519 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:12 rs1327235 combined, mismatch=14, overlaps=3764, ErrPct=0.37194
+2021/03/19 15:03:12 rs6081613 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:03:12 rs6060114 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:12 rs6031435 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:03:12 rs6095241 combined, mismatch=30, overlaps=3373, ErrPct=0.88942
+2021/03/19 15:03:12 rs6015450 combined, mismatch=125, overlaps=3764, ErrPct=3.32094
+2021/03/19 15:03:12 rs6108168 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:12 rs11701033 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:03:12 rs12627651 combined, mismatch=496, overlaps=3764, ErrPct=13.17747
+2021/03/19 15:03:12 rs9306160 combined, mismatch=25, overlaps=3373, ErrPct=0.74118
+2021/03/19 15:03:12 rs12628032 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:12 rs4823006 combined, mismatch=111, overlaps=6400, ErrPct=1.73438
+2021/03/19 15:03:12 rs470113 combined, mismatch=40, overlaps=6400, ErrPct=0.62500
+2021/03/19 15:03:12 rs73161324 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:03:12 rs347591 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:12 rs62270945 combined, mismatch=49, overlaps=512, ErrPct=9.57031
+2021/03/19 15:03:12 rs6783086 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:12 rs2306374 combined, mismatch=32, overlaps=6400, ErrPct=0.50000
+2021/03/19 15:03:13 rs16851397 combined, mismatch=39, overlaps=6400, ErrPct=0.60938
+2021/03/19 15:03:13 rs11128722 combined, mismatch=422, overlaps=3764, ErrPct=11.21148
+2021/03/19 15:03:13 rs143112823 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:03:13 rs419076 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:13 rs12374077 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:13 rs13082711 combined, mismatch=61, overlaps=3764, ErrPct=1.62062
+2021/03/19 15:03:13 rs9815354 combined, mismatch=2, overlaps=3373, ErrPct=0.05929
+2021/03/19 15:03:13 rs6797587 combined, mismatch=175, overlaps=3764, ErrPct=4.64931
+2021/03/19 15:03:13 rs36022378 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:03:13 rs13303 combined, mismatch=49, overlaps=6400, ErrPct=0.76562
+2021/03/19 15:03:13 rs9810888 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:03:13 rs9827472 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:13 rs918466 combined, mismatch=19, overlaps=3764, ErrPct=0.50478
+2021/03/19 15:03:13 rs13107325 combined, mismatch=258, overlaps=6400, ErrPct=4.03125
+2021/03/19 15:03:13 rs13112725 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:03:13 rs6825911 combined, mismatch=64, overlaps=3373, ErrPct=1.89742
+2021/03/19 15:03:13 rs66887589 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:03:13 rs4292285 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:03:13 rs13139571 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:13 rs869396 combined, mismatch=294, overlaps=3764, ErrPct=7.81084
+2021/03/19 15:03:13 rs2291435 combined, mismatch=102, overlaps=3764, ErrPct=2.70988
+2021/03/19 15:03:13 rs871606 combined, mismatch=70, overlaps=3764, ErrPct=1.85972
+2021/03/19 15:03:13 rs1458038 combined, mismatch=116, overlaps=3764, ErrPct=3.08183
+2021/03/19 15:03:13 rs2014912 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:03:13 rs10077885 combined, mismatch=21, overlaps=3764, ErrPct=0.55792
+2021/03/19 15:03:13 rs13359291 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:13 rs6891344 combined, mismatch=11, overlaps=3764, ErrPct=0.29224
+2021/03/19 15:03:13 rs6595838 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:13 rs12521868 combined, mismatch=28, overlaps=6400, ErrPct=0.43750
+2021/03/19 15:03:13 rs9687065 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:13 rs11953630 combined, mismatch=71, overlaps=3764, ErrPct=1.88629
+2021/03/19 15:03:13 rs72812846 combined, mismatch=94, overlaps=512, ErrPct=18.35938
+2021/03/19 15:03:13 rs1173771 combined, mismatch=48, overlaps=3764, ErrPct=1.27524
+2021/03/19 15:03:13 rs10078021 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:03:13 rs10057188 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:13 rs10059921 combined, mismatch=95, overlaps=512, ErrPct=18.55469
+2021/03/19 15:03:13 rs9372498 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:13 rs11154027 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:03:13 rs13209747 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:13 rs9349379 combined, mismatch=648, overlaps=6400, ErrPct=10.12500
+2021/03/19 15:03:13 rs17080102 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:13 rs9479200 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:03:13 rs449789 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:13 rs73030266 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:03:13 rs1322639 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:03:13 rs6911827 combined, mismatch=48, overlaps=512, ErrPct=9.37500
+2021/03/19 15:03:13 rs1799945 combined, mismatch=67, overlaps=6400, ErrPct=1.04688
+2021/03/19 15:03:13 rs409558 combined, mismatch=8, overlaps=3373, ErrPct=0.23718
+2021/03/19 15:03:13 rs1563788 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:13 rs78648104 combined, mismatch=160, overlaps=6400, ErrPct=2.50000
+2021/03/19 15:03:14 rs13205180 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:03:14 rs1925153 combined, mismatch=313, overlaps=3373, ErrPct=9.27957
+2021/03/19 15:03:14 rs10943605 combined, mismatch=15, overlaps=3373, ErrPct=0.44471
+2021/03/19 15:03:14 rs35410524 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:14 rs17477177 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:14 rs4728142 combined, mismatch=112, overlaps=3373, ErrPct=3.32049
+2021/03/19 15:03:14 rs11556924 combined, mismatch=357, overlaps=6400, ErrPct=5.57812
+2021/03/19 15:03:14 rs13238550 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:03:14 rs7810028 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:14 rs3918226 combined, mismatch=259, overlaps=3764, ErrPct=6.88098
+2021/03/19 15:03:14 rs891511 combined, mismatch=490, overlaps=3373, ErrPct=14.52713
+2021/03/19 15:03:14 rs10224002 combined, mismatch=426, overlaps=3373, ErrPct=12.62971
+2021/03/19 15:03:14 rs2107595 combined, mismatch=44, overlaps=512, ErrPct=8.59375
+2021/03/19 15:03:14 rs2969070 combined, mismatch=153, overlaps=3764, ErrPct=4.06482
+2021/03/19 15:03:14 rs1055144 combined, mismatch=21, overlaps=6400, ErrPct=0.32812
+2021/03/19 15:03:14 rs7777128 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:03:14 rs917275 combined, mismatch=282, overlaps=3764, ErrPct=7.49203
+2021/03/19 15:03:14 rs76206723 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:03:14 rs11977526 combined, mismatch=118, overlaps=6400, ErrPct=1.84375
+2021/03/19 15:03:14 rs2282978 combined, mismatch=15, overlaps=6400, ErrPct=0.23438
+2021/03/19 15:03:14 rs2978098 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:03:14 rs35783704 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:03:14 rs2898290 combined, mismatch=65, overlaps=3764, ErrPct=1.72689
+2021/03/19 15:03:14 rs2071518 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:03:14 rs894344 combined, mismatch=65, overlaps=3764, ErrPct=1.72689
+2021/03/19 15:03:14 rs4454254 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:03:14 rs34591516 combined, mismatch=77, overlaps=3373, ErrPct=2.28283
+2021/03/19 15:03:14 rs62524579 combined, mismatch=72, overlaps=512, ErrPct=14.06250
+2021/03/19 15:03:14 rs6557876 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:03:14 rs2978456 combined, mismatch=206, overlaps=512, ErrPct=40.23438
+2021/03/19 15:03:14 rs1449544 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:03:14 rs111245230 combined, mismatch=8, overlaps=3373, ErrPct=0.23718
+2021/03/19 15:03:14 rs1953126 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:03:14 rs10818775 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:03:14 rs72765298 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:03:14 rs687621 combined, mismatch=33, overlaps=3373, ErrPct=0.97836
+2021/03/19 15:03:14 rs6271 combined, mismatch=749, overlaps=3764, ErrPct=19.89904
+2021/03/19 15:03:14 rs4364717 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:03:14 rs76452347 combined, mismatch=989, overlaps=3373, ErrPct=29.32108
+2021/03/19 15:03:14 FLIP for: rs36006409 [G,T]
+2021/03/19 15:03:14 FLIP for: rs11197813 [G,A]
+2021/03/19 15:03:14 FLIP for: rs7096563 [G,A]
+2021/03/19 15:03:14 FLIP for: rs1133400 [G,A]
+2021/03/19 15:03:14 FLIP for: rs11010905 [T,A]
+2021/03/19 15:03:14 FLIP for: rs7090758 [C,T]
+2021/03/19 15:03:14 FLIP for: rs12572586 [C,T]
+2021/03/19 15:03:14 FLIP for: rs10887914 [C,T]
+2021/03/19 15:03:14 FLIP for: rs4754196 [G,A]
+2021/03/19 15:03:14 FLIP for: rs11031051 [C,A]
+2021/03/19 15:03:14 FLIP for: rs1585453 [T,A]
+2021/03/19 15:03:14 FLIP for: rs2688716 [G,T]
+2021/03/19 15:03:14 FLIP for: rs75905900 [C,A]
+2021/03/19 15:03:14 FLIP for: rs2929184 [G,A]
+2021/03/19 15:03:14 FLIP for: rs4980515 [C,T]
+2021/03/19 15:03:14 FLIP for: rs10830963 [G,C]
+2021/03/19 15:03:14 FLIP for: rs360153 [C,T]
+2021/03/19 15:03:14 FLIP for: rs10778174 [G,A]
+2021/03/19 15:03:14 FLIP for: rs11112548 [T,A]
+2021/03/19 15:03:14 FLIP for: rs11571376 [G,C]
+2021/03/19 15:03:14 FLIP for: rs11615689 [C,T]
+2021/03/19 15:03:14 FLIP for: rs3898618 [C,T]
+2021/03/19 15:03:14 FLIP for: rs1271309 [G,A]
+2021/03/19 15:03:14 FLIP for: rs7313556 [G,A]
+2021/03/19 15:03:14 FLIP for: rs704191 [C,T]
+2021/03/19 15:03:14 FLIP for: rs7976167 [C,T]
+2021/03/19 15:03:14 FLIP for: rs1098708 [G,A]
+2021/03/19 15:03:14 FLIP for: rs78998485 [G,C]
+2021/03/19 15:03:14 FLIP for: rs11168245 [G,C]
+2021/03/19 15:03:14 FLIP for: rs2261608 [T,A]
+2021/03/19 15:03:14 FLIP for: rs7137749 [C,T]
+2021/03/19 15:03:14 FLIP for: rs7963801 [C,T]
+2021/03/19 15:03:14 FLIP for: rs7132012 [G,A]
+2021/03/19 15:03:15 FLIP for: rs9532243 [C,A]
+2021/03/19 15:03:15 FLIP for: rs73187288 [C,A]
+2021/03/19 15:03:15 FLIP for: rs78474310 [G,A]
+2021/03/19 15:03:15 FLIP for: rs55684003 [G,A]
+2021/03/19 15:03:15 FLIP for: rs28470843 [C,T]
+2021/03/19 15:03:15 FLIP for: rs72683923 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7144602 [G,T]
+2021/03/19 15:03:15 FLIP for: rs4903064 [C,T]
+2021/03/19 15:03:15 FLIP for: rs8013933 [C,T]
+2021/03/19 15:03:15 FLIP for: rs2925345 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4924570 [C,T]
+2021/03/19 15:03:15 FLIP for: rs62004794 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4984496 [G,T]
+2021/03/19 15:03:15 FLIP for: rs11642631 [C,T]
+2021/03/19 15:03:15 FLIP for: rs11248862 [G,A]
+2021/03/19 15:03:15 FLIP for: rs3915425 [C,T]
+2021/03/19 15:03:15 FLIP for: rs28590346 [T,A]
+2021/03/19 15:03:15 FLIP for: rs6565174 [C,A]
+2021/03/19 15:03:15 FLIP for: rs28633979 [C,A]
+2021/03/19 15:03:15 FLIP for: rs35450617 [G,T]
+2021/03/19 15:03:15 FLIP for: rs62053102 [T,A]
+2021/03/19 15:03:15 FLIP for: rs4480845 [C,T]
+2021/03/19 15:03:15 FLIP for: rs11080134 [G,A]
+2021/03/19 15:03:15 FLIP for: rs3135967 [G,A]
+2021/03/19 15:03:15 FLIP for: rs56228409 [C,A]
+2021/03/19 15:03:15 FLIP for: rs9904409 [G,A]
+2021/03/19 15:03:15 FLIP for: rs62076103 [G,A]
+2021/03/19 15:03:15 FLIP for: rs12325702 [T,A]
+2021/03/19 15:03:15 FLIP for: rs34430710 [T,A]
+2021/03/19 15:03:15 FLIP for: rs1036902 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6504213 [C,T]
+2021/03/19 15:03:15 FLIP for: rs35504735 [G,A]
+2021/03/19 15:03:15 FLIP for: rs9302885 [G,A]
+2021/03/19 15:03:15 FLIP for: rs8069739 [C,T]
+2021/03/19 15:03:15 FLIP for: rs963920 [G,T]
+2021/03/19 15:03:15 FLIP for: rs11876341 [G,A]
+2021/03/19 15:03:15 FLIP for: rs12454712 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1529744 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1077795 [G,A]
+2021/03/19 15:03:15 FLIP for: rs7250835 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7553422 [C,T]
+2021/03/19 15:03:15 FLIP for: rs12118102 [G,A]
+2021/03/19 15:03:15 FLIP for: rs1043069 [G,T]
+2021/03/19 15:03:15 FLIP for: rs12042924 [C,T]
+2021/03/19 15:03:15 FLIP for: rs35981664 [T,A]
+2021/03/19 15:03:15 FLIP for: rs260508 [G,T]
+2021/03/19 15:03:15 FLIP for: rs2820443 [C,T]
+2021/03/19 15:03:15 FLIP for: rs2807337 [C,T]
+2021/03/19 15:03:15 FLIP for: rs143167197 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4652875 [G,C]
+2021/03/19 15:03:15 FLIP for: rs839755 [C,A]
+2021/03/19 15:03:15 FLIP for: rs512083 [C,T]
+2021/03/19 15:03:15 FLIP for: rs12142296 [G,T]
+2021/03/19 15:03:15 FLIP for: rs6681713 [G,T]
+2021/03/19 15:03:15 FLIP for: rs2252865 [C,T]
+2021/03/19 15:03:15 FLIP for: rs385437 [G,A]
+2021/03/19 15:03:15 FLIP for: rs7514579 [C,A]
+2021/03/19 15:03:15 FLIP for: rs680515 [G,A]
+2021/03/19 15:03:15 FLIP for: rs11087740 [C,T]
+2021/03/19 15:03:15 FLIP for: rs11909120 [T,A]
+2021/03/19 15:03:15 FLIP for: rs9976596 [C,T]
+2021/03/19 15:03:15 FLIP for: rs2277788 [G,C]
+2021/03/19 15:03:15 FLIP for: rs11701512 [G,A]
+2021/03/19 15:03:15 FLIP for: rs134041 [C,T]
+2021/03/19 15:03:15 FLIP for: rs737721 [G,C]
+2021/03/19 15:03:15 FLIP for: rs5750482 [C,T]
+2021/03/19 15:03:15 FLIP for: rs28578714 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6723509 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7606205 [C,A]
+2021/03/19 15:03:15 FLIP for: rs79523138 [G,A]
+2021/03/19 15:03:15 FLIP for: rs560887 [C,T]
+2021/03/19 15:03:15 FLIP for: rs72914576 [G,C]
+2021/03/19 15:03:15 FLIP for: rs12473688 [G,A]
+2021/03/19 15:03:15 FLIP for: rs11901929 [G,A]
+2021/03/19 15:03:15 FLIP for: rs1469760 [C,T]
+2021/03/19 15:03:15 FLIP for: rs12694277 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4674114 [G,A]
+2021/03/19 15:03:15 FLIP for: rs139354822 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4850047 [C,T]
+2021/03/19 15:03:15 FLIP for: rs2707238 [G,C]
+2021/03/19 15:03:15 FLIP for: rs6545155 [C,T]
+2021/03/19 15:03:15 FLIP for: rs72816333 [T,A]
+2021/03/19 15:03:15 FLIP for: rs2631669 [C,T]
+2021/03/19 15:03:15 FLIP for: rs72847885 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4851462 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6438857 [C,T]
+2021/03/19 15:03:15 FLIP for: rs729639 [C,T]
+2021/03/19 15:03:15 FLIP for: rs62278541 [G,A]
+2021/03/19 15:03:15 FLIP for: rs6772704 [C,A]
+2021/03/19 15:03:15 FLIP for: rs9833313 [T,A]
+2021/03/19 15:03:15 FLIP for: rs78151625 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4634143 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6801957 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6788984 [G,A]
+2021/03/19 15:03:15 FLIP for: rs141979279 [C,T]
+2021/03/19 15:03:15 FLIP for: rs113134141 [G,A]
+2021/03/19 15:03:15 FLIP for: rs73082337 [G,C]
+2021/03/19 15:03:15 FLIP for: rs12486605 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7630745 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4499560 [T,A]
+2021/03/19 15:03:15 FLIP for: rs9857362 [C,A]
+2021/03/19 15:03:15 FLIP for: rs9865843 [G,A]
+2021/03/19 15:03:15 FLIP for: rs223361 [C,T]
+2021/03/19 15:03:15 FLIP for: rs72719160 [T,A]
+2021/03/19 15:03:15 FLIP for: rs4835266 [C,T]
+2021/03/19 15:03:15 FLIP for: rs10305838 [C,T]
+2021/03/19 15:03:15 FLIP for: rs13122790 [G,A]
+2021/03/19 15:03:15 FLIP for: rs17035181 [G,T]
+2021/03/19 15:03:15 FLIP for: rs2610990 [G,A]
+2021/03/19 15:03:15 FLIP for: rs55829085 [C,A]
+2021/03/19 15:03:15 FLIP for: rs28667801 [T,A]
+2021/03/19 15:03:15 FLIP for: rs12511987 [G,T]
+2021/03/19 15:03:15 FLIP for: rs1718845 [G,A]
+2021/03/19 15:03:15 FLIP for: rs10008637 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6823199 [C,T]
+2021/03/19 15:03:15 FLIP for: rs13149209 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7694000 [T,A]
+2021/03/19 15:03:15 FLIP for: rs1432457 [G,A]
+2021/03/19 15:03:15 FLIP for: rs954767 [C,A]
+2021/03/19 15:03:15 FLIP for: rs7710854 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4286632 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4443403 [C,T]
+2021/03/19 15:03:15 FLIP for: rs709668 [G,A]
+2021/03/19 15:03:15 FLIP for: rs2693560 [G,A]
+2021/03/19 15:03:15 FLIP for: rs9401090 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6925750 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7763294 [G,T]
+2021/03/19 15:03:15 FLIP for: rs6941056 [G,C]
+2021/03/19 15:03:15 FLIP for: rs598682 [G,A]
+2021/03/19 15:03:15 FLIP for: rs2745599 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4342401 [T,A]
+2021/03/19 15:03:15 FLIP for: rs115245297 [C,T]
+2021/03/19 15:03:15 FLIP for: rs3176336 [T,A]
+2021/03/19 15:03:15 FLIP for: rs9472135 [C,T]
+2021/03/19 15:03:15 FLIP for: rs631441 [G,T]
+2021/03/19 15:03:15 FLIP for: rs9392172 [G,C]
+2021/03/19 15:03:15 FLIP for: rs115172170 [C,T]
+2021/03/19 15:03:15 FLIP for: rs73033340 [G,A]
+2021/03/19 15:03:15 FLIP for: rs1722886 [T,A]
+2021/03/19 15:03:15 FLIP for: rs11771693 [G,A]
+2021/03/19 15:03:15 FLIP for: rs9638084 [G,A]
+2021/03/19 15:03:15 FLIP for: rs6959688 [G,A]
+2021/03/19 15:03:15 FLIP for: rs10274928 [G,A]
+2021/03/19 15:03:15 FLIP for: rs12701929 [C,T]
+2021/03/19 15:03:15 FLIP for: rs71543920 [G,T]
+2021/03/19 15:03:15 FLIP for: rs73049928 [G,A]
+2021/03/19 15:03:15 FLIP for: rs6593297 [T,A]
+2021/03/19 15:03:15 FLIP for: rs2222544 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6963105 [G,A]
+2021/03/19 15:03:15 FLIP for: rs848445 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1947228 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1986971 [G,A]
+2021/03/19 15:03:15 FLIP for: rs28499085 [G,A]
+2021/03/19 15:03:15 FLIP for: rs2205260 [C,A]
+2021/03/19 15:03:15 FLIP for: rs10087782 [C,T]
+2021/03/19 15:03:15 FLIP for: rs4129585 [C,A]
+2021/03/19 15:03:15 FLIP for: rs1047030 [G,A]
+2021/03/19 15:03:15 FLIP for: rs11991469 [G,C]
+2021/03/19 15:03:15 FLIP for: rs6996733 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1350100 [G,A]
+2021/03/19 15:03:15 FLIP for: rs56345595 [G,A]
+2021/03/19 15:03:15 FLIP for: rs7009170 [C,T]
+2021/03/19 15:03:15 FLIP for: rs10988442 [G,A]
+2021/03/19 15:03:15 FLIP for: rs7020564 [T,A]
+2021/03/19 15:03:15 FLIP for: rs10982910 [G,T]
+2021/03/19 15:03:15 FLIP for: rs1891730 [C,T]
+2021/03/19 15:03:15 FLIP for: rs7869756 [G,A]
+2021/03/19 15:03:15 FLIP for: rs4977492 [C,T]
+2021/03/19 15:03:15 FLIP for: rs1332813 [C,T]
+2021/03/19 15:03:15 FLIP for: rs880315 [C,T]
+2021/03/19 15:03:15 FLIP for: rs17030613 [C,A]
+2021/03/19 15:03:15 FLIP for: rs2932538 [G,A]
+2021/03/19 15:03:15 FLIP for: rs17367504 [G,A]
+2021/03/19 15:03:15 FLIP for: rs3820068 [G,A]
+2021/03/19 15:03:15 FLIP for: rs73091767 [C,T]
+2021/03/19 15:03:15 FLIP for: rs6429422 [G,T]
+2021/03/19 15:03:15 FLIP for: rs7515635 [C,T]
+2021/03/19 15:03:16 FLIP for: rs60199046 [G,A]
+2021/03/19 15:03:16 FLIP for: rs709209 [G,A]
+2021/03/19 15:03:16 FLIP for: rs10922502 [G,A]
+2021/03/19 15:03:16 FLIP for: rs11191548 [C,T]
+2021/03/19 15:03:16 FLIP for: rs4387287 [C,A]
+2021/03/19 15:03:16 FLIP for: rs34872471 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2782980 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1813353 [C,T]
+2021/03/19 15:03:16 FLIP for: rs10826995 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7914287 [C,T]
+2021/03/19 15:03:16 FLIP for: rs932764 [G,A]
+2021/03/19 15:03:16 FLIP for: rs8258 [C,T]
+2021/03/19 15:03:16 FLIP for: rs5219 [C,T]
+2021/03/19 15:03:16 FLIP for: rs661348 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7103648 [G,A]
+2021/03/19 15:03:16 FLIP for: rs751984 [C,T]
+2021/03/19 15:03:16 FLIP for: rs110419 [G,A]
+2021/03/19 15:03:16 FLIP for: rs2289125 [C,A]
+2021/03/19 15:03:16 FLIP for: rs3184504 [C,T]
+2021/03/19 15:03:16 FLIP for: rs10850411 [C,T]
+2021/03/19 15:03:16 FLIP for: rs35444 [G,A]
+2021/03/19 15:03:16 FLIP for: rs11067763 [G,A]
+2021/03/19 15:03:16 FLIP for: rs12579720 [G,C]
+2021/03/19 15:03:16 FLIP for: rs7977389 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7302981 [G,A]
+2021/03/19 15:03:16 FLIP for: rs7297416 [C,A]
+2021/03/19 15:03:16 FLIP for: rs1475130 [C,T]
+2021/03/19 15:03:16 FLIP for: rs9888615 [C,T]
+2021/03/19 15:03:16 FLIP for: rs9323988 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1036477 [G,A]
+2021/03/19 15:03:16 FLIP for: rs7178615 [G,A]
+2021/03/19 15:03:16 FLIP for: rs62011052 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2521501 [T,A]
+2021/03/19 15:03:16 FLIP for: rs12906962 [C,T]
+2021/03/19 15:03:16 FLIP for: rs13333226 [G,A]
+2021/03/19 15:03:16 FLIP for: rs12921187 [G,T]
+2021/03/19 15:03:16 FLIP for: rs33063 [G,A]
+2021/03/19 15:03:16 FLIP for: rs8059962 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7500448 [G,A]
+2021/03/19 15:03:16 FLIP for: rs12941318 [C,T]
+2021/03/19 15:03:16 FLIP for: rs79089478 [C,T]
+2021/03/19 15:03:16 FLIP for: rs12946454 [T,A]
+2021/03/19 15:03:16 FLIP for: rs17608766 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7406910 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2645466 [C,A]
+2021/03/19 15:03:16 FLIP for: rs4308 [G,A]
+2021/03/19 15:03:16 FLIP for: rs57927100 [G,C]
+2021/03/19 15:03:16 FLIP for: rs78378222 [G,T]
+2021/03/19 15:03:16 FLIP for: rs12958173 [C,A]
+2021/03/19 15:03:16 FLIP for: rs745821 [G,T]
+2021/03/19 15:03:16 FLIP for: rs36010659 [C,T]
+2021/03/19 15:03:16 FLIP for: rs10418305 [G,C]
+2021/03/19 15:03:16 FLIP for: rs2304130 [G,A]
+2021/03/19 15:03:16 FLIP for: rs740406 [G,A]
+2021/03/19 15:03:16 FLIP for: rs8105753 [C,A]
+2021/03/19 15:03:16 FLIP for: rs1438896 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1446468 [C,T]
+2021/03/19 15:03:16 FLIP for: rs79146658 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7592578 [G,T]
+2021/03/19 15:03:16 FLIP for: rs1344653 [G,A]
+2021/03/19 15:03:16 FLIP for: rs55780018 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7255 [C,T]
+2021/03/19 15:03:16 FLIP for: rs55701159 [G,T]
+2021/03/19 15:03:16 FLIP for: rs7562 [C,T]
+2021/03/19 15:03:16 FLIP for: rs13420463 [G,A]
+2021/03/19 15:03:16 FLIP for: rs76326501 [C,A]
+2021/03/19 15:03:16 FLIP for: rs11690961 [C,A]
+2021/03/19 15:03:16 FLIP for: rs1975487 [G,A]
+2021/03/19 15:03:16 FLIP for: rs1876487 [C,A]
+2021/03/19 15:03:16 FLIP for: rs11689667 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2579519 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1327235 [G,A]
+2021/03/19 15:03:16 FLIP for: rs6060114 [C,T]
+2021/03/19 15:03:16 FLIP for: rs6031435 [G,A]
+2021/03/19 15:03:16 FLIP for: rs6015450 [G,A]
+2021/03/19 15:03:16 FLIP for: rs11701033 [G,C]
+2021/03/19 15:03:16 FLIP for: rs9306160 [C,T]
+2021/03/19 15:03:16 FLIP for: rs4823006 [G,A]
+2021/03/19 15:03:16 FLIP for: rs470113 [G,A]
+2021/03/19 15:03:16 FLIP for: rs2306374 [C,T]
+2021/03/19 15:03:16 FLIP for: rs16851397 [G,A]
+2021/03/19 15:03:16 FLIP for: rs419076 [C,T]
+2021/03/19 15:03:16 FLIP for: rs13082711 [C,T]
+2021/03/19 15:03:16 FLIP for: rs6797587 [G,A]
+2021/03/19 15:03:16 FLIP for: rs36022378 [C,T]
+2021/03/19 15:03:16 FLIP for: rs13303 [C,T]
+2021/03/19 15:03:16 FLIP for: rs9810888 [G,T]
+2021/03/19 15:03:16 FLIP for: rs66887589 [C,T]
+2021/03/19 15:03:16 FLIP for: rs871606 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2014912 [C,T]
+2021/03/19 15:03:16 FLIP for: rs6891344 [G,A]
+2021/03/19 15:03:16 FLIP for: rs9687065 [G,A]
+2021/03/19 15:03:16 FLIP for: rs1173771 [G,A]
+2021/03/19 15:03:16 FLIP for: rs10078021 [G,T]
+2021/03/19 15:03:16 FLIP for: rs11154027 [C,T]
+2021/03/19 15:03:16 FLIP for: rs9349379 [G,A]
+2021/03/19 15:03:16 FLIP for: rs9479200 [G,A]
+2021/03/19 15:03:16 FLIP for: rs449789 [G,C]
+2021/03/19 15:03:16 FLIP for: rs73030266 [T,A]
+2021/03/19 15:03:16 FLIP for: rs1799945 [G,C]
+2021/03/19 15:03:16 FLIP for: rs409558 [C,T]
+2021/03/19 15:03:16 FLIP for: rs78648104 [C,T]
+2021/03/19 15:03:16 FLIP for: rs17477177 [C,T]
+2021/03/19 15:03:16 FLIP for: rs7810028 [G,C]
+2021/03/19 15:03:16 FLIP for: rs10224002 [G,A]
+2021/03/19 15:03:16 FLIP for: rs917275 [G,A]
+2021/03/19 15:03:16 FLIP for: rs2282978 [C,T]
+2021/03/19 15:03:16 FLIP for: rs2978098 [C,A]
+2021/03/19 15:03:16 FLIP for: rs2898290 [C,T]
+2021/03/19 15:03:16 FLIP for: rs894344 [G,A]
+2021/03/19 15:03:16 FLIP for: rs2978456 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1449544 [C,A]
+2021/03/19 15:03:16 FLIP for: rs111245230 [C,T]
+2021/03/19 15:03:16 FLIP for: rs1953126 [C,T]
+2021/03/19 15:03:16 FLIP for: rs72765298 [C,T]
+2021/03/19 15:03:16 FLIP for: rs687621 [G,A]
+2021/03/19 15:03:16 FLIP for: rs4364717 [G,A]
+2021/03/19 15:30:00 ##NOT FOUND rs63418562
+2021/03/19 15:30:00 ##NOT FOUND rs115231027
+2021/03/19 15:30:53 rs603424 combined, mismatch=186, overlaps=3764, ErrPct=4.94155
+2021/03/19 15:30:53 rs36006409 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:53 rs11197813 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:30:53 rs72842207 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:30:53 rs4411245 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:30:53 rs7096563 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:53 rs1133400 combined, mismatch=451, overlaps=3373, ErrPct=13.37089
+2021/03/19 15:30:53 rs10906391 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:53 rs11010905 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:54 rs72795925 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:30:54 rs10732433 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:30:54 rs34130368 combined, mismatch=169, overlaps=512, ErrPct=33.00781
+2021/03/19 15:30:54 rs56352451 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:54 rs7090758 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:54 rs12572586 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:54 rs10887914 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:54 rs77413490 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:54 rs61892344 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:54 rs12807220 combined, mismatch=45, overlaps=512, ErrPct=8.78906
+2021/03/19 15:30:54 rs4754196 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:54 rs17119370 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:54 rs1076485 combined, mismatch=47, overlaps=3764, ErrPct=1.24867
+2021/03/19 15:30:54 rs11222386 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:54 rs11026586 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:54 rs871004 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:54 rs11031051 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:30:54 rs190194639 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:54 rs17224476 combined, mismatch=132, overlaps=6400, ErrPct=2.06250
+2021/03/19 15:30:54 rs1585453 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:30:54 rs2688716 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:30:54 rs75905900 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:54 rs11607056 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:54 rs2929184 combined, mismatch=74, overlaps=512, ErrPct=14.45312
+2021/03/19 15:30:54 rs4980515 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:54 rs67976715 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:30:54 rs875106 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:54 rs4420291 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:30:54 rs10743086 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:54 rs10830963 combined, mismatch=382, overlaps=6400, ErrPct=5.96875
+2021/03/19 15:30:54 rs11021221 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:54 rs360153 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:30:54 rs10778174 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:54 rs11112548 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:30:54 rs11571376 combined, mismatch=86, overlaps=512, ErrPct=16.79688
+2021/03/19 15:30:54 rs11615689 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:54 rs3898618 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:54 rs1271309 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:30:54 rs2024385 combined, mismatch=93, overlaps=512, ErrPct=18.16406
+2021/03/19 15:30:54 rs7313556 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:54 rs73080726 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:54 rs704191 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:30:54 rs7976167 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:54 rs1098708 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:54 rs10842991 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:54 rs117233107 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:30:54 rs78998485 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:54 rs11168245 combined, mismatch=73, overlaps=512, ErrPct=14.25781
+2021/03/19 15:30:54 rs2261608 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:54 rs61926181 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:54 rs75507123 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:54 rs7137749 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:54 rs10437954 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:30:54 rs513177 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:54 rs7963801 combined, mismatch=103, overlaps=512, ErrPct=20.11719
+2021/03/19 15:30:54 rs7132012 combined, mismatch=137, overlaps=3764, ErrPct=3.63974
+2021/03/19 15:30:54 rs10858966 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:54 rs7977311 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:54 rs7134060 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:54 rs3742182 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:54 rs7331680 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:54 rs606950 combined, mismatch=47, overlaps=512, ErrPct=9.17969
+2021/03/19 15:30:54 rs9532243 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:54 rs73187288 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:54 rs912434 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:30:54 rs12583615 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:54 rs9526707 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:55 rs9563529 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:55 rs78474310 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:55 rs4304924 combined, mismatch=53, overlaps=512, ErrPct=10.35156
+2021/03/19 15:30:55 rs7988232 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:30:55 rs55684003 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:55 rs28470843 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:30:55 rs8014182 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:55 rs17880989 combined, mismatch=217, overlaps=3373, ErrPct=6.43344
+2021/03/19 15:30:55 rs17115145 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:55 rs4424827 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:55 rs72683923 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:55 rs210381 combined, mismatch=48, overlaps=3373, ErrPct=1.42307
+2021/03/19 15:30:55 rs7144602 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:30:55 rs11628933 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:55 rs11623535 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:55 rs4903064 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:55 rs11159091 combined, mismatch=78, overlaps=512, ErrPct=15.23438
+2021/03/19 15:30:55 rs8013933 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:55 rs34756251 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:55 rs11629850 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:30:55 rs2925345 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:55 rs4924570 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:30:55 rs3098186 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:55 rs3191402 combined, mismatch=231, overlaps=512, ErrPct=45.11719
+2021/03/19 15:30:55 rs832890 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:55 rs2289261 combined, mismatch=47, overlaps=512, ErrPct=9.17969
+2021/03/19 15:30:55 rs62004794 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:55 rs11853359 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:55 rs11634028 combined, mismatch=101, overlaps=512, ErrPct=19.72656
+2021/03/19 15:30:55 rs899927 combined, mismatch=11, overlaps=3764, ErrPct=0.29224
+2021/03/19 15:30:55 rs7180952 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:55 rs3743157 combined, mismatch=59, overlaps=3373, ErrPct=1.74918
+2021/03/19 15:30:55 rs11632436 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:30:55 rs28611491 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:30:55 rs873122 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:30:55 rs4984496 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:55 rs11642631 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:55 rs11248862 combined, mismatch=61, overlaps=512, ErrPct=11.91406
+2021/03/19 15:30:55 rs3915425 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:30:55 rs4782211 combined, mismatch=273, overlaps=512, ErrPct=53.32031
+2021/03/19 15:30:55 rs28590346 combined, mismatch=196, overlaps=512, ErrPct=38.28125
+2021/03/19 15:30:55 rs6565174 combined, mismatch=195, overlaps=3764, ErrPct=5.18066
+2021/03/19 15:30:55 rs37060 combined, mismatch=59, overlaps=3764, ErrPct=1.56748
+2021/03/19 15:30:55 rs28633979 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:55 rs45474499 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:55 rs35450617 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:55 rs7185555 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:30:55 rs9932866 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:55 rs62053102 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:30:55 rs7187540 combined, mismatch=150, overlaps=512, ErrPct=29.29688
+2021/03/19 15:30:55 rs4925159 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:30:55 rs7502046 combined, mismatch=196, overlaps=512, ErrPct=38.28125
+2021/03/19 15:30:55 rs4480845 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:30:55 rs138285687 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:30:55 rs11080134 combined, mismatch=213, overlaps=3373, ErrPct=6.31485
+2021/03/19 15:30:55 rs1551355 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:30:55 rs3135967 combined, mismatch=48, overlaps=3764, ErrPct=1.27524
+2021/03/19 15:30:55 rs7215084 combined, mismatch=35, overlaps=3764, ErrPct=0.92986
+2021/03/19 15:30:55 rs56228409 combined, mismatch=102, overlaps=512, ErrPct=19.92188
+2021/03/19 15:30:55 rs9904409 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:55 rs62076103 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:30:55 rs12325702 combined, mismatch=76, overlaps=512, ErrPct=14.84375
+2021/03/19 15:30:55 rs34430710 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:55 rs1036902 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:56 rs6504213 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:30:56 rs35504735 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:56 rs9302885 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:56 rs112280096 combined, mismatch=242, overlaps=512, ErrPct=47.26562
+2021/03/19 15:30:56 rs8069739 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:56 rs11665020 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:30:56 rs963920 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:56 rs4800420 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:56 rs61735998 combined, mismatch=144, overlaps=3373, ErrPct=4.26920
+2021/03/19 15:30:56 rs11876341 combined, mismatch=89, overlaps=512, ErrPct=17.38281
+2021/03/19 15:30:56 rs34163044 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:30:56 rs10048404 combined, mismatch=146, overlaps=512, ErrPct=28.51562
+2021/03/19 15:30:56 rs12172847 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:30:56 rs12454712 combined, mismatch=1350, overlaps=3764, ErrPct=35.86610
+2021/03/19 15:30:56 rs34413141 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:30:56 rs10409243 combined, mismatch=305, overlaps=3764, ErrPct=8.10308
+2021/03/19 15:30:56 rs1529744 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:56 rs1077795 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:30:56 rs1821295 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:56 rs2656523 combined, mismatch=148, overlaps=512, ErrPct=28.90625
+2021/03/19 15:30:56 rs1800470 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:56 rs7412 combined, mismatch=384, overlaps=6400, ErrPct=6.00000
+2021/03/19 15:30:56 rs34783010 combined, mismatch=85, overlaps=512, ErrPct=16.60156
+2021/03/19 15:30:56 rs2613765 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:56 rs138877676 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:30:56 rs7250835 combined, mismatch=230, overlaps=512, ErrPct=44.92188
+2021/03/19 15:30:56 rs12078697 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:30:56 rs7553422 combined, mismatch=23, overlaps=3764, ErrPct=0.61105
+2021/03/19 15:30:56 rs72704264 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:30:56 rs76719272 combined, mismatch=90, overlaps=512, ErrPct=17.57812
+2021/03/19 15:30:56 rs12118102 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:56 rs10913934 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:30:56 rs1043069 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:30:56 rs4651224 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:30:56 rs12042924 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:30:56 rs882624 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:30:56 rs33996239 combined, mismatch=55, overlaps=512, ErrPct=10.74219
+2021/03/19 15:30:56 rs7555285 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:56 rs35981664 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:30:56 rs260508 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:56 rs2820443 combined, mismatch=25, overlaps=3764, ErrPct=0.66419
+2021/03/19 15:30:56 rs2807337 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:56 rs150266910 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:56 rs4926499 combined, mismatch=122, overlaps=512, ErrPct=23.82812
+2021/03/19 15:30:56 rs79598313 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:56 rs143167197 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:30:56 rs1565716 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:56 rs4652875 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:56 rs72659998 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:30:56 rs839755 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:56 rs512083 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:56 rs12142296 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:56 rs6681713 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:56 rs20354 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:56 rs34517439 combined, mismatch=126, overlaps=512, ErrPct=24.60938
+2021/03/19 15:30:56 rs2252865 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:56 rs12034319 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:56 rs385437 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:56 rs7514579 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:30:56 rs17396055 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:56 rs680515 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:56 rs1232482 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:56 rs6141767 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:56 rs6141479 combined, mismatch=103, overlaps=512, ErrPct=20.11719
+2021/03/19 15:30:56 rs4811601 combined, mismatch=80, overlaps=512, ErrPct=15.62500
+2021/03/19 15:30:56 rs4810332 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:57 rs6021247 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:57 rs35213536 combined, mismatch=109, overlaps=512, ErrPct=21.28906
+2021/03/19 15:30:57 rs11087740 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:57 rs1882961 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:30:57 rs11909120 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:57 rs9976596 combined, mismatch=68, overlaps=512, ErrPct=13.28125
+2021/03/19 15:30:57 rs62229372 combined, mismatch=152, overlaps=512, ErrPct=29.68750
+2021/03/19 15:30:57 rs2277788 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:57 rs11701512 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:57 rs134041 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:57 rs737721 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:57 rs5750482 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:57 rs77692990 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:30:57 rs28578714 combined, mismatch=129, overlaps=512, ErrPct=25.19531
+2021/03/19 15:30:57 rs28377357 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:57 rs6723509 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:57 rs13001283 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:57 rs72844590 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:30:57 rs7606205 combined, mismatch=62, overlaps=512, ErrPct=12.10938
+2021/03/19 15:30:57 rs34570306 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:57 rs4664080 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:57 rs1220128 combined, mismatch=136, overlaps=512, ErrPct=26.56250
+2021/03/19 15:30:57 rs79523138 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:57 rs2390258 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:57 rs560887 combined, mismatch=209, overlaps=6400, ErrPct=3.26562
+2021/03/19 15:30:57 rs151054210 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:30:57 rs72914576 combined, mismatch=45, overlaps=512, ErrPct=8.78906
+2021/03/19 15:30:57 rs60148403 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:30:57 rs1486236 combined, mismatch=233, overlaps=3764, ErrPct=6.19022
+2021/03/19 15:30:57 rs12473688 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:57 rs28558491 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:57 rs11901929 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:57 rs67720684 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:57 rs1469760 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:57 rs12694277 combined, mismatch=79, overlaps=512, ErrPct=15.42969
+2021/03/19 15:30:57 rs4674114 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:57 rs1996992 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:30:57 rs1044822 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:57 rs12052878 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:30:57 rs139354822 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:30:57 rs1607644 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:57 rs4850047 combined, mismatch=342, overlaps=3764, ErrPct=9.08608
+2021/03/19 15:30:57 rs2707238 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:30:57 rs35590893 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:57 rs6545155 combined, mismatch=13, overlaps=3764, ErrPct=0.34538
+2021/03/19 15:30:57 rs2920899 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:57 rs6730325 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:57 rs72816333 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:57 rs2631669 combined, mismatch=4, overlaps=3764, ErrPct=0.10627
+2021/03/19 15:30:57 rs2300481 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:30:57 rs6731373 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:30:57 rs72847885 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:57 rs2175337 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:30:57 rs4851462 combined, mismatch=65, overlaps=512, ErrPct=12.69531
+2021/03/19 15:30:57 rs11923667 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:57 rs1882289 combined, mismatch=12, overlaps=3764, ErrPct=0.31881
+2021/03/19 15:30:57 rs6438857 combined, mismatch=18, overlaps=512, ErrPct=3.51562
+2021/03/19 15:30:57 rs9875380 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:57 rs590198 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:57 rs729639 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:57 rs62278541 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:58 rs6772704 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:58 rs9833313 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:30:58 rs78151625 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:58 rs1706003 combined, mismatch=185, overlaps=512, ErrPct=36.13281
+2021/03/19 15:30:58 rs6777317 combined, mismatch=531, overlaps=3764, ErrPct=14.10733
+2021/03/19 15:30:58 rs189267552 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:58 rs4634143 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:58 rs12638085 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:58 rs4678915 combined, mismatch=64, overlaps=512, ErrPct=12.50000
+2021/03/19 15:30:58 rs267517 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:30:58 rs6801957 combined, mismatch=137, overlaps=3764, ErrPct=3.63974
+2021/03/19 15:30:58 rs6788984 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:30:58 rs141979279 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:58 rs113134141 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:58 rs73082337 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:30:58 rs12486605 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:30:58 rs7630745 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:30:58 rs4499560 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:58 rs9857362 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:30:58 rs9865843 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:30:58 rs1375564 combined, mismatch=10, overlaps=3764, ErrPct=0.26567
+2021/03/19 15:30:58 rs9860290 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:30:58 rs3822239 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:58 rs17248480 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:30:58 rs223361 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:58 rs7694643 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:58 rs7439567 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:30:58 rs72719160 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:58 rs4835266 combined, mismatch=56, overlaps=512, ErrPct=10.93750
+2021/03/19 15:30:58 rs10305838 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:58 rs13122790 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:58 rs17035181 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:58 rs2610990 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:30:58 rs55829085 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:58 rs28667801 combined, mismatch=116, overlaps=512, ErrPct=22.65625
+2021/03/19 15:30:58 rs231708 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:58 rs2498323 combined, mismatch=174, overlaps=3373, ErrPct=5.15861
+2021/03/19 15:30:58 rs12511987 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:58 rs1718845 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:58 rs10008637 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:30:58 rs6823199 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:58 rs13149209 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:30:58 rs7694000 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:58 rs1347345 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:58 rs286809 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:58 rs79409628 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:58 rs1432457 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:58 rs9885577 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:30:58 rs62373688 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:58 rs10069690 combined, mismatch=218, overlaps=512, ErrPct=42.57812
+2021/03/19 15:30:58 rs55747751 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:30:58 rs702395 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:58 rs62385385 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:58 rs74774746 combined, mismatch=48, overlaps=512, ErrPct=9.37500
+2021/03/19 15:30:58 rs954767 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:58 rs7710854 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:30:58 rs6867399 combined, mismatch=234, overlaps=3764, ErrPct=6.21679
+2021/03/19 15:30:58 rs1694068 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:30:58 rs13179413 combined, mismatch=130, overlaps=512, ErrPct=25.39062
+2021/03/19 15:30:58 rs12515541 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:58 rs10062049 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:58 rs3121685 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:30:59 rs4286632 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:59 rs246973 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:30:59 rs72761109 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:30:59 rs4443403 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:59 rs709668 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:59 rs3822857 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:30:59 rs2693560 combined, mismatch=38, overlaps=512, ErrPct=7.42188
+2021/03/19 15:30:59 rs2498586 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:30:59 rs9401090 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:59 rs6925750 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:30:59 rs1630736 combined, mismatch=697, overlaps=3764, ErrPct=18.51753
+2021/03/19 15:30:59 rs10782230 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:59 rs9885632 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:30:59 rs4896104 combined, mismatch=73, overlaps=512, ErrPct=14.25781
+2021/03/19 15:30:59 rs668459 combined, mismatch=17, overlaps=3764, ErrPct=0.45165
+2021/03/19 15:30:59 rs7763294 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:59 rs6941056 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:30:59 rs598682 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:59 rs2745599 combined, mismatch=155, overlaps=512, ErrPct=30.27344
+2021/03/19 15:30:59 rs4342401 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:30:59 rs9368222 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:30:59 rs115245297 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:30:59 rs3176336 combined, mismatch=43, overlaps=512, ErrPct=8.39844
+2021/03/19 15:30:59 rs4714224 combined, mismatch=43, overlaps=512, ErrPct=8.39844
+2021/03/19 15:30:59 rs9472135 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:59 rs631441 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:30:59 rs1334576 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:30:59 rs12195276 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:59 rs9392172 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:30:59 rs114275780 combined, mismatch=67, overlaps=512, ErrPct=13.08594
+2021/03/19 15:30:59 rs12705090 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:30:59 rs115172170 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:30:59 rs1997571 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:59 rs73033340 combined, mismatch=94, overlaps=512, ErrPct=18.35938
+2021/03/19 15:30:59 rs34072724 combined, mismatch=92, overlaps=3764, ErrPct=2.44421
+2021/03/19 15:30:59 rs1722886 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:30:59 rs12703989 combined, mismatch=78, overlaps=512, ErrPct=15.23438
+2021/03/19 15:30:59 rs11771693 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:30:59 rs9638084 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:30:59 rs6959688 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:30:59 rs2069833 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:30:59 rs10274928 combined, mismatch=237, overlaps=3764, ErrPct=6.29649
+2021/03/19 15:30:59 rs10233127 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:30:59 rs12701929 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:30:59 rs1004558 combined, mismatch=274, overlaps=3764, ErrPct=7.27949
+2021/03/19 15:30:59 rs71543920 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:59 rs73049928 combined, mismatch=71, overlaps=512, ErrPct=13.86719
+2021/03/19 15:30:59 rs6593297 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:30:59 rs2222544 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:59 rs34324971 combined, mismatch=115, overlaps=512, ErrPct=22.46094
+2021/03/19 15:30:59 rs6963105 combined, mismatch=113, overlaps=512, ErrPct=22.07031
+2021/03/19 15:30:59 rs848445 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:30:59 rs11770630 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:30:59 rs1947228 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:59 rs1986971 combined, mismatch=51, overlaps=512, ErrPct=9.96094
+2021/03/19 15:30:59 rs28499085 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:30:59 rs2205260 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:30:59 rs62523863 combined, mismatch=343, overlaps=3764, ErrPct=9.11265
+2021/03/19 15:30:59 rs4598218 combined, mismatch=29, overlaps=512, ErrPct=5.66406
+2021/03/19 15:30:59 rs10087782 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:30:59 rs4129585 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:30:59 rs56233017 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:30:59 rs1047030 combined, mismatch=647, overlaps=3373, ErrPct=19.18174
+2021/03/19 15:30:59 rs62503324 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:30:59 rs11991469 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:00 rs1906672 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:00 rs4873492 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:31:00 rs6996733 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:31:00 rs1350100 combined, mismatch=20, overlaps=512, ErrPct=3.90625
+2021/03/19 15:31:00 rs72688070 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:31:00 rs56345595 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:00 rs7009170 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:31:00 rs4582532 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:31:00 rs62491354 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:00 rs10988442 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:31:00 rs7020564 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:31:00 rs13290326 combined, mismatch=39, overlaps=512, ErrPct=7.61719
+2021/03/19 15:31:00 rs10982910 combined, mismatch=34, overlaps=512, ErrPct=6.64062
+2021/03/19 15:31:00 rs7023828 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:31:00 rs1891730 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:31:00 rs7869756 combined, mismatch=37, overlaps=512, ErrPct=7.22656
+2021/03/19 15:31:00 rs184457 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:31:00 rs11789875 combined, mismatch=55, overlaps=512, ErrPct=10.74219
+2021/03/19 15:31:00 rs4977492 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:31:00 rs28558845 combined, mismatch=59, overlaps=512, ErrPct=11.52344
+2021/03/19 15:31:00 rs1332813 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:31:00 rs7045409 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:00 rs880315 combined, mismatch=345, overlaps=6400, ErrPct=5.39062
+2021/03/19 15:31:00 rs17030613 combined, mismatch=16, overlaps=3373, ErrPct=0.47436
+2021/03/19 15:31:00 rs2932538 combined, mismatch=5, overlaps=3764, ErrPct=0.13284
+2021/03/19 15:31:00 rs17367504 combined, mismatch=30, overlaps=6400, ErrPct=0.46875
+2021/03/19 15:31:00 rs3820068 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:31:00 rs2076328 combined, mismatch=41, overlaps=512, ErrPct=8.00781
+2021/03/19 15:31:00 rs2157597 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:00 rs12405515 combined, mismatch=128, overlaps=3764, ErrPct=3.40064
+2021/03/19 15:31:00 rs4245739 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:31:00 rs2761436 combined, mismatch=28, overlaps=512, ErrPct=5.46875
+2021/03/19 15:31:00 rs12408022 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:31:00 rs73091767 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:00 rs2004776 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:31:00 rs6429422 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:00 rs6686889 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:31:00 rs2493292 combined, mismatch=375, overlaps=6400, ErrPct=5.85938
+2021/03/19 15:31:00 rs9729719 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:31:00 rs7515635 combined, mismatch=6, overlaps=3764, ErrPct=0.15940
+2021/03/19 15:31:00 rs147696085 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:00 rs112557609 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:00 rs2404715 combined, mismatch=38, overlaps=3764, ErrPct=1.00956
+2021/03/19 15:31:00 rs60199046 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:00 rs709209 combined, mismatch=520, overlaps=6400, ErrPct=8.12500
+2021/03/19 15:31:00 rs10922502 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:31:00 rs9662255 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:31:00 rs112184198 combined, mismatch=72, overlaps=512, ErrPct=14.06250
+2021/03/19 15:31:00 rs11191548 combined, mismatch=15, overlaps=6400, ErrPct=0.23438
+2021/03/19 15:31:00 rs4387287 combined, mismatch=35, overlaps=3373, ErrPct=1.03765
+2021/03/19 15:31:00 rs34872471 combined, mismatch=30, overlaps=512, ErrPct=5.85938
+2021/03/19 15:31:00 rs2782980 combined, mismatch=214, overlaps=3764, ErrPct=5.68544
+2021/03/19 15:31:00 rs4373814 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:31:00 rs1813353 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:00 rs9337951 combined, mismatch=198, overlaps=512, ErrPct=38.67188
+2021/03/19 15:31:00 rs11008355 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:31:00 rs10826995 combined, mismatch=15, overlaps=512, ErrPct=2.92969
+2021/03/19 15:31:00 rs2246438 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:01 rs1530440 combined, mismatch=22, overlaps=6400, ErrPct=0.34375
+2021/03/19 15:31:01 rs7914287 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:01 rs932764 combined, mismatch=56, overlaps=3764, ErrPct=1.48778
+2021/03/19 15:31:01 rs4494250 combined, mismatch=29, overlaps=3373, ErrPct=0.85977
+2021/03/19 15:31:01 rs633185 combined, mismatch=133, overlaps=3764, ErrPct=3.53348
+2021/03/19 15:31:01 rs7129220 combined, mismatch=50, overlaps=3764, ErrPct=1.32837
+2021/03/19 15:31:01 rs8258 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:31:01 rs900145 combined, mismatch=35, overlaps=6400, ErrPct=0.54688
+2021/03/19 15:31:01 rs4757391 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:01 rs381815 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:01 rs5219 combined, mismatch=19, overlaps=6400, ErrPct=0.29688
+2021/03/19 15:31:01 rs661348 combined, mismatch=490, overlaps=3764, ErrPct=13.01807
+2021/03/19 15:31:01 rs11030119 combined, mismatch=17, overlaps=3764, ErrPct=0.45165
+2021/03/19 15:31:01 rs7480089 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:01 rs7103648 combined, mismatch=38, overlaps=3764, ErrPct=1.00956
+2021/03/19 15:31:01 rs11537751 combined, mismatch=7, overlaps=6400, ErrPct=0.10938
+2021/03/19 15:31:01 rs11229457 combined, mismatch=0, overlaps=3373, ErrPct=0.00000
+2021/03/19 15:31:01 rs751984 combined, mismatch=150, overlaps=3764, ErrPct=3.98512
+2021/03/19 15:31:01 rs3741378 combined, mismatch=37, overlaps=3764, ErrPct=0.98300
+2021/03/19 15:31:01 rs67330701 combined, mismatch=81, overlaps=512, ErrPct=15.82031
+2021/03/19 15:31:01 rs7927515 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:01 rs110419 combined, mismatch=83, overlaps=3373, ErrPct=2.46072
+2021/03/19 15:31:01 rs7126805 combined, mismatch=400, overlaps=3373, ErrPct=11.85888
+2021/03/19 15:31:01 rs2289125 combined, mismatch=26, overlaps=512, ErrPct=5.07812
+2021/03/19 15:31:01 rs3184504 combined, mismatch=110, overlaps=3373, ErrPct=3.26119
+2021/03/19 15:31:01 rs10850411 combined, mismatch=25, overlaps=3764, ErrPct=0.66419
+2021/03/19 15:31:01 rs35444 combined, mismatch=3, overlaps=3373, ErrPct=0.08894
+2021/03/19 15:31:01 rs11067763 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:01 rs1060105 combined, mismatch=10, overlaps=3373, ErrPct=0.29647
+2021/03/19 15:31:01 rs12579720 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:01 rs6487543 combined, mismatch=302, overlaps=3373, ErrPct=8.95345
+2021/03/19 15:31:01 rs1126930 combined, mismatch=221, overlaps=3373, ErrPct=6.55203
+2021/03/19 15:31:01 rs7977389 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:31:01 rs7302981 combined, mismatch=12, overlaps=6400, ErrPct=0.18750
+2021/03/19 15:31:01 rs73099903 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:01 rs7297416 combined, mismatch=77, overlaps=512, ErrPct=15.03906
+2021/03/19 15:31:01 rs17249754 combined, mismatch=17, overlaps=3373, ErrPct=0.50400
+2021/03/19 15:31:01 rs76785029 combined, mismatch=49, overlaps=512, ErrPct=9.57031
+2021/03/19 15:31:01 rs9549328 combined, mismatch=52, overlaps=512, ErrPct=10.15625
+2021/03/19 15:31:01 rs1475130 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:01 rs452036 combined, mismatch=464, overlaps=3373, ErrPct=13.75630
+2021/03/19 15:31:01 rs8904 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:31:01 rs9888615 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:31:01 rs9323988 combined, mismatch=10, overlaps=512, ErrPct=1.95312
+2021/03/19 15:31:01 rs1036477 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:01 rs956006 combined, mismatch=83, overlaps=512, ErrPct=16.21094
+2021/03/19 15:31:01 rs7178615 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:01 rs1378942 combined, mismatch=16, overlaps=6400, ErrPct=0.25000
+2021/03/19 15:31:01 rs62011052 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:01 rs2759308 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:01 rs2034618 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:02 rs2521501 combined, mismatch=627, overlaps=3764, ErrPct=16.65781
+2021/03/19 15:31:02 rs12906962 combined, mismatch=91, overlaps=512, ErrPct=17.77344
+2021/03/19 15:31:02 rs13333226 combined, mismatch=29, overlaps=6400, ErrPct=0.45312
+2021/03/19 15:31:02 rs11639856 combined, mismatch=12, overlaps=3373, ErrPct=0.35577
+2021/03/19 15:31:02 rs72799341 combined, mismatch=27, overlaps=512, ErrPct=5.27344
+2021/03/19 15:31:02 rs12921187 combined, mismatch=31, overlaps=512, ErrPct=6.05469
+2021/03/19 15:31:02 rs33063 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:02 rs35261357 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:02 rs8059962 combined, mismatch=84, overlaps=512, ErrPct=16.40625
+2021/03/19 15:31:02 rs7500448 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:31:02 rs12941318 combined, mismatch=143, overlaps=512, ErrPct=27.92969
+2021/03/19 15:31:02 rs79089478 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:02 rs12946454 combined, mismatch=184, overlaps=6400, ErrPct=2.87500
+2021/03/19 15:31:02 rs17608766 combined, mismatch=255, overlaps=6400, ErrPct=3.98437
+2021/03/19 15:31:02 rs7406910 combined, mismatch=77, overlaps=3373, ErrPct=2.28283
+2021/03/19 15:31:02 rs12940887 combined, mismatch=21, overlaps=3764, ErrPct=0.55792
+2021/03/19 15:31:02 rs2645466 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:02 rs2240736 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:02 rs740698 combined, mismatch=118, overlaps=512, ErrPct=23.04688
+2021/03/19 15:31:02 rs4308 combined, mismatch=87, overlaps=512, ErrPct=16.99219
+2021/03/19 15:31:02 rs28427409 combined, mismatch=63, overlaps=512, ErrPct=12.30469
+2021/03/19 15:31:02 rs2467099 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:31:02 rs57927100 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:31:02 rs78378222 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:02 rs12958173 combined, mismatch=14, overlaps=3764, ErrPct=0.37194
+2021/03/19 15:31:02 rs7236548 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:02 rs745821 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:02 rs36010659 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:02 rs167479 combined, mismatch=2465, overlaps=3373, ErrPct=73.08034
+2021/03/19 15:31:02 rs17638167 combined, mismatch=101, overlaps=3764, ErrPct=2.68332
+2021/03/19 15:31:02 rs10418305 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:02 rs2304130 combined, mismatch=213, overlaps=6400, ErrPct=3.32812
+2021/03/19 15:31:02 rs740406 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:31:02 rs62104477 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:31:02 rs8105753 combined, mismatch=141, overlaps=512, ErrPct=27.53906
+2021/03/19 15:31:02 rs7248104 combined, mismatch=31, overlaps=6400, ErrPct=0.48438
+2021/03/19 15:31:02 rs4247374 combined, mismatch=1528, overlaps=3764, ErrPct=40.59511
+2021/03/19 15:31:02 rs1438896 combined, mismatch=8, overlaps=3764, ErrPct=0.21254
+2021/03/19 15:31:02 rs1446468 combined, mismatch=40, overlaps=512, ErrPct=7.81250
+2021/03/19 15:31:02 rs79146658 combined, mismatch=19, overlaps=512, ErrPct=3.71094
+2021/03/19 15:31:02 rs16823124 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:02 rs7592578 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:02 rs1344653 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:02 rs55780018 combined, mismatch=82, overlaps=512, ErrPct=16.01562
+2021/03/19 15:31:02 rs7255 combined, mismatch=242, overlaps=3764, ErrPct=6.42933
+2021/03/19 15:31:02 rs1063281 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:02 rs2972146 combined, mismatch=25, overlaps=6400, ErrPct=0.39062
+2021/03/19 15:31:02 rs55701159 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:31:02 rs1275988 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:02 rs9678851 combined, mismatch=19, overlaps=3373, ErrPct=0.56330
+2021/03/19 15:31:02 rs7562 combined, mismatch=95, overlaps=3764, ErrPct=2.52391
+2021/03/19 15:31:02 rs13420463 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:02 rs4952611 combined, mismatch=95, overlaps=512, ErrPct=18.55469
+2021/03/19 15:31:02 rs76326501 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:31:03 rs11690961 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:31:03 rs1975487 combined, mismatch=349, overlaps=3764, ErrPct=9.27205
+2021/03/19 15:31:03 rs3771371 combined, mismatch=19, overlaps=6400, ErrPct=0.29688
+2021/03/19 15:31:03 rs1876487 combined, mismatch=99, overlaps=512, ErrPct=19.33594
+2021/03/19 15:31:03 rs11689667 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:31:03 rs2579519 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:31:03 rs1327235 combined, mismatch=14, overlaps=3764, ErrPct=0.37194
+2021/03/19 15:31:03 rs6081613 combined, mismatch=4, overlaps=512, ErrPct=0.78125
+2021/03/19 15:31:03 rs6060114 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:03 rs6031435 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:31:03 rs6095241 combined, mismatch=30, overlaps=3373, ErrPct=0.88942
+2021/03/19 15:31:03 rs6015450 combined, mismatch=125, overlaps=3764, ErrPct=3.32094
+2021/03/19 15:31:03 rs6108168 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:03 rs11701033 combined, mismatch=24, overlaps=512, ErrPct=4.68750
+2021/03/19 15:31:03 rs12627651 combined, mismatch=496, overlaps=3764, ErrPct=13.17747
+2021/03/19 15:31:03 rs9306160 combined, mismatch=25, overlaps=3373, ErrPct=0.74118
+2021/03/19 15:31:03 rs12628032 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:03 rs4823006 combined, mismatch=111, overlaps=6400, ErrPct=1.73438
+2021/03/19 15:31:03 rs470113 combined, mismatch=40, overlaps=6400, ErrPct=0.62500
+2021/03/19 15:31:03 rs73161324 combined, mismatch=42, overlaps=512, ErrPct=8.20312
+2021/03/19 15:31:03 rs347591 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:03 rs62270945 combined, mismatch=49, overlaps=512, ErrPct=9.57031
+2021/03/19 15:31:03 rs6783086 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:03 rs2306374 combined, mismatch=32, overlaps=6400, ErrPct=0.50000
+2021/03/19 15:31:03 rs16851397 combined, mismatch=39, overlaps=6400, ErrPct=0.60938
+2021/03/19 15:31:03 rs11128722 combined, mismatch=422, overlaps=3764, ErrPct=11.21148
+2021/03/19 15:31:03 rs143112823 combined, mismatch=33, overlaps=512, ErrPct=6.44531
+2021/03/19 15:31:03 rs419076 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:03 rs12374077 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:03 rs13082711 combined, mismatch=61, overlaps=3764, ErrPct=1.62062
+2021/03/19 15:31:03 rs9815354 combined, mismatch=2, overlaps=3373, ErrPct=0.05929
+2021/03/19 15:31:03 rs6797587 combined, mismatch=175, overlaps=3764, ErrPct=4.64931
+2021/03/19 15:31:03 rs36022378 combined, mismatch=36, overlaps=512, ErrPct=7.03125
+2021/03/19 15:31:03 rs13303 combined, mismatch=49, overlaps=6400, ErrPct=0.76562
+2021/03/19 15:31:03 rs9810888 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:31:03 rs9827472 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:03 rs918466 combined, mismatch=19, overlaps=3764, ErrPct=0.50478
+2021/03/19 15:31:03 rs13107325 combined, mismatch=258, overlaps=6400, ErrPct=4.03125
+2021/03/19 15:31:03 rs13112725 combined, mismatch=46, overlaps=512, ErrPct=8.98438
+2021/03/19 15:31:03 rs6825911 combined, mismatch=64, overlaps=3373, ErrPct=1.89742
+2021/03/19 15:31:03 rs66887589 combined, mismatch=32, overlaps=512, ErrPct=6.25000
+2021/03/19 15:31:03 rs4292285 combined, mismatch=12, overlaps=512, ErrPct=2.34375
+2021/03/19 15:31:03 rs13139571 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:03 rs869396 combined, mismatch=294, overlaps=3764, ErrPct=7.81084
+2021/03/19 15:31:03 rs2291435 combined, mismatch=102, overlaps=3764, ErrPct=2.70988
+2021/03/19 15:31:03 rs871606 combined, mismatch=70, overlaps=3764, ErrPct=1.85972
+2021/03/19 15:31:03 rs1458038 combined, mismatch=116, overlaps=3764, ErrPct=3.08183
+2021/03/19 15:31:03 rs2014912 combined, mismatch=8, overlaps=512, ErrPct=1.56250
+2021/03/19 15:31:03 rs10077885 combined, mismatch=21, overlaps=3764, ErrPct=0.55792
+2021/03/19 15:31:04 rs13359291 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:04 rs6891344 combined, mismatch=11, overlaps=3764, ErrPct=0.29224
+2021/03/19 15:31:04 rs6595838 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:31:04 rs12521868 combined, mismatch=28, overlaps=6400, ErrPct=0.43750
+2021/03/19 15:31:04 rs9687065 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:04 rs11953630 combined, mismatch=71, overlaps=3764, ErrPct=1.88629
+2021/03/19 15:31:04 rs72812846 combined, mismatch=94, overlaps=512, ErrPct=18.35938
+2021/03/19 15:31:04 rs1173771 combined, mismatch=48, overlaps=3764, ErrPct=1.27524
+2021/03/19 15:31:04 rs10078021 combined, mismatch=35, overlaps=512, ErrPct=6.83594
+2021/03/19 15:31:04 rs10057188 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:31:04 rs10059921 combined, mismatch=95, overlaps=512, ErrPct=18.55469
+2021/03/19 15:31:04 rs9372498 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:04 rs11154027 combined, mismatch=23, overlaps=512, ErrPct=4.49219
+2021/03/19 15:31:04 rs13209747 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:04 rs9349379 combined, mismatch=648, overlaps=6400, ErrPct=10.12500
+2021/03/19 15:31:04 rs17080102 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:04 rs9479200 combined, mismatch=9, overlaps=512, ErrPct=1.75781
+2021/03/19 15:31:04 rs449789 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:31:04 rs73030266 combined, mismatch=13, overlaps=512, ErrPct=2.53906
+2021/03/19 15:31:04 rs1322639 combined, mismatch=14, overlaps=512, ErrPct=2.73438
+2021/03/19 15:31:04 rs6911827 combined, mismatch=48, overlaps=512, ErrPct=9.37500
+2021/03/19 15:31:04 rs1799945 combined, mismatch=67, overlaps=6400, ErrPct=1.04688
+2021/03/19 15:31:04 rs409558 combined, mismatch=8, overlaps=3373, ErrPct=0.23718
+2021/03/19 15:31:04 rs1563788 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:04 rs78648104 combined, mismatch=160, overlaps=6400, ErrPct=2.50000
+2021/03/19 15:31:04 rs13205180 combined, mismatch=22, overlaps=512, ErrPct=4.29688
+2021/03/19 15:31:04 rs1925153 combined, mismatch=313, overlaps=3373, ErrPct=9.27957
+2021/03/19 15:31:04 rs10943605 combined, mismatch=15, overlaps=3373, ErrPct=0.44471
+2021/03/19 15:31:04 rs35410524 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:04 rs17477177 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:04 rs4728142 combined, mismatch=112, overlaps=3373, ErrPct=3.32049
+2021/03/19 15:31:04 rs11556924 combined, mismatch=357, overlaps=6400, ErrPct=5.57812
+2021/03/19 15:31:04 rs13238550 combined, mismatch=3, overlaps=512, ErrPct=0.58594
+2021/03/19 15:31:04 rs7810028 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:31:04 rs3918226 combined, mismatch=259, overlaps=3764, ErrPct=6.88098
+2021/03/19 15:31:04 rs891511 combined, mismatch=490, overlaps=3373, ErrPct=14.52713
+2021/03/19 15:31:04 rs10224002 combined, mismatch=426, overlaps=3373, ErrPct=12.62971
+2021/03/19 15:31:04 rs2107595 combined, mismatch=44, overlaps=512, ErrPct=8.59375
+2021/03/19 15:31:04 rs2969070 combined, mismatch=153, overlaps=3764, ErrPct=4.06482
+2021/03/19 15:31:04 rs1055144 combined, mismatch=21, overlaps=6400, ErrPct=0.32812
+2021/03/19 15:31:04 rs7777128 combined, mismatch=1, overlaps=512, ErrPct=0.19531
+2021/03/19 15:31:04 rs917275 combined, mismatch=282, overlaps=3764, ErrPct=7.49203
+2021/03/19 15:31:04 rs76206723 combined, mismatch=7, overlaps=512, ErrPct=1.36719
+2021/03/19 15:31:04 rs11977526 combined, mismatch=118, overlaps=6400, ErrPct=1.84375
+2021/03/19 15:31:04 rs2282978 combined, mismatch=15, overlaps=6400, ErrPct=0.23438
+2021/03/19 15:31:04 rs2978098 combined, mismatch=11, overlaps=512, ErrPct=2.14844
+2021/03/19 15:31:04 rs35783704 combined, mismatch=25, overlaps=512, ErrPct=4.88281
+2021/03/19 15:31:04 rs2898290 combined, mismatch=65, overlaps=3764, ErrPct=1.72689
+2021/03/19 15:31:04 rs2071518 combined, mismatch=6, overlaps=512, ErrPct=1.17188
+2021/03/19 15:31:05 rs894344 combined, mismatch=65, overlaps=3764, ErrPct=1.72689
+2021/03/19 15:31:05 rs4454254 combined, mismatch=21, overlaps=512, ErrPct=4.10156
+2021/03/19 15:31:05 rs34591516 combined, mismatch=77, overlaps=3373, ErrPct=2.28283
+2021/03/19 15:31:05 rs62524579 combined, mismatch=72, overlaps=512, ErrPct=14.06250
+2021/03/19 15:31:05 rs6557876 combined, mismatch=5, overlaps=512, ErrPct=0.97656
+2021/03/19 15:31:05 rs2978456 combined, mismatch=206, overlaps=512, ErrPct=40.23438
+2021/03/19 15:31:05 rs1449544 combined, mismatch=16, overlaps=512, ErrPct=3.12500
+2021/03/19 15:31:05 rs111245230 combined, mismatch=8, overlaps=3373, ErrPct=0.23718
+2021/03/19 15:31:05 rs1953126 combined, mismatch=2, overlaps=512, ErrPct=0.39062
+2021/03/19 15:31:05 rs10818775 combined, mismatch=0, overlaps=512, ErrPct=0.00000
+2021/03/19 15:31:05 rs72765298 combined, mismatch=50, overlaps=512, ErrPct=9.76562
+2021/03/19 15:31:05 rs687621 combined, mismatch=33, overlaps=3373, ErrPct=0.97836
+2021/03/19 15:31:05 rs6271 combined, mismatch=749, overlaps=3764, ErrPct=19.89904
+2021/03/19 15:31:05 rs4364717 combined, mismatch=17, overlaps=512, ErrPct=3.32031
+2021/03/19 15:31:05 rs76452347 combined, mismatch=989, overlaps=3373, ErrPct=29.32108
+2021/03/19 15:31:05 FLIP for: rs36006409 [G,T]
+2021/03/19 15:31:05 FLIP for: rs11197813 [G,A]
+2021/03/19 15:31:05 FLIP for: rs7096563 [G,A]
+2021/03/19 15:31:05 FLIP for: rs1133400 [G,A]
+2021/03/19 15:31:05 FLIP for: rs11010905 [T,A]
+2021/03/19 15:31:05 FLIP for: rs7090758 [C,T]
+2021/03/19 15:31:05 FLIP for: rs12572586 [C,T]
+2021/03/19 15:31:05 FLIP for: rs10887914 [C,T]
+2021/03/19 15:31:05 FLIP for: rs4754196 [G,A]
+2021/03/19 15:31:05 FLIP for: rs11031051 [C,A]
+2021/03/19 15:31:05 FLIP for: rs1585453 [T,A]
+2021/03/19 15:31:05 FLIP for: rs2688716 [G,T]
+2021/03/19 15:31:05 FLIP for: rs75905900 [C,A]
+2021/03/19 15:31:05 FLIP for: rs2929184 [G,A]
+2021/03/19 15:31:05 FLIP for: rs4980515 [C,T]
+2021/03/19 15:31:05 FLIP for: rs10830963 [G,C]
+2021/03/19 15:31:05 FLIP for: rs360153 [C,T]
+2021/03/19 15:31:05 FLIP for: rs10778174 [G,A]
+2021/03/19 15:31:05 FLIP for: rs11112548 [T,A]
+2021/03/19 15:31:05 FLIP for: rs11571376 [G,C]
+2021/03/19 15:31:05 FLIP for: rs11615689 [C,T]
+2021/03/19 15:31:05 FLIP for: rs3898618 [C,T]
+2021/03/19 15:31:05 FLIP for: rs1271309 [G,A]
+2021/03/19 15:31:05 FLIP for: rs7313556 [G,A]
+2021/03/19 15:31:05 FLIP for: rs704191 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7976167 [C,T]
+2021/03/19 15:31:05 FLIP for: rs1098708 [G,A]
+2021/03/19 15:31:05 FLIP for: rs78998485 [G,C]
+2021/03/19 15:31:05 FLIP for: rs11168245 [G,C]
+2021/03/19 15:31:05 FLIP for: rs2261608 [T,A]
+2021/03/19 15:31:05 FLIP for: rs7137749 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7963801 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7132012 [G,A]
+2021/03/19 15:31:05 FLIP for: rs9532243 [C,A]
+2021/03/19 15:31:05 FLIP for: rs73187288 [C,A]
+2021/03/19 15:31:05 FLIP for: rs78474310 [G,A]
+2021/03/19 15:31:05 FLIP for: rs55684003 [G,A]
+2021/03/19 15:31:05 FLIP for: rs28470843 [C,T]
+2021/03/19 15:31:05 FLIP for: rs72683923 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7144602 [G,T]
+2021/03/19 15:31:05 FLIP for: rs4903064 [C,T]
+2021/03/19 15:31:05 FLIP for: rs8013933 [C,T]
+2021/03/19 15:31:05 FLIP for: rs2925345 [C,T]
+2021/03/19 15:31:05 FLIP for: rs4924570 [C,T]
+2021/03/19 15:31:05 FLIP for: rs62004794 [G,A]
+2021/03/19 15:31:05 FLIP for: rs4984496 [G,T]
+2021/03/19 15:31:05 FLIP for: rs11642631 [C,T]
+2021/03/19 15:31:05 FLIP for: rs11248862 [G,A]
+2021/03/19 15:31:05 FLIP for: rs3915425 [C,T]
+2021/03/19 15:31:05 FLIP for: rs28590346 [T,A]
+2021/03/19 15:31:05 FLIP for: rs6565174 [C,A]
+2021/03/19 15:31:05 FLIP for: rs28633979 [C,A]
+2021/03/19 15:31:05 FLIP for: rs35450617 [G,T]
+2021/03/19 15:31:05 FLIP for: rs62053102 [T,A]
+2021/03/19 15:31:05 FLIP for: rs4480845 [C,T]
+2021/03/19 15:31:05 FLIP for: rs11080134 [G,A]
+2021/03/19 15:31:05 FLIP for: rs3135967 [G,A]
+2021/03/19 15:31:05 FLIP for: rs56228409 [C,A]
+2021/03/19 15:31:05 FLIP for: rs9904409 [G,A]
+2021/03/19 15:31:05 FLIP for: rs62076103 [G,A]
+2021/03/19 15:31:05 FLIP for: rs12325702 [T,A]
+2021/03/19 15:31:05 FLIP for: rs34430710 [T,A]
+2021/03/19 15:31:05 FLIP for: rs1036902 [C,T]
+2021/03/19 15:31:05 FLIP for: rs6504213 [C,T]
+2021/03/19 15:31:05 FLIP for: rs35504735 [G,A]
+2021/03/19 15:31:05 FLIP for: rs9302885 [G,A]
+2021/03/19 15:31:05 FLIP for: rs8069739 [C,T]
+2021/03/19 15:31:05 FLIP for: rs963920 [G,T]
+2021/03/19 15:31:05 FLIP for: rs11876341 [G,A]
+2021/03/19 15:31:05 FLIP for: rs12454712 [C,T]
+2021/03/19 15:31:05 FLIP for: rs1529744 [C,T]
+2021/03/19 15:31:05 FLIP for: rs1077795 [G,A]
+2021/03/19 15:31:05 FLIP for: rs7250835 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7553422 [C,T]
+2021/03/19 15:31:05 FLIP for: rs12118102 [G,A]
+2021/03/19 15:31:05 FLIP for: rs1043069 [G,T]
+2021/03/19 15:31:05 FLIP for: rs12042924 [C,T]
+2021/03/19 15:31:05 FLIP for: rs35981664 [T,A]
+2021/03/19 15:31:05 FLIP for: rs260508 [G,T]
+2021/03/19 15:31:05 FLIP for: rs2820443 [C,T]
+2021/03/19 15:31:05 FLIP for: rs2807337 [C,T]
+2021/03/19 15:31:05 FLIP for: rs143167197 [G,A]
+2021/03/19 15:31:05 FLIP for: rs4652875 [G,C]
+2021/03/19 15:31:05 FLIP for: rs839755 [C,A]
+2021/03/19 15:31:05 FLIP for: rs512083 [C,T]
+2021/03/19 15:31:05 FLIP for: rs12142296 [G,T]
+2021/03/19 15:31:05 FLIP for: rs6681713 [G,T]
+2021/03/19 15:31:05 FLIP for: rs2252865 [C,T]
+2021/03/19 15:31:05 FLIP for: rs385437 [G,A]
+2021/03/19 15:31:05 FLIP for: rs7514579 [C,A]
+2021/03/19 15:31:05 FLIP for: rs680515 [G,A]
+2021/03/19 15:31:05 FLIP for: rs11087740 [C,T]
+2021/03/19 15:31:05 FLIP for: rs11909120 [T,A]
+2021/03/19 15:31:05 FLIP for: rs9976596 [C,T]
+2021/03/19 15:31:05 FLIP for: rs2277788 [G,C]
+2021/03/19 15:31:05 FLIP for: rs11701512 [G,A]
+2021/03/19 15:31:05 FLIP for: rs134041 [C,T]
+2021/03/19 15:31:05 FLIP for: rs737721 [G,C]
+2021/03/19 15:31:05 FLIP for: rs5750482 [C,T]
+2021/03/19 15:31:05 FLIP for: rs28578714 [C,T]
+2021/03/19 15:31:05 FLIP for: rs6723509 [C,T]
+2021/03/19 15:31:05 FLIP for: rs7606205 [C,A]
+2021/03/19 15:31:05 FLIP for: rs79523138 [G,A]
+2021/03/19 15:31:05 FLIP for: rs560887 [C,T]
+2021/03/19 15:31:05 FLIP for: rs72914576 [G,C]
+2021/03/19 15:31:05 FLIP for: rs12473688 [G,A]
+2021/03/19 15:31:05 FLIP for: rs11901929 [G,A]
+2021/03/19 15:31:05 FLIP for: rs1469760 [C,T]
+2021/03/19 15:31:05 FLIP for: rs12694277 [C,T]
+2021/03/19 15:31:05 FLIP for: rs4674114 [G,A]
+2021/03/19 15:31:05 FLIP for: rs139354822 [C,T]
+2021/03/19 15:31:05 FLIP for: rs4850047 [C,T]
+2021/03/19 15:31:05 FLIP for: rs2707238 [G,C]
+2021/03/19 15:31:05 FLIP for: rs6545155 [C,T]
+2021/03/19 15:31:05 FLIP for: rs72816333 [T,A]
+2021/03/19 15:31:05 FLIP for: rs2631669 [C,T]
+2021/03/19 15:31:05 FLIP for: rs72847885 [G,A]
+2021/03/19 15:31:05 FLIP for: rs4851462 [C,T]
+2021/03/19 15:31:05 FLIP for: rs6438857 [C,T]
+2021/03/19 15:31:05 FLIP for: rs729639 [C,T]
+2021/03/19 15:31:05 FLIP for: rs62278541 [G,A]
+2021/03/19 15:31:06 FLIP for: rs6772704 [C,A]
+2021/03/19 15:31:06 FLIP for: rs9833313 [T,A]
+2021/03/19 15:31:06 FLIP for: rs78151625 [C,T]
+2021/03/19 15:31:06 FLIP for: rs4634143 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6801957 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6788984 [G,A]
+2021/03/19 15:31:06 FLIP for: rs141979279 [C,T]
+2021/03/19 15:31:06 FLIP for: rs113134141 [G,A]
+2021/03/19 15:31:06 FLIP for: rs73082337 [G,C]
+2021/03/19 15:31:06 FLIP for: rs12486605 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7630745 [C,T]
+2021/03/19 15:31:06 FLIP for: rs4499560 [T,A]
+2021/03/19 15:31:06 FLIP for: rs9857362 [C,A]
+2021/03/19 15:31:06 FLIP for: rs9865843 [G,A]
+2021/03/19 15:31:06 FLIP for: rs223361 [C,T]
+2021/03/19 15:31:06 FLIP for: rs72719160 [T,A]
+2021/03/19 15:31:06 FLIP for: rs4835266 [C,T]
+2021/03/19 15:31:06 FLIP for: rs10305838 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13122790 [G,A]
+2021/03/19 15:31:06 FLIP for: rs17035181 [G,T]
+2021/03/19 15:31:06 FLIP for: rs2610990 [G,A]
+2021/03/19 15:31:06 FLIP for: rs55829085 [C,A]
+2021/03/19 15:31:06 FLIP for: rs28667801 [T,A]
+2021/03/19 15:31:06 FLIP for: rs12511987 [G,T]
+2021/03/19 15:31:06 FLIP for: rs1718845 [G,A]
+2021/03/19 15:31:06 FLIP for: rs10008637 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6823199 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13149209 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7694000 [T,A]
+2021/03/19 15:31:06 FLIP for: rs1432457 [G,A]
+2021/03/19 15:31:06 FLIP for: rs954767 [C,A]
+2021/03/19 15:31:06 FLIP for: rs7710854 [G,A]
+2021/03/19 15:31:06 FLIP for: rs4286632 [G,A]
+2021/03/19 15:31:06 FLIP for: rs4443403 [C,T]
+2021/03/19 15:31:06 FLIP for: rs709668 [G,A]
+2021/03/19 15:31:06 FLIP for: rs2693560 [G,A]
+2021/03/19 15:31:06 FLIP for: rs9401090 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6925750 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7763294 [G,T]
+2021/03/19 15:31:06 FLIP for: rs6941056 [G,C]
+2021/03/19 15:31:06 FLIP for: rs598682 [G,A]
+2021/03/19 15:31:06 FLIP for: rs2745599 [G,A]
+2021/03/19 15:31:06 FLIP for: rs4342401 [T,A]
+2021/03/19 15:31:06 FLIP for: rs115245297 [C,T]
+2021/03/19 15:31:06 FLIP for: rs3176336 [T,A]
+2021/03/19 15:31:06 FLIP for: rs9472135 [C,T]
+2021/03/19 15:31:06 FLIP for: rs631441 [G,T]
+2021/03/19 15:31:06 FLIP for: rs9392172 [G,C]
+2021/03/19 15:31:06 FLIP for: rs115172170 [C,T]
+2021/03/19 15:31:06 FLIP for: rs73033340 [G,A]
+2021/03/19 15:31:06 FLIP for: rs1722886 [T,A]
+2021/03/19 15:31:06 FLIP for: rs11771693 [G,A]
+2021/03/19 15:31:06 FLIP for: rs9638084 [G,A]
+2021/03/19 15:31:06 FLIP for: rs6959688 [G,A]
+2021/03/19 15:31:06 FLIP for: rs10274928 [G,A]
+2021/03/19 15:31:06 FLIP for: rs12701929 [C,T]
+2021/03/19 15:31:06 FLIP for: rs71543920 [G,T]
+2021/03/19 15:31:06 FLIP for: rs73049928 [G,A]
+2021/03/19 15:31:06 FLIP for: rs6593297 [T,A]
+2021/03/19 15:31:06 FLIP for: rs2222544 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6963105 [G,A]
+2021/03/19 15:31:06 FLIP for: rs848445 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1947228 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1986971 [G,A]
+2021/03/19 15:31:06 FLIP for: rs28499085 [G,A]
+2021/03/19 15:31:06 FLIP for: rs2205260 [C,A]
+2021/03/19 15:31:06 FLIP for: rs10087782 [C,T]
+2021/03/19 15:31:06 FLIP for: rs4129585 [C,A]
+2021/03/19 15:31:06 FLIP for: rs1047030 [G,A]
+2021/03/19 15:31:06 FLIP for: rs11991469 [G,C]
+2021/03/19 15:31:06 FLIP for: rs6996733 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1350100 [G,A]
+2021/03/19 15:31:06 FLIP for: rs56345595 [G,A]
+2021/03/19 15:31:06 FLIP for: rs7009170 [C,T]
+2021/03/19 15:31:06 FLIP for: rs10988442 [G,A]
+2021/03/19 15:31:06 FLIP for: rs7020564 [T,A]
+2021/03/19 15:31:06 FLIP for: rs10982910 [G,T]
+2021/03/19 15:31:06 FLIP for: rs1891730 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7869756 [G,A]
+2021/03/19 15:31:06 FLIP for: rs4977492 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1332813 [C,T]
+2021/03/19 15:31:06 FLIP for: rs880315 [C,T]
+2021/03/19 15:31:06 FLIP for: rs17030613 [C,A]
+2021/03/19 15:31:06 FLIP for: rs2932538 [G,A]
+2021/03/19 15:31:06 FLIP for: rs17367504 [G,A]
+2021/03/19 15:31:06 FLIP for: rs3820068 [G,A]
+2021/03/19 15:31:06 FLIP for: rs73091767 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6429422 [G,T]
+2021/03/19 15:31:06 FLIP for: rs7515635 [C,T]
+2021/03/19 15:31:06 FLIP for: rs60199046 [G,A]
+2021/03/19 15:31:06 FLIP for: rs709209 [G,A]
+2021/03/19 15:31:06 FLIP for: rs10922502 [G,A]
+2021/03/19 15:31:06 FLIP for: rs11191548 [C,T]
+2021/03/19 15:31:06 FLIP for: rs4387287 [C,A]
+2021/03/19 15:31:06 FLIP for: rs34872471 [C,T]
+2021/03/19 15:31:06 FLIP for: rs2782980 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1813353 [C,T]
+2021/03/19 15:31:06 FLIP for: rs10826995 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7914287 [C,T]
+2021/03/19 15:31:06 FLIP for: rs932764 [G,A]
+2021/03/19 15:31:06 FLIP for: rs8258 [C,T]
+2021/03/19 15:31:06 FLIP for: rs5219 [C,T]
+2021/03/19 15:31:06 FLIP for: rs661348 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7103648 [G,A]
+2021/03/19 15:31:06 FLIP for: rs751984 [C,T]
+2021/03/19 15:31:06 FLIP for: rs110419 [G,A]
+2021/03/19 15:31:06 FLIP for: rs2289125 [C,A]
+2021/03/19 15:31:06 FLIP for: rs3184504 [C,T]
+2021/03/19 15:31:06 FLIP for: rs10850411 [C,T]
+2021/03/19 15:31:06 FLIP for: rs35444 [G,A]
+2021/03/19 15:31:06 FLIP for: rs11067763 [G,A]
+2021/03/19 15:31:06 FLIP for: rs12579720 [G,C]
+2021/03/19 15:31:06 FLIP for: rs7977389 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7302981 [G,A]
+2021/03/19 15:31:06 FLIP for: rs7297416 [C,A]
+2021/03/19 15:31:06 FLIP for: rs1475130 [C,T]
+2021/03/19 15:31:06 FLIP for: rs9888615 [C,T]
+2021/03/19 15:31:06 FLIP for: rs9323988 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1036477 [G,A]
+2021/03/19 15:31:06 FLIP for: rs7178615 [G,A]
+2021/03/19 15:31:06 FLIP for: rs62011052 [C,T]
+2021/03/19 15:31:06 FLIP for: rs2521501 [T,A]
+2021/03/19 15:31:06 FLIP for: rs12906962 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13333226 [G,A]
+2021/03/19 15:31:06 FLIP for: rs12921187 [G,T]
+2021/03/19 15:31:06 FLIP for: rs33063 [G,A]
+2021/03/19 15:31:06 FLIP for: rs8059962 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7500448 [G,A]
+2021/03/19 15:31:06 FLIP for: rs12941318 [C,T]
+2021/03/19 15:31:06 FLIP for: rs79089478 [C,T]
+2021/03/19 15:31:06 FLIP for: rs12946454 [T,A]
+2021/03/19 15:31:06 FLIP for: rs17608766 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7406910 [C,T]
+2021/03/19 15:31:06 FLIP for: rs2645466 [C,A]
+2021/03/19 15:31:06 FLIP for: rs4308 [G,A]
+2021/03/19 15:31:06 FLIP for: rs57927100 [G,C]
+2021/03/19 15:31:06 FLIP for: rs78378222 [G,T]
+2021/03/19 15:31:06 FLIP for: rs12958173 [C,A]
+2021/03/19 15:31:06 FLIP for: rs745821 [G,T]
+2021/03/19 15:31:06 FLIP for: rs36010659 [C,T]
+2021/03/19 15:31:06 FLIP for: rs10418305 [G,C]
+2021/03/19 15:31:06 FLIP for: rs2304130 [G,A]
+2021/03/19 15:31:06 FLIP for: rs740406 [G,A]
+2021/03/19 15:31:06 FLIP for: rs8105753 [C,A]
+2021/03/19 15:31:06 FLIP for: rs1438896 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1446468 [C,T]
+2021/03/19 15:31:06 FLIP for: rs79146658 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7592578 [G,T]
+2021/03/19 15:31:06 FLIP for: rs1344653 [G,A]
+2021/03/19 15:31:06 FLIP for: rs55780018 [C,T]
+2021/03/19 15:31:06 FLIP for: rs7255 [C,T]
+2021/03/19 15:31:06 FLIP for: rs55701159 [G,T]
+2021/03/19 15:31:06 FLIP for: rs7562 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13420463 [G,A]
+2021/03/19 15:31:06 FLIP for: rs76326501 [C,A]
+2021/03/19 15:31:06 FLIP for: rs11690961 [C,A]
+2021/03/19 15:31:06 FLIP for: rs1975487 [G,A]
+2021/03/19 15:31:06 FLIP for: rs1876487 [C,A]
+2021/03/19 15:31:06 FLIP for: rs11689667 [C,T]
+2021/03/19 15:31:06 FLIP for: rs2579519 [C,T]
+2021/03/19 15:31:06 FLIP for: rs1327235 [G,A]
+2021/03/19 15:31:06 FLIP for: rs6060114 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6031435 [G,A]
+2021/03/19 15:31:06 FLIP for: rs6015450 [G,A]
+2021/03/19 15:31:06 FLIP for: rs11701033 [G,C]
+2021/03/19 15:31:06 FLIP for: rs9306160 [C,T]
+2021/03/19 15:31:06 FLIP for: rs4823006 [G,A]
+2021/03/19 15:31:06 FLIP for: rs470113 [G,A]
+2021/03/19 15:31:06 FLIP for: rs2306374 [C,T]
+2021/03/19 15:31:06 FLIP for: rs16851397 [G,A]
+2021/03/19 15:31:06 FLIP for: rs419076 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13082711 [C,T]
+2021/03/19 15:31:06 FLIP for: rs6797587 [G,A]
+2021/03/19 15:31:06 FLIP for: rs36022378 [C,T]
+2021/03/19 15:31:06 FLIP for: rs13303 [C,T]
+2021/03/19 15:31:06 FLIP for: rs9810888 [G,T]
+2021/03/19 15:31:06 FLIP for: rs66887589 [C,T]
+2021/03/19 15:31:07 FLIP for: rs871606 [C,T]
+2021/03/19 15:31:07 FLIP for: rs2014912 [C,T]
+2021/03/19 15:31:07 FLIP for: rs6891344 [G,A]
+2021/03/19 15:31:07 FLIP for: rs9687065 [G,A]
+2021/03/19 15:31:07 FLIP for: rs1173771 [G,A]
+2021/03/19 15:31:07 FLIP for: rs10078021 [G,T]
+2021/03/19 15:31:07 FLIP for: rs11154027 [C,T]
+2021/03/19 15:31:07 FLIP for: rs9349379 [G,A]
+2021/03/19 15:31:07 FLIP for: rs9479200 [G,A]
+2021/03/19 15:31:07 FLIP for: rs449789 [G,C]
+2021/03/19 15:31:07 FLIP for: rs73030266 [T,A]
+2021/03/19 15:31:07 FLIP for: rs1799945 [G,C]
+2021/03/19 15:31:07 FLIP for: rs409558 [C,T]
+2021/03/19 15:31:07 FLIP for: rs78648104 [C,T]
+2021/03/19 15:31:07 FLIP for: rs17477177 [C,T]
+2021/03/19 15:31:07 FLIP for: rs7810028 [G,C]
+2021/03/19 15:31:07 FLIP for: rs10224002 [G,A]
+2021/03/19 15:31:07 FLIP for: rs917275 [G,A]
+2021/03/19 15:31:07 FLIP for: rs2282978 [C,T]
+2021/03/19 15:31:07 FLIP for: rs2978098 [C,A]
+2021/03/19 15:31:07 FLIP for: rs2898290 [C,T]
+2021/03/19 15:31:07 FLIP for: rs894344 [G,A]
+2021/03/19 15:31:07 FLIP for: rs2978456 [C,T]
+2021/03/19 15:31:07 FLIP for: rs1449544 [C,A]
+2021/03/19 15:31:07 FLIP for: rs111245230 [C,T]
+2021/03/19 15:31:07 FLIP for: rs1953126 [C,T]
+2021/03/19 15:31:07 FLIP for: rs72765298 [C,T]
+2021/03/19 15:31:07 FLIP for: rs687621 [G,A]
+2021/03/19 15:31:07 FLIP for: rs4364717 [G,A]

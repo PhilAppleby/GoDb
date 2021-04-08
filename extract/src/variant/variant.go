@@ -1,8 +1,6 @@
-//---------------------------------------------------------
-// File: variant.go
+// Package variant ...
 // Everything VCF variant related
-// Author: P Appleby, University of Dundee
-//---------------------------------------------------------
+// Author: P Appleby, UoD
 package variant
 
 import (
@@ -13,7 +11,7 @@ import (
 )
 
 var sglDigitChrom map[string]int
-var geno_strings = []string{"0/0", "0/1", "1/1"}
+var genoStrings = []string{"0/0", "0/1", "1/1"}
 
 const firstGenoIdx = 9
 const chrIdx = 0
@@ -28,11 +26,6 @@ const fmtIdx = 8
 
 func init() {
 	sglDigitChrom = make(map[string]int)
-	sglDigitChrom["atest"] = 1
-	sglDigitChrom["atest2"] = 1
-	sglDigitChrom["atest3"] = 1
-	sglDigitChrom["atest4"] = 1
-	sglDigitChrom["atest5"] = 1
 	sglDigitChrom["affy"] = 1
 	sglDigitChrom["illumina"] = 1
 	sglDigitChrom["broad"] = 1
@@ -49,46 +42,49 @@ func check(e error) {
 	}
 }
 
-func AppendToFmt(prfx []string, add_str string) []string {
-	prfx[fmtIdx] = prfx[fmtIdx] + ":" + add_str
+// AppendToFmt ...
+func AppendToFmt(prfx []string, addStr string) []string {
+	prfx[fmtIdx] = prfx[fmtIdx] + ":" + addStr
 	return prfx
 }
 
+// NormaliseChromosome ...
 func NormaliseChromosome(prfx []string) []string {
 	if prfx[chrIdx][0] == '0' {
 		prfx[chrIdx] = prfx[chrIdx][1:]
 	}
 	return prfx
 }
-// set INFO
+
+// SetInfoValue ...
 func SetInfoValue(prfx []string, infoscore float64) []string {
 	infomap := parseInfoStr(GetInfo(prfx))
-  infomap["INFO"] = fmt.Sprintf("%.5f", infoscore)
-  prfx[infoIdx] = buildinfoStr(infomap)
+	infomap["INFO"] = fmt.Sprintf("%.5f", infoscore)
+	prfx[infoIdx] = buildinfoStr(infomap)
 	return prfx
 }
 
+// GetGeno ...
+// based on imputation probability threshold
 //------------------------------------------------------------------------------
-// get geno based on threshold
-//------------------------------------------------------------------------------
-func Get_geno(geno string, threshold float64, probidx int) string {
+func GetGeno(geno string, threshold float64, probidx int) string {
 
-  if geno == "." || geno == "./." {
-    return geno
-  }
+	if geno == "." {
+		return geno
+	}
 
-	mprob, max_prob_idx, genoarray := MaxProb(geno, probidx)
+	mprob, maxProbIdx, genoarray := MaxProb(geno, probidx)
 	//fmt.Printf("GGENO %s,%f,%f,%d\n", geno, mprob, threshold, probidx)
 	if mprob < threshold {
 		genoarray[0] = "./."
 	} else {
-		genoarray[0] = geno_strings[max_prob_idx]
+		genoarray[0] = genoStrings[maxProbIdx]
 	}
 	return strings.Join(genoarray, ":")
 }
 
-//------------------------------------------------------------------------------
-// maxprob test for a genotype
+// MaxProb ...
+// test for which slot contains the max probability for a genotype
 //------------------------------------------------------------------------------
 func MaxProb(geno string, probidx int) (float64, int, []string) {
 	g := strings.Split(geno, ":")
@@ -96,67 +92,75 @@ func MaxProb(geno string, probidx int) (float64, int, []string) {
 	// fmt.Printf("GENO IDX PROBLEM %d, %s\n", probidx, geno)
 	//	return 0.0, -9, g
 	//}
-	max_prob := 0.0
-	max_prob_idx := -9
+	maxProb := 0.0
+	maxProbIdx := -9
 	probs := strings.Split(g[probidx], ",")
 
 	for i, prob := range probs {
-	 probf, _ := strconv.ParseFloat(prob, 64)
-	 if probf > max_prob {
-	  max_prob = probf
-	  max_prob_idx = i
-	 }
+		probf, _ := strconv.ParseFloat(prob, 64)
+		if probf > maxProb {
+			maxProb = probf
+			maxProbIdx = i
+		}
 	}
-	return max_prob, max_prob_idx, g
+	return maxProb, maxProbIdx, g
 }
 
-//------------------------------------------------------------------------------
-// ---- a group of convenience fns to get array fields
-//------------------------------------------------------------------------------
-func GetVCFPrfx_Sfx(recslice []string) ([]string, []string) {
+// GetVCFPrfxSfx ...
+func GetVCFPrfxSfx(recslice []string) ([]string, []string) {
 	return recslice[:firstGenoIdx], recslice[firstGenoIdx:]
 }
 
+// GetChrom ...
 func GetChrom(recslice []string) string {
 	return recslice[chrIdx]
 }
 
+// GetVarid ...
 func GetVarid(recslice []string) string {
 	return recslice[varIdx]
 }
 
+// GetPosn ...
 func GetPosn(recslice []string) int {
 	value, _ := strconv.ParseInt(recslice[posnIdx], 0, 32)
 	return int(value)
 }
 
+// GetPosnStr ...
 func GetPosnStr(recslice []string) string {
 	return recslice[posnIdx]
 }
 
+// GetAlleles ...
 func GetAlleles(recslice []string) (string, string) {
 	return recslice[refIdx], recslice[altIdx]
 }
 
+// GetA ...
 func GetA(recslice []string) string {
 	return recslice[refIdx]
 }
 
+// GetB ...
 func GetB(recslice []string) string {
 	return recslice[altIdx]
 }
 
-func GetProbidx(recslice []string) int {
+// GetProbIdx ...
+func GetProbIdx(recslice []string) int {
 	return getStrIdx(recslice[fmtIdx], "GP")
 }
 
+// HasFmt ...
 func HasFmt(recslice []string, fmt string) bool {
-  if getStrIdx(recslice[fmtIdx], fmt) == -9 {
-    return false
-  }
-  return true
+	if getStrIdx(recslice[fmtIdx], fmt) == -9 {
+		return false
+	}
+	return true
 }
 
+// GetRefPanelAF ...
 func GetRefPanelAF(recslice []string) float64 {
 	infomap := parseInfoStr(GetInfo(recslice))
 	if maf, ok := infomap["RefPanelAF"]; ok {
@@ -166,6 +170,7 @@ func GetRefPanelAF(recslice []string) float64 {
 	return 0.0
 }
 
+// GetInfoScore ...
 func GetInfoScore(recslice []string) float64 {
 	infomap := parseInfoStr(GetInfo(recslice))
 	if info, ok := infomap["INFO"]; ok {
@@ -175,13 +180,14 @@ func GetInfoScore(recslice []string) float64 {
 	return 1.0
 }
 
+// GetInfo ...
 func GetInfo(recslice []string) string {
 	return recslice[infoIdx]
 }
 
-func parseInfoStr(info_str string) map[string]string {
+func parseInfoStr(infoStr string) map[string]string {
 	infomap := make(map[string]string)
-	infodata := strings.Split(info_str, ";")
+	infodata := strings.Split(infoStr, ";")
 	for _, elem := range infodata {
 		kv := strings.Split(elem, "=")
 		if len(kv) == 2 {
@@ -191,14 +197,14 @@ func parseInfoStr(info_str string) map[string]string {
 	return infomap
 }
 func buildinfoStr(infomap map[string]string) string {
-  infostr := ""
-  return infostr
+	infostr := ""
+	return infostr
 }
 
-func getStrIdx(str string, match_str string) int {
-	str_arr := strings.Split(str, ":")
-	for i, mstr := range str_arr {
-		if mstr == match_str {
+func getStrIdx(str string, matchStr string) int {
+	strArr := strings.Split(str, ":")
+	for i, mstr := range strArr {
+		if mstr == matchStr {
 			return i
 		}
 	}

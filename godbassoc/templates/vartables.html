@@ -1,0 +1,90 @@
+{{ define "vartables" }}
+<div class="container table-responsive card shadow p-3 mb-3 bg-light rounded">
+  <table id="variantTable" class="table table-striped table-inverse" width="100%" >
+  <thead>
+  <tr>
+    <th>Line</th>
+    <th>VarID</th>
+    <th>Assay</th>
+    <th>Chr</th>
+    <th>Pos</th>
+    <th>Ref</th>
+    <th>RefAF</th>
+    <th>Alt</th>
+    <th>AltAF</th>
+    <th>CR</th>
+    <th>MAF</th>
+    <th>HWEP</th>
+    <th>Miss</th>
+    <th>NMiss</th>
+    <th>INFO</th>
+  </tr>
+  </thead>
+  <tbody>
+    {{ range .DataList }}
+    <tr>
+      <td>{{ .LineNum }}
+      <td>{{ .Rsid }}
+      <td>{{ .Assaytype }}</td>
+      <td>{{ .Chromosome }}</td>
+      <td>{{ .StartPosition }}</td>
+      <td>{{ .AlleleA}}</td>
+      <td>{{ printf "%.3f" .RefAF }}</td>
+      <td>{{ .AlleleB }}</td>
+      <td>{{ printf "%.3f" .AltAF }}</td>
+      <td>{{ printf "%.3f" .CR }}</td>
+      <td>{{ printf "%.3f" .MAF }}</td>
+      <td>{{ printf "%.3e" .HWEP }}</td>
+      <td>{{ .Missing }}</td>
+      <td>{{ .NumSamples }}</td>
+      <td>{{ printf "%.3f" .Infoscore }}</td>
+    </tr>
+  {{ end }}
+  </tbody>
+  </table>
+</div>
+<div class="container table-responsive card shadow p-3 mb-3 bg-light rounded">
+  <table id="cvariantTable" class="table table-striped table-inverse" width="100%" >
+  <thead>
+  <tr>
+    <th>Line</th>
+    <th>VarID</th>
+    <th>Assay</th>
+    <th>Chr</th>
+    <th>Pos</th>
+    <th>Ref</th>
+    <th>RefAF</th>
+    <th>Alt</th>
+    <th>AltAF</th>
+    <th>CR</th>
+    <th>MAF</th>
+    <th>HWEP</th>
+    <th>Miss</th>
+    <th>NMiss</th>
+    <th>Errpct</th>
+  </tr>
+  </thead>
+  <tbody>
+    {{ range .ComboDataList }}
+    <tr>
+      <td>{{ .LineNum }}
+      <td>{{ .Rsid }}
+      <td>{{ .Assaytype }}</td>
+      <td>{{ .Chromosome }}</td>
+      <td>{{ .StartPosition }}</td>
+      <td>{{ .AlleleA}}</td>
+      <td>{{ printf "%.3f" .RefAF }}</td>
+      <td>{{ .AlleleB }}</td>
+      <td>{{ printf "%.3f" .AltAF }}</td>
+      <td>{{ printf "%.3f" .CR }}</td>
+      <td>{{ printf "%.3f" .MAF }}</td>
+      <td>{{ printf "%.3e" .HWEP }}</td>
+      <td>{{ .Missing }}</td>
+      <td>{{ .NumSamples }}</td>
+      <td>{{ printf "%.3f" .Errpct }}</td>
+    </tr>
+  {{ end }}
+  </tbody>
+  </table>
+</div>
+{{ end }}

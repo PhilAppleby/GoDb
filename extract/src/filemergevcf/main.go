@@ -34,11 +34,11 @@ import (
 	"vcfmerge"
 )
 
-// max_posn is intended to be greater than any
-// value for genomic position
-const max_posn int64 = 999999999999
+// min_posn = 0
+// maxPosn is intended to be greater than any value for genomic position
+const maxPosn int64 = 999999999999
 
-var empty_record = []string{}
+var emptyRecord = []string{}
 
 //-----------------------------------------------
 // global vars, accessed by multiple funcs
@@ -112,8 +112,8 @@ func main() {
 	check(err)
 	defer f.Close()
 	scanner := bufio.NewScanner(f)
-	assaytype_filename := make(map[string]string)
-	assaytype_list := make([]string, 0)
+	assaytypeFilename := make(map[string]string)
+	assaytypeList := make([]string, 0)
 	fscanners := make(map[string]*bufio.Scanner)
 	freaders := make(map[string]*bufio.Reader)
 
@@ -121,13 +121,13 @@ func main() {
 		text := scanner.Text()
 		if !strings.HasPrefix(text, "#") {
 			fields := strings.Split(text, "=")
-			assaytype_filename[fields[0]] = fmt.Sprintf(fields[1], vcfPathPref, chr)
-			assaytype_list = append(assaytype_list, fields[0])
+			assaytypeFilename[fields[0]] = fmt.Sprintf(fields[1], vcfPathPref, chr)
+			assaytypeList = append(assaytypeList, fields[0])
 		}
 	}
 	// Load QC parameters (if present)
 	fp, err := os.Open(paramFilePath)
-	//check(err)
+	check(err)
 	defer fp.Close()
 	testnum := ""
 	callrate := ""
@@ -155,7 +155,7 @@ func main() {
 	runParams := genometrics.GetRunParams(testnum, mafdelta, callrate, infoscore)
 	log.Printf("Params: %v\n", runParams)
 
-	for key, value := range assaytype_filename {
+	for key, value := range assaytypeFilename {
 		fh, err := os.Open(value)
 		check(err)
 		defer fh.Close()
@@ -170,32 +170,32 @@ func main() {
 	// handle file headers
 	headers := make(map[string][]string)
 	for assaytype, rdr := range freaders {
-		headers[assaytype], _ = get_sample_headers(rdr)
+		headers[assaytype], _ = getSampleHeaders(rdr)
 		//fmt.Printf("%s hdr len = %d\n", assaytype, len(headers[assaytype]))
 	}
 	// Headers and combined header map
-	sample_name_map, sample_posn_map := sample.MakeSamplesByAssaytype(headers)
-	combocols := sample.GetCombinedSampleMap(sample_name_map)
-	// combocols := sample.GetCombinedSampleMapByAssaytypes(sample_name_map, assaytype_list)
-	colhdr_str, combo_names := vcfmerge.GetCombinedColumnHeaders(combocols)
-	//fmt.Printf("%s\n", "combined"+"\t"+colhdr_str)
-	print_headers()
-	fmt.Printf("%s\n", colhdr_str)
+	sampleNameMap, samplePosnMap := sample.MakeSamplesByAssaytype(headers)
+	combocols := sample.GetCombinedSampleMap(sampleNameMap)
+	// combocols := sample.GetCombinedSampleMapByAssaytypes(sampleNameMap, assaytypeList)
+	colhdrStr, comboNames := vcfmerge.GetCombinedColumnHeaders(combocols)
+	//fmt.Printf("%s\n", "combined"+"\t"+colhdrStr)
+	printHeaders()
+	fmt.Printf("%s\n", colhdrStr)
 
 	// read first records and capture keys (genomic positions)
 	records := make(map[string][]string)
 	keys := make(map[string]int64)
 	varids := make(map[string]string)
 	for assaytype, rdr := range freaders {
-		records[assaytype], keys[assaytype], varids[assaytype] = get_next_record_slice(rdr)
+		records[assaytype], keys[assaytype], varids[assaytype] = getNextRecordSlice(rdr)
 	}
 	var genomet genometrics.AllMetrics
 	outctr := 0
 	// process until all files exhausted
-	for records_remain(keys) {
-		output_from_low_key_records(records, keys, sample_posn_map, combocols, combo_names, threshold, &genomet)
-		outctr += 1
-		records, keys, varids = read_from_low_key_records(records, keys, freaders, varids)
+	for recordsRemain(keys) {
+		outputFromLowKeyRecords(records, keys, samplePosnMap, combocols, comboNames, threshold, &genomet)
+		outctr++
+		records, keys, varids = readFromLowKeyRecords(records, keys, freaders, varids)
 	}
 	errorPct := (float64(genomet.MismatchCount) / float64(genomet.OverlapTestCount)) * 100
 	log.Printf("EXIT,wrt=%d,AllGenos=%d,UniqueGenos=%d,Alloverlap=%d,Two=%d,GTTwo=%d\n",
@@ -209,21 +209,21 @@ func main() {
 //-------------------------------------------------------------
 // Get headers with column(sample) names
 //-------------------------------------------------------------
-func get_sample_headers(rdr *bufio.Reader) ([]string, error) {
+func getSampleHeaders(rdr *bufio.Reader) ([]string, error) {
 	var sfx []string
 
 	eof := false
 	for !eof {
 		text, err := rdr.ReadString('\n')
 		if err == io.EOF {
-			return empty_record, err
+			return emptyRecord, err
 		}
 		text = strings.TrimRight(text, "\n")
 		if strings.HasPrefix(text, "##") {
 			//fmt.Printf("%s\n", text)
 		} else {
 			if strings.HasPrefix(text, "#") {
-				_, sfx = variant.GetVCFPrfx_Sfx(strings.Split(text, "\t"))
+				_, sfx = variant.GetVCFPrfxSfx(strings.Split(text, "\t"))
 				break
 			}
 		}
@@ -234,9 +234,9 @@ func get_sample_headers(rdr *bufio.Reader) ([]string, error) {
 //-------------------------------------------------------------
 // Read a record from a single reader and split it to format a string slice
 //-------------------------------------------------------------
-func get_next_record_slice(rdr *bufio.Reader) ([]string, int64, string) {
-	posn := max_posn
-	data := empty_record
+func getNextRecordSlice(rdr *bufio.Reader) ([]string, int64, string) {
+	posn := maxPosn
+	data := emptyRecord
 	varid := ""
 	text, err := rdr.ReadString('\n')
 	if err == nil {
@@ -251,9 +251,9 @@ func get_next_record_slice(rdr *bufio.Reader) ([]string, int64, string) {
 //-------------------------------------------------------------
 // If all keys are high there are no records to be read
 //-------------------------------------------------------------
-func records_remain(keys map[string]int64) bool {
+func recordsRemain(keys map[string]int64) bool {
 	for _, pos := range keys {
-		if pos < max_posn {
+		if pos < maxPosn {
 			return true
 		}
 	}
@@ -263,21 +263,21 @@ func records_remain(keys map[string]int64) bool {
 //-------------------------------------------------------------
 // Write output from low-key records
 //-------------------------------------------------------------
-func output_from_low_key_records(records map[string][]string, keys map[string]int64,
-	sample_posn_map map[string]map[int]string,
-	combocols map[string]int, combo_names []string, threshold float64, genomet *genometrics.AllMetrics) {
+func outputFromLowKeyRecords(records map[string][]string, keys map[string]int64,
+	samplePosnMap map[string]map[int]string,
+	combocols map[string]int, comboNames []string, threshold float64, genomet *genometrics.AllMetrics) {
 	//
-	low_keys := get_low_keys(keys)
-	low_key_at := make([]string, 0)
+	lowKeys := getLowKeys(keys)
+	lowKeyAt := make([]string, 0)
 
-	for at, _ := range low_keys {
-		low_key_at = append(low_key_at, at)
+	for at := range lowKeys {
+		lowKeyAt = append(lowKeyAt, at)
 	}
-	sort.Sort(sort.Reverse(sort.StringSlice(low_key_at)))
+	sort.Sort(sort.Reverse(sort.StringSlice(lowKeyAt)))
 
 	vcfrecords := make([][]string, 0, len(records))
 	rsid := ""
-	for _, at := range low_key_at {
+	for _, at := range lowKeyAt {
 		rsid = variant.GetVarid(records[at])
 		rec := make([]string, 1, len(records[at])+1)
 		rec[0] = at
@@ -286,50 +286,50 @@ func output_from_low_key_records(records map[string][]string, keys map[string]in
 		//fmt.Printf("LOWKEY OUTPUT %s, %d\n", at, key)
 	}
 	var vcfd []vcfmerge.Vcfdata
-	var rsid_genomet genometrics.AllMetrics
-	rec_str := vcfmerge.Combine_one(vcfrecords, vcfd, rsid, sample_posn_map, combocols, combo_names, threshold, &rsid_genomet)
-	genometrics.Increment(genomet, &rsid_genomet)
+	var rsidGenomet genometrics.AllMetrics
+	recStr := vcfmerge.CombineOne(vcfrecords, vcfd, rsid, samplePosnMap, combocols, comboNames, threshold, &rsidGenomet)
+	genometrics.Increment(genomet, &rsidGenomet)
 	errorPct := 0.0
-	if rsid_genomet.MismatchCount > 0 {
-		errorPct = (float64(rsid_genomet.MismatchCount) / float64(rsid_genomet.OverlapTestCount)) * 100
+	if rsidGenomet.MismatchCount > 0 {
+		errorPct = (float64(rsidGenomet.MismatchCount) / float64(rsidGenomet.OverlapTestCount)) * 100
 	}
 	if errorPct < errpctthr {
-		fmt.Printf("%s\n", rec_str)
+		fmt.Printf("%s\n", recStr)
 	} else {
-		genometrics.Log_metrics(1, rsid, 1, "##ERRPCT", &rsid_genomet)
+		genometrics.LogMetrics(1, rsid, 1, "##ERRPCT", &rsidGenomet)
 	}
 }
 
 //-------------------------------------------------------------
 // Inititiate the next cycle
 //-------------------------------------------------------------
-func read_from_low_key_records(records map[string][]string, keys map[string]int64, rdrs map[string]*bufio.Reader, varids map[string]string) (map[string][]string, map[string]int64, map[string]string) {
-	low_keys := get_low_keys(keys)
-	for assaytype, _ := range low_keys {
-		records[assaytype], keys[assaytype], varids[assaytype] = get_next_record_slice(rdrs[assaytype])
+func readFromLowKeyRecords(records map[string][]string, keys map[string]int64, rdrs map[string]*bufio.Reader, varids map[string]string) (map[string][]string, map[string]int64, map[string]string) {
+	lowKeys := getLowKeys(keys)
+	for assaytype := range lowKeys {
+		records[assaytype], keys[assaytype], varids[assaytype] = getNextRecordSlice(rdrs[assaytype])
 	}
 	return records, keys, varids
 }
 
-func get_low_keys(keys map[string]int64) map[string]int64 {
-	low_keys := make(map[string]int64)
-	low_key := max_posn
+func getLowKeys(keys map[string]int64) map[string]int64 {
+	lowKeys := make(map[string]int64)
+	lowKey := maxPosn
 	for _, pos := range keys {
-		if pos < low_key {
-			low_key = pos
+		if pos < lowKey {
+			lowKey = pos
 		}
 	}
-	if low_key < max_posn {
+	if lowKey < maxPosn {
 		for at, pos := range keys {
-			if pos == low_key {
-				low_keys[at] = pos
+			if pos == lowKey {
+				lowKeys[at] = pos
 			}
 		}
 	}
-	return low_keys
+	return lowKeys
 }
 
-func print_headers() {
+func printHeaders() {
 	fmt.Printf("%s\n", "##fileformat=VCFv4.2")
 	fmt.Printf("%s\n", "##INFO=<ID=AC,Number=A,Type=Integer,Description=\"Allele count in genotypes\">")
 	fmt.Printf("%s\n", "##INFO=<ID=AN,Number=1,Type=Integer,Description=\"Total number of alleles in called genotypes\">")

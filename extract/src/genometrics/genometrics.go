@@ -28,83 +28,89 @@ type AllMetrics struct {
 	NoAssayCount      int
 }
 
+// RunParameters ...
 type RunParameters struct {
 	TestNum   int
 	MafDelta  float64
 	CallRate  float64
 	InfoScore float64
 }
-//-----------------------------------------------------------------------------
-// Increment - add the values from sr to tgt 
+
+// Increment ...
+// add the values from src to tgt
 //-----------------------------------------------------------------------------
 func Increment(tgt *AllMetrics, src *AllMetrics) {
-  (*tgt).AllGenoCount  += (*src).AllGenoCount
-  (*tgt).UniqueGenoCount  += (*src).UniqueGenoCount
-  (*tgt).OverlapTestCount  += (*src).OverlapTestCount
-  (*tgt).OverlapSampCount  += (*src).OverlapSampCount
-  (*tgt).TwoOverlapCount  += (*src).TwoOverlapCount
-  (*tgt).GtTwoOverlapCount  += (*src).GtTwoOverlapCount
-  (*tgt).MismatchCount  += (*src).MismatchCount
-  (*tgt).DiffProbDiffs  += (*src).DiffProbDiffs
-  (*tgt).SameProbDiffs  += (*src).SameProbDiffs
-  (*tgt).MissTestCount  += (*src).MissTestCount
-  (*tgt).MissTestCount  += (*src).MissTestCount
-  (*tgt).MissingCount  += (*src).MissingCount
-  (*tgt).NoAssayCount  += (*src).NoAssayCount
+	(*tgt).AllGenoCount += (*src).AllGenoCount
+	(*tgt).UniqueGenoCount += (*src).UniqueGenoCount
+	(*tgt).OverlapTestCount += (*src).OverlapTestCount
+	(*tgt).OverlapSampCount += (*src).OverlapSampCount
+	(*tgt).TwoOverlapCount += (*src).TwoOverlapCount
+	(*tgt).GtTwoOverlapCount += (*src).GtTwoOverlapCount
+	(*tgt).MismatchCount += (*src).MismatchCount
+	(*tgt).DiffProbDiffs += (*src).DiffProbDiffs
+	(*tgt).SameProbDiffs += (*src).SameProbDiffs
+	(*tgt).MissTestCount += (*src).MissTestCount
+	(*tgt).MissTestCount += (*src).MissTestCount
+	(*tgt).MissingCount += (*src).MissingCount
+	(*tgt).NoAssayCount += (*src).NoAssayCount
 }
-//-----------------------------------------------------------------------------
-// Log_metrics - log metrics output, detail depends on evel
-//-----------------------------------------------------------------------------
-func Log_metrics(logLevel int, varid string, snpcount int, msg string, genomet *AllMetrics) {
-  errorPct := (float64((*genomet).MismatchCount) / float64((*genomet).OverlapTestCount)) * 100
-  if logLevel > 0 {
-    log.Printf("%s,%s,SNPCount=%d\n", msg, varid, snpcount)
-    log.Printf("%s,%s,ErrPct=%.3f\n", msg, varid, errorPct)
-  }
-  if logLevel > 1 {
-    log.Printf("%s,%s,AllGenos=%d\n", msg, varid, (*genomet).AllGenoCount)
-    log.Printf("%s,%s,UniqueGenos=%d\n", msg, varid, (*genomet).UniqueGenoCount)
-    log.Printf("%s,%s,Alloverlap=%d\n", msg, varid, (*genomet).OverlapTestCount)
-    log.Printf("%s,%s,Two=%d\n", msg, varid, (*genomet).TwoOverlapCount)
-    log.Printf("%s,%s,GTTwo=%d\n", msg, varid, (*genomet).GtTwoOverlapCount)
-    log.Printf("%s,%s,OverlapGenoDiffs=%d\n", msg, varid, (*genomet).MismatchCount)
-    log.Printf("%s,%s,DiffProbDiffs=%d\n", msg, varid, (*genomet).DiffProbDiffs)
-    log.Printf("%s,%s,SameProbDiffs=%d\n", msg, varid, (*genomet).SameProbDiffs)
-    log.Printf("%s,%s,MissingGenoTested=%d\n", msg, varid, (*genomet).MissTestCount)
-    log.Printf("%s,%s,MissingUnresolved=%d\n", msg, varid, (*genomet).MissingCount)
-    log.Printf("%s,%s,NoAssay=%d\n", msg, varid, (*genomet).NoAssayCount)
-  }
+
+// LogMetrics ...
+// log metrics output, detail depends on level
+func LogMetrics(logLevel int, varid string, snpcount int, msg string, genomet *AllMetrics) {
+	errorPct := (float64((*genomet).MismatchCount) / float64((*genomet).OverlapTestCount)) * 100
+	if logLevel > 0 {
+		log.Printf("%s,%s,SNPCount=%d\n", msg, varid, snpcount)
+		log.Printf("%s,%s,ErrPct=%.3f\n", msg, varid, errorPct)
+	}
+	if logLevel > 1 {
+		log.Printf("%s,%s,AllGenos=%d\n", msg, varid, (*genomet).AllGenoCount)
+		log.Printf("%s,%s,UniqueGenos=%d\n", msg, varid, (*genomet).UniqueGenoCount)
+		log.Printf("%s,%s,Alloverlap=%d\n", msg, varid, (*genomet).OverlapTestCount)
+		log.Printf("%s,%s,Two=%d\n", msg, varid, (*genomet).TwoOverlapCount)
+		log.Printf("%s,%s,GTTwo=%d\n", msg, varid, (*genomet).GtTwoOverlapCount)
+		log.Printf("%s,%s,OverlapGenoDiffs=%d\n", msg, varid, (*genomet).MismatchCount)
+		log.Printf("%s,%s,DiffProbDiffs=%d\n", msg, varid, (*genomet).DiffProbDiffs)
+		log.Printf("%s,%s,SameProbDiffs=%d\n", msg, varid, (*genomet).SameProbDiffs)
+		log.Printf("%s,%s,MissingGenoTested=%d\n", msg, varid, (*genomet).MissTestCount)
+		log.Printf("%s,%s,MissingUnresolved=%d\n", msg, varid, (*genomet).MissingCount)
+		log.Printf("%s,%s,NoAssay=%d\n", msg, varid, (*genomet).NoAssayCount)
+	}
 }
+
+// HweExactForRecord ...
 // caller passes a string array representing a whole VCF
 // record, including prefix
 // Return the results for the SNPHWE fn.
-func Hwe_exact_for_record(rec []string, threshold float64) float64 {
-	homref, homalt, het, _, _, _, _ := get_genotype_counts(rec, threshold)
+func HweExactForRecord(rec []string, threshold float64) float64 {
+	homref, homalt, het, _, _, _, _ := getGenotypeCounts(rec, threshold)
 	return SNPHWE(het, homref, homalt)
 }
 
+// MetricsForRecord ...
 // return all SNP metrics
 // CR, RAF, AAF, MAF, HWE_P
-func Metrics_for_record(rec []string, threshold float64) (float64, float64,
+func MetricsForRecord(rec []string, threshold float64) (float64, float64,
 	float64, float64, float64, int, int, int, int, int, int, float64) {
-	homref, homalt, het, alln, miss, dot, refPAF := get_genotype_counts(rec, threshold)
-  n := alln - miss
-  cr := float64(homref+het+homalt) / float64(alln)
+	homref, homalt, het, alln, miss, dot, refPAF := getGenotypeCounts(rec, threshold)
+	n := alln - miss
+	cr := float64(homref+het+homalt) / float64(alln)
 	raf := float64(2*homref+het) / float64(2*n)
 	aaf := float64(2*homalt+het) / float64(2*n)
 	maf := aaf
 	if raf < aaf {
 		maf = raf
 	}
-	obs_homc := homref
-	obs_homr := homalt
+	obsHomc := homref
+	obsHomr := homalt
 	if homalt > homref {
-		obs_homc = homalt
-		obs_homr = homref
+		obsHomc = homalt
+		obsHomr = homref
 	}
-	return cr, raf, aaf, maf, SNPHWE(het, homref, homalt), het, obs_homc, obs_homr, n, miss, dot, refPAF
+	return cr, raf, aaf, maf, SNPHWE(het, homref, homalt), het, obsHomc, obsHomr, n, miss, dot, refPAF
 }
 
+// GetRunParams ...
 func GetRunParams(testnum string, mafdelta string, callrate string, infoscore string) RunParameters {
 	var runParams RunParameters
 
@@ -128,6 +134,8 @@ func GetRunParams(testnum string, mafdelta string, callrate string, infoscore st
 
 	return runParams
 }
+
+// SNPHWE ...
 // Following is translated from the 'C' routine from UMICH
 // Original comments:
 //
@@ -137,73 +145,73 @@ func GetRunParams(testnum string, mafdelta string, callrate string, infoscore st
 //
 // Written by Jan Wigginton"
 //
-func SNPHWE(obs_hets int, obs_hom1 int, obs_hom2 int) float64 {
-	obs_homc := obs_hom1
-	obs_homr := obs_hom2
+func SNPHWE(obsHets int, obsHom1 int, obsHom2 int) float64 {
+	obsHomc := obsHom1
+	obsHomr := obsHom2
 
-	if obs_hom2 > obs_hom1 {
-		obs_homc = obs_hom2
-		obs_homr = obs_hom1
+	if obsHom2 > obsHom1 {
+		obsHomc = obsHom2
+		obsHomr = obsHom1
 	}
 
-	rare_copies := 2*obs_homr + obs_hets
-	genotypes := obs_hets + obs_homc + obs_homr
+	rareCopies := 2*obsHomr + obsHets
+	genotypes := obsHets + obsHomc + obsHomr
 
-	het_probs := make([]float64, rare_copies+1, rare_copies+1)
+	hetProbs := make([]float64, rareCopies+1, rareCopies+1)
 
 	// start at the midpoint
-	mid := rare_copies * (2*genotypes - rare_copies) / (2 * genotypes)
-	//fmt.Printf("mid %d, rare %d\n", mid, rare_copies)
+	mid := rareCopies * (2*genotypes - rareCopies) / (2 * genotypes)
+	//fmt.Printf("mid %d, rare %d\n", mid, rareCopies)
 
-	if ((rare_copies & 1) ^ (mid & 1)) != 0 {
-		mid += 1
+	if ((rareCopies & 1) ^ (mid & 1)) != 0 {
+		mid++
 		//fmt.Printf("add 1 to mid %d\n", mid)
 	}
 
-	curr_homr := (rare_copies - mid) / 2
-	curr_homc := genotypes - mid - curr_homr
+	currHomr := (rareCopies - mid) / 2
+	currHomc := genotypes - mid - currHomr
 
-	het_probs[mid] = 1.0
+	hetProbs[mid] = 1.0
 	sum := 1.0
 
-	for curr_hets := mid; curr_hets > 1; curr_hets -= 2 {
-		het_probs[curr_hets-2] = het_probs[curr_hets] * float64(curr_hets) * float64(curr_hets-1.0) / (4.0 * float64(curr_homr+1.0) * float64(curr_homc+1.0))
-		sum += het_probs[curr_hets-2]
+	for currHets := mid; currHets > 1; currHets -= 2 {
+		hetProbs[currHets-2] = hetProbs[currHets] * float64(currHets) * float64(currHets-1.0) / (4.0 * float64(currHomr+1.0) * float64(currHomc+1.0))
+		sum += hetProbs[currHets-2]
 		// 2 fewer heterozygotes for next iteration -> add one rare, one common homozygote
-		curr_homr += 1
-		curr_homc += 1
+		currHomr++
+		currHomc++
 	}
 
-	curr_homr = (rare_copies - mid) / 2
-	curr_homc = genotypes - mid - curr_homr
+	currHomr = (rareCopies - mid) / 2
+	currHomc = genotypes - mid - currHomr
 
-	for curr_hets := mid; curr_hets <= rare_copies-2; curr_hets += 2 {
-		het_probs[curr_hets+2] = het_probs[curr_hets] * 4.0 * float64(curr_homr) * float64(curr_homc) / (float64(curr_hets+2.0) * float64(curr_hets+1.0))
-		sum += het_probs[curr_hets+2]
+	for currHets := mid; currHets <= rareCopies-2; currHets += 2 {
+		hetProbs[currHets+2] = hetProbs[currHets] * 4.0 * float64(currHomr) * float64(currHomc) / (float64(currHets+2.0) * float64(currHets+1.0))
+		sum += hetProbs[currHets+2]
 		// add 2 heterozygotes for next iteration -> subtract one rare, one common homozygote
-		curr_homr -= 1
-		curr_homc -= 1
+		currHomr -= 1
+		currHomc -= 1
 	}
 
-	for i, _ := range het_probs {
-		het_probs[i] /= sum
+	for i, _ := range hetProbs {
+		hetProbs[i] /= sum
 	}
 
-	p_hwe := 0.0
+	pHwe := 0.0
 
-	for i := 0; i <= rare_copies; i++ {
-		if het_probs[i] <= het_probs[obs_hets] {
-			p_hwe += het_probs[i]
+	for i := 0; i <= rareCopies; i++ {
+		if hetProbs[i] <= hetProbs[obsHets] {
+			pHwe += hetProbs[i]
 		}
 	}
-	if p_hwe > 1.0 {
-		p_hwe = 1.0
+	if pHwe > 1.0 {
+		pHwe = 1.0
 	}
-	return p_hwe
+	return pHwe
 
 }
 
-func get_genotype_counts(rec []string, threshold float64) (int, int, int, int, int, int, float64) {
+func getGenotypeCounts(rec []string, threshold float64) (int, int, int, int, int, int, float64) {
 	homr := 0
 	homa := 0
 	het := 0
@@ -211,32 +219,32 @@ func get_genotype_counts(rec []string, threshold float64) (int, int, int, int, i
 	miss := 0
 	dot := 0
 
-	prfx, sfx := variant.GetVCFPrfx_Sfx(rec)
-	probidx := variant.GetProbidx(prfx)
+	prfx, sfx := variant.GetVCFPrfxSfx(rec)
+	probidx := variant.GetProbIdx(prfx)
 	refPAF := variant.GetRefPanelAF(prfx)
 
 	for _, geno := range sfx {
 		if geno != "." {
-			n += 1
-			geno = variant.Get_geno(geno, threshold, probidx)
-			geno_a := strings.Split(geno, ":")
-			if geno_a[0] == "0/0" {
-				homr += 1
+			n++
+			geno = variant.GetGeno(geno, threshold, probidx)
+			genoA := strings.Split(geno, ":")
+			if genoA[0] == "0/0" {
+				homr++
 			}
-			if geno_a[0] == "0/1" {
-				het += 1
+			if genoA[0] == "0/1" {
+				het++
 			}
-			if geno_a[0] == "1/0" {
-				het += 1
+			if genoA[0] == "1/0" {
+				het++
 			}
-			if geno_a[0] == "1/1" {
-				homa += 1
+			if genoA[0] == "1/1" {
+				homa++
 			}
-			if geno_a[0] == "./." {
-				miss += 1
+			if genoA[0] == "./." {
+				miss++
 			}
 		} else {
-			dot += 1
+			dot++
 		}
 	}
 

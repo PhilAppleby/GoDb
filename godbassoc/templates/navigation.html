@@ -1,0 +1,29 @@
+{{ define "navigation" }}
+<div class="container card shadow p-2 mb-2 bg-light rounded">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" id="navbarHome">
+          <a class="nav-link" href="/index">Variant Search <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" id="navbarPheno">
+          <a class="nav-link" href="/phenoupload">Phenotype Upload </a>
+        </li>
+        <li class="nav-item" id="navbarGeneSearch">
+          <a class="nav-link disabled" href="#">Search by Gene </a>
+        </li>
+        <li class="nav-item" id="navbarGRS">
+          <a class="nav-link disabled" href="#">GRS Generation </a>
+        </li>
+        <li class="nav-item" id="navbarNotes">
+          <a class="nav-link" href="/notes">Notes </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+{{ end }}

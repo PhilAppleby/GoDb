@@ -1,0 +1,21 @@
+{{ define "error" }}
+<html>
+  <head>
+    <title>GoDb Search</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="container card text-center shadow p-3 mb-5 bg-light rounded">
+        <h2>Error</h2>
+    </div>
+    {{ template "navigation" }}
+  </head>
+  <body>
+    <p></p>
+    <div class="container card shadow p-3 mb-5 bg-light rounded">
+      <b>Error message = {{ . }}</b>
+    </div>
+  </body>
+</html>
+{{ end }}

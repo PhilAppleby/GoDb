@@ -10,7 +10,7 @@ The over-arching requirement is the provision of a simple data management archit
 Some additional functional requirements are:
 * Curation of genomic data from multiple SNP panels.
 * Provision of the means to query data using well-known SNP identifiers (dbSNP rsids). 
-* Maximising samples size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets on demand.
+* Maximising sample size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets on demand.
 * Adding genotype data from new assays as they become available.   
  
 ### Non-Functional
@@ -46,9 +46,11 @@ Repository sub-directories:
 
 - *lib/py/* Python library code, including the python godb API layer, VCFrecord field access and production of metrics (MAF, HWEP, CR) for genotype records.
 
+- *godbassoc/* Experimental webapp written in Golang, includes code to make a call-out to PLINK (if installed) for association testing
+
 ### Running database load scripts
 Scripts located in *load/sh*, *load/py* and *load/pl*.
-All scripts rely on the files in the *cfg* directory to find both data and the MongoDb database, there are examples for five ddifferent assay platforms in the *cfg* directory.
+All scripts rely on the files in the *cfg* directory to find both data and the MongoDb database, there are examples for five different assay platforms in the *cfg* directory.
 
 Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existent or do not already contain data for the assay type in question with all indexes dropped three scripts can be run from the *load/sh* directory:
 
@@ -163,5 +165,7 @@ The 'X' axis is sample-size, the 'Y' axis time in seconds. Tests were run on an 
 
 
  
-## Ackowledgments
+## Acknowledgments
+
+Early versions of this software were developed as part of a UK Medical Research Council funded PhD
 

@@ -1,0 +1,17 @@
+{
+  "addr"       : "0.0.0.0:8091",
+  "readto"     : 10,
+  "writeto"    : 600,
+  "static"     : "public",
+  "templates"  : "templates",
+  "vcfprfx"    : "/Users/phila/data/godb",
+  "probthr"    : "0.9",
+  "assaytypes" : "affy,broad,illumina,exome,metabo",
+  "assoccmd"   : "/Users/phila/devel/HIC.Genomics/ehr/sh/single_snp_assoc.sh",
+  "assoccmdbin" : "/Users/phila/devel/HIC.Genomics/ehr/sh/single_snp_assoc_binary.sh",
+  "outfilepath" : "/Users/phila/data/genotypes/",
+  "phenofilepath" : "/Users/phila/data/phenoupload/",
+  "phenocolumns" : "iid,value",
+  "snpcolumns" : "snp",
+  "uploads" : "uploads"
+}

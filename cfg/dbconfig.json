@@ -1,7 +1,7 @@
 {
   "Dbhost":"localhost",
   "Dbname":"genomicsdb",
-  "Var_collection": "variants",
-  "Fp_collection":"filepaths",
-  "Samp_collection":"samples"
+  "VarCollection": "variants",
+  "FpCollection":"filepaths",
+  "SampCollection":"samples"
 }
