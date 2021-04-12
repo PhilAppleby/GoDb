@@ -46,7 +46,7 @@ Repository sub-directories:
 
 - *lib/py/* Python library code, including the python godb API layer, VCFrecord field access and production of metrics (MAF, HWEP, CR) for genotype records.
 
-- *godbassoc/* Experimental webapp written in Golang, includes code to make a call-out to PLINK (if installed) for association testing. TODO: use cases and example phenotype data for association testing
+- *godbassoc/* Experimental webapp written in Golang, includes code to allow the upload, saving and selection of phenotype files (both binary and continuous) and to make a call-out to PLINK (if installed) for association testing. TODO: use cases and example phenotype data for association testing
 
 ### Running database load scripts
 Scripts located in *load/sh*, *load/py* and *load/pl*.
