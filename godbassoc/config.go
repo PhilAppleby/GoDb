@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -23,6 +24,8 @@ type Configuration struct {
 	OutfilePath    string `json:"outfilepath"`
 	PhenofilePath  string `json:"phenofilepath"`
 	PhenoColumns   string `json:"phenocolumns"`
+	GrsfilePath    string `json:"grsfilepath"`
+	GrsColumns     string `json:"grscolumns"`
 	Uploads        string `json:"uploads"`
 }
 
@@ -30,11 +33,11 @@ var config Configuration
 var logger *log.Logger
 var requestedAssaytypes = map[string]bool{}
 var validPhenoColumns = map[string]bool{}
+var validGrsColumns = map[string]bool{}
 
 func init() {
 	loadConfig()
-	// logFile := os.Getenv("LOGFILE")
-	logFile := "./logs/godbassoc.log"
+	logFile := os.Getenv("LOGFILE")
 	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalln("Failed to open log file", err)
@@ -43,8 +46,7 @@ func init() {
 }
 
 func loadConfig() {
-	// configFile := os.Getenv("CONFIGFILE")
-	configFile := "./cfg/config.json"
+	configFile := os.Getenv("CONFIGFILE")
 	file, err := os.Open(configFile)
 	if err != nil {
 		log.Fatalln("Cannot open config file", err)
@@ -64,11 +66,30 @@ func loadConfig() {
 	for colname := range colList {
 		validPhenoColumns[colList[colname]] = true
 	}
-	log.Printf("Valid input cols: %v\n", validPhenoColumns)
+	log.Printf("Valid pheno input cols: %v\n", validPhenoColumns)
+	colList = strings.Split(config.GrsColumns, ",")
+	for colname := range colList {
+		validGrsColumns[colList[colname]] = true
+	}
+	log.Printf("Valid grs input cols: %v\n", validGrsColumns)
 }
+
 func getAssaytypes() map[string]bool {
 	return requestedAssaytypes
 }
+
 func getPhenoColMap() map[string]bool {
 	return validPhenoColumns
+}
+
+func getGrsColMap() map[string]bool {
+	return validGrsColumns
+}
+
+func getThresholdAsFloat() float64 {
+	threshold, err := strconv.ParseFloat(config.Pthr, 64)
+	if err != nil {
+		return 0.9 // conservative default
+	}
+	return threshold
 }

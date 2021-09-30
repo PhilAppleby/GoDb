@@ -1,0 +1,3 @@
+export CHR=19
+export STARTP=44412079
+export END=46512079

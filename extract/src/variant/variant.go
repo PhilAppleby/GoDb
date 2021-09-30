@@ -88,10 +88,7 @@ func GetGeno(geno string, threshold float64, probidx int) string {
 //------------------------------------------------------------------------------
 func MaxProb(geno string, probidx int) (float64, int, []string) {
 	g := strings.Split(geno, ":")
-	//if len(g) < (probidx + 1) {
-	// fmt.Printf("GENO IDX PROBLEM %d, %s\n", probidx, geno)
-	//	return 0.0, -9, g
-	//}
+
 	maxProb := 0.0
 	maxProbIdx := -9
 	probs := strings.Split(g[probidx], ",")

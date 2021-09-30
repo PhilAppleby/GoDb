@@ -31,6 +31,7 @@ func main() {
 	mux.Handle("/public/", http.StripPrefix("/public/", files))
 	// route pattern matching
 	// index, defined in route_main.go
+	mux.HandleFunc("/", index)
 	mux.HandleFunc("/index", index)
 	mux.HandleFunc("/results/", results)
 	mux.HandleFunc("/notes", notes)
@@ -39,6 +40,11 @@ func main() {
 	// defined in route_pheno.go
 	mux.HandleFunc("/phenoupload", phenoUpload)
 	mux.HandleFunc("/phenoprocess", phenoFileProcess)
+
+	// defined in route_grs.go
+	mux.HandleFunc("/grsupload", grsUpload)
+	mux.HandleFunc("/grsprocess", grsFileProcess)
+
 	// defined in route_genodata.go
 	mux.HandleFunc("/download", dataDownload)
 

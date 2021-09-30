@@ -1,6 +1,0 @@
-{
-  "Dbhost":"localhost",
-  "Dbname":"ehr",
-  "PhenoCollection": "pheno",
-  "PhenoMetaCollection": "pheno_meta"
-}

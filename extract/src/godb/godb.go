@@ -144,17 +144,17 @@ func init() {
 func loadDbConfig() {
 	configFile := os.Getenv("DBCONFIGFILE")
 	file, err := os.Open(configFile)
-	check("Cannot get configuration from file", err)
+	check("godb: Cannot open dbconfig file", err)
 
 	decoder := json.NewDecoder(file)
 	dbconf = dbconfig{}
 	err = decoder.Decode(&dbconf)
-	check("Cannot read configuration file", err)
+	check("Cannot read dbconfig file", err)
 }
 
 func check(msg string, e error) {
-	//  fmt.Println("check")
 	if e != nil {
+		log.Println(msg)
 		log.Fatal(e)
 	}
 }
@@ -417,3 +417,27 @@ func GetSamplesByAssaytype() (map[string]map[string]int, map[string]map[int]stri
 	}
 	return sampleNamePosn, samplePosnName
 }
+
+// FormatOutput ...
+// Format an array of VCF lines for Output, assume "", "vcf" or "csv" for "option"
+//func FormatOutput(records []string, option string) (output string, outFmt string) {
+//	if option == "" || option == "vcf" {
+//		return strings.Join(records, "\n"), "vcf"
+//	}
+// first entry in records is vcf samples header
+//	_, sampleCols := variant.GetVCFPrfxSfx(strings.Split(records[0], "\t"))
+//	sampleMap := make(map[string][]int)
+
+//	for _, sample := range sampleCols {
+//		sampleMap[sample] = make([]int, 0, len(records))
+//	}
+
+//	for _, record := range records[1:] {
+//		_, genos := variant.GetVCFPrfxSfx(strings.Split(record, "\t"))
+//		for _, geno := range genos {
+//
+//		}
+//	}
+
+//	return "", option
+//}

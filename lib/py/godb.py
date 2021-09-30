@@ -1,5 +1,6 @@
 import pymongo
 import pysam
+import logging
 from dbconfig import DBSERVER
 from dbconfig import DBNAME
 from dbconfig import VARIANTS
@@ -8,8 +9,8 @@ import os, sys
 from vcfrecord import VCFrecord
 #
 # Collection of methods to assist with GoDb management
-# Loading methods for variants, samples, 
-# filedata, filepaths and genemap 
+# Loading methods for variants, samples,
+# filedata, filepaths and genemap
 # (filedata. filepaths are alternative versions for file location data)
 #
 class GoDb():
@@ -20,7 +21,7 @@ class GoDb():
       variants = eval("db." + VARIANTS)
     except:
       raise Exception("Unexpected error connecting to %s @ %s" % (DBNAME, DBSERVER))
-    print "Connected to db: " + DBSERVER + ", " + DBNAME
+    logging.info("Connected to db: " + DBSERVER + ", " + DBNAME)
     self.db = db
     self.variants = variants
     self.samples = db.samples
@@ -38,12 +39,12 @@ class GoDb():
 
   def get_dbname(self):
     return self.dbname
-  
+
   # methods relating to the genemap collection
-  
+
   def process_genemap_detail(self, record):
     """Process  ucsc refFlat file records
-       Set up a json document and add it to the 
+       Set up a json document and add it to the
       genemap buffer
       format: 0;genename, 1;name, 2;chrom (in chr<N> format), 3;strand,
       4;txStart, 5;txEnd, 6:cdsStart, 7;cdsEnd, 8:exonCount, 9:exonStarts, 10:exonEnds
@@ -101,7 +102,7 @@ class GoDb():
     except:
       print "Unexpected error (get_one_genemap):", sys.exc_info()[0]
       sys.exit()
-       
+
     # can return 'None' if query fails
     return doc
 
@@ -132,7 +133,7 @@ class GoDb():
 
   def process_variant_detail(self, hdr, record, assaytype):
     """Process info file variant detail records
-       Set up a json document and add it to the 
+       Set up a json document and add it to the
       variant buffer
     """
     doc = {}
@@ -151,14 +152,14 @@ class GoDb():
 
   def process_variant_detail_vcf(self, record, assaytype):
     """Process info file variant detail records
-       Set up a json-stype document and add it to the 
+       Set up a json-stype document and add it to the
       variant buffer
     """
     doc = {}
     doc["assaytype"] = assaytype
     vcfr = VCFrecord(record)
-    prfx, sfx = vcfr.get_prfx_sfx() 
-    doc["rsid"] = vcfr.get_varid()  
+    prfx, sfx = vcfr.get_prfx_sfx()
+    doc["rsid"] = vcfr.get_varid()
     # always store chromosome as a 2-digit string
     doc["chromosome"] = "%.2d" % (int(vcfr.get_chr()))
     alleleA, alleleB = vcfr.get_alleles()
@@ -166,11 +167,11 @@ class GoDb():
     doc["alleleB"] = alleleB
     doc["position"] = vcfr.get_posn_as_int()
     try:
-      doc["ref_maf"] = float(vcfr.get_info_value("RefPanelAF"))  
+      doc["ref_maf"] = float(vcfr.get_info_value("RefPanelAF"))
     except:
       pass
     try:
-      doc["info"] = float(vcfr.get_info_value("INFO"))  
+      doc["info"] = float(vcfr.get_info_value("INFO"))
     except:
       doc["info"] = 1.0
 
@@ -202,7 +203,7 @@ class GoDb():
     except:
       print "Unexpected error:", sys.exc_info()[0]
       sys.exit()
-       
+
     # can return 'None' if query fails
     return doc
 
@@ -215,7 +216,7 @@ class GoDb():
     except:
       print "Unexpected error:", sys.exc_info()[0]
       sys.exit()
-       
+
     # can return 'None' if query fails
     return doc
 
@@ -228,13 +229,13 @@ class GoDb():
     except:
       print "Error:", sys.exc_info()[0]
       sys.exit()
-       
+
     # can return 'None' if query fails
     return curs
 
   def get_variant_data_by_range(self, chromosome, start, end):
-    """ 
-    Get the data for variants within a genomic range 
+    """
+    Get the data for variants within a genomic range
     """
     docs = []
     msg = ""
@@ -246,7 +247,7 @@ class GoDb():
       msg = "Range is too great should be 250Kb or less [%d]" % (end_pos - start_pos)
       return (docs, msg)
     if (end_pos - start_pos) < 0:
-      msg = "Start pos is greater than End pos" 
+      msg = "Start pos is greater than End pos"
       return (docs, msg)
 
     query = {}
@@ -259,11 +260,11 @@ class GoDb():
       cursor = self.variants.find(query)
     except:
       msg = "Unexpected error:" + sys.exc_info()[0]
-  
+
     for doc in cursor:
-      if len(doc["alleleA"]) > 10: 
+      if len(doc["alleleA"]) > 10:
         doc["alleleA"] = doc["alleleA"][0:10] + " ..."
-      if len(doc["alleleB"]) > 10: 
+      if len(doc["alleleB"]) > 10:
         doc["alleleB"] = doc["alleleB"][0:10] + " ..."
       doc["samplecount"] = self.get_sample_count(doc["assaytype"])
       docs.append(doc)
@@ -276,7 +277,7 @@ class GoDb():
 
   def process_sample_detail(self, sample_id, idx, assaytype):
     """Process sample date (called once per sample
-       Set up a json-type document and add it to the 
+       Set up a json-type document and add it to the
       sample buffer
     """
     doc = {}
@@ -298,7 +299,7 @@ class GoDb():
 
   def get_samples_len(self):
     return len(self.samplebuff)
-  
+
   def get_samples(self, assaytype):
     """
     Get the list of samples for an assaytype in list_posn order
@@ -317,10 +318,10 @@ class GoDb():
       sample_list.append(doc["sample_id"])
 
     return sample_list
-  
+
   def get_sample_count(self, assaytype):
     """
-    Get the count of samples for an assaytype 
+    Get the count of samples for an assaytype
     """
     count = 0
     try:
@@ -332,6 +333,24 @@ class GoDb():
       sys.exit()
 
     return count
+
+  def get_sample_posns(self, sample_id):
+    """
+    Get samples positions by assaytype
+    """
+    sample_posns = {}
+    count = 0
+    try:
+      query = {}
+      query['sample_id'] = sample_id
+      cursor = self.samples.find(query)
+    except:
+      print "Unexpected ERROR:", sys.exc_info()
+      sys.exit()
+
+    for doc in cursor:
+      sample_posns[doc["assaytype"]] = int(doc["list_posn"])
+    return sample_posns
 
   # methods relating to the filepaths collection
 
@@ -371,7 +390,7 @@ class GoDb():
       print "Unexpected error:", sys.exc_info()[0]
 
     if doc == None:
-      return None    
+      return None
 
     filepath = str(doc["filepath"])
 
@@ -382,20 +401,20 @@ class GoDb():
     return filepath
 
   def get_full_filepath(self, assaytype, chromosome, prfx):
-    """ 
+    """
     """
     query = {}
     query["assaytype"] = assaytype
-    
+
     try:
       doc = self.filepaths.find_one(query)
     except:
       print "Unexpected error:", sys.exc_info()[0]
-    
+
     # can return 'None' if query fails
     if doc == None:
       return None
-    
+
     filepath_suff = str(doc["fpath_suffix"])
     filepath = prfx + "/" + filepath_suff
     rtn_file = ""
@@ -410,11 +429,11 @@ class GoDb():
 
   # methods relating to tabix files
   def get_variant_file_data(self, filepath, chromosome, posn):
-    """ 
+    """
     Access a vcf file to extract variant data
     """
     tabixFile = pysam.Tabixfile(filepath)
-    if int(chromosome) > 22: 
+    if int(chromosome) > 22:
       chromosome = "NA"
     else:
       chromosome = str(chromosome)
@@ -431,4 +450,3 @@ class GoDb():
       rtn_rec = record
 
     return rtn_rec
-

@@ -15,7 +15,6 @@ import (
 	"grs"
 	"log"
 	"os"
-	"strconv"
 	"strings"
 )
 
@@ -23,7 +22,7 @@ import (
 // file-scope vars, accessed by multiple funcs
 //------------------------------------------------
 var logFilePath string
-var rsFilePath string
+var grsFilePath string
 var vcfPathPref string
 var threshold float64
 var errpctthr float64
@@ -41,7 +40,7 @@ func init() {
 	const (
 		defaultLogFilePath = "./logs/buildgrs_output.log"
 		lusage             = "Log file"
-		defaultRsFilePath  = "./data/grs_list.txt"
+		defaultGrsFilePath = "./data/grs_list.txt"
 		rsusage            = "File containing list of rsnumbers, effect allele, weight"
 		defaultvcfPathPref = ""
 		vusage             = "default path prefix for vcf files"
@@ -54,8 +53,8 @@ func init() {
 	)
 	flag.StringVar(&logFilePath, "logfile", defaultLogFilePath, lusage)
 	flag.StringVar(&logFilePath, "l", defaultLogFilePath, lusage+" (shorthand)")
-	flag.StringVar(&rsFilePath, "rsfile", defaultRsFilePath, rsusage)
-	flag.StringVar(&rsFilePath, "r", defaultRsFilePath, rsusage+" (shorthand)")
+	flag.StringVar(&grsFilePath, "rsfile", defaultGrsFilePath, rsusage)
+	flag.StringVar(&grsFilePath, "r", defaultGrsFilePath, rsusage+" (shorthand)")
 	flag.StringVar(&vcfPathPref, "vcfprfx", defaultvcfPathPref, vusage)
 	flag.StringVar(&vcfPathPref, "v", defaultvcfPathPref, vusage+" (shorthand)")
 	flag.Float64Var(&threshold, "threshold", defaultThreshold, thrusage)
@@ -92,7 +91,7 @@ func main() {
 	grsList := make([]string, 0, 1000)
 	grsInCount := 0
 
-	f, err := os.Open(rsFilePath)
+	f, err := os.Open(grsFilePath)
 	check(err)
 	defer f.Close()
 	scanner := bufio.NewScanner(f)
@@ -107,36 +106,16 @@ func main() {
 		validAssaytypes[atList[at]] = true
 	}
 
-	rsidList, eaMap, eafMap, wgtMap := getGrsLists(grsList)
+	rsidList, eaMap, eafMap, wgtMap := grs.GetGrsMaps(grsList)
 
 	_, _, genorecs := godb.Getallvardata(vcfPathPref, rsidList, validAssaytypes, threshold)
 
-	grScores := grs.GetScores(genorecs, eaMap, eafMap, wgtMap)
+	grScores, grScoresFlip := grs.GetScores(genorecs, eaMap, eafMap, wgtMap)
 
 	for _, gScore := range grScores {
-		fmt.Printf("%s\n", gScore)
+		fmt.Printf("001:%s\n", gScore)
 	}
-
-}
-func getGrsLists(rsIDLines []string) ([]string, map[string]string, map[string]float64, map[string]float64) {
-	rsIDList := make([]string, 0, len(rsIDLines))
-	eaMap := make(map[string]string)
-	eafMap := make(map[string]float64)
-	wgtMap := make(map[string]float64)
-	colMap := make(map[string]int)
-
-	hdrStr := rsIDLines[0]
-	hdrData := strings.Split(hdrStr, ",")
-	for i, col := range hdrData {
-		colMap[col] = i
+	for _, gScore := range grScoresFlip {
+		fmt.Printf("002:%s\n", gScore)
 	}
-
-	for _, rLine := range rsIDLines[1:] {
-		grsData := strings.Split(rLine, ",")
-		rsIDList = append(rsIDList, grsData[colMap["varid"]])
-		eaMap[grsData[colMap["varid"]]] = grsData[colMap["ea"]]
-		eafMap[grsData[colMap["varid"]]], _ = strconv.ParseFloat(grsData[colMap["eaf"]], 64)
-		wgtMap[grsData[colMap["varid"]]], _ = strconv.ParseFloat(grsData[colMap["wgt"]], 64)
-	}
-	return rsIDList, eaMap, eafMap, wgtMap
 }

@@ -25,10 +25,20 @@
     <div class="container card shadow p-2 mb-2 bg-light rounded">
       <p></p>
       <form class="form-horizontal" action="/download" method="GET" name="RES">
-        <div class="form-group">
-          <div class="controls">
+        <div class="form-group row" label="">
+          <div class="col-md-4">
             <input class="btn btn-primary btn-block" name="resbtn" type="submit" value="Clear">
+          </div>
+          <div class="col-md-4">
             <input class="btn btn-default btn-block" name="resbtn" type="submit" value="Download">
+          </div>
+          <div class="col-md-4">
+            <select class="form-control" id="ffmt" name="ffmt">
+              <option default>vcf</option>
+              <option>csv</option>
+            </select>
+          </div>
+          <div>
             <input type="hidden" id="variant" name="variant" value={{ .Variant }}>
             <input type="hidden" id="pthr" name="pthr" value={{ .Pthr }}>
           </div>

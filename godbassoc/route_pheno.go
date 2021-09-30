@@ -52,7 +52,7 @@ func phenoFileProcess(w http.ResponseWriter, r *http.Request) {
 		log.Printf("File readall err %v\n", err)
 	}
 	// write this byte array to our temporary file
-	err = ioutil.WriteFile(config.Uploads+"/"+handler.Filename, fileBytes, 0644)
+	err = ioutil.WriteFile(config.PhenofilePath+"/"+handler.Filename, fileBytes, 0644)
 	if err != nil {
 		log.Printf("Write err %v\n", err)
 		errorMessage(w, r, fmt.Sprintf("Write err %v\n", err))

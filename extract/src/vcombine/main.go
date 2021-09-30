@@ -103,6 +103,7 @@ func check(e error) {
 //------------------------------------------------
 func main() {
 	// set up logging to a file, TODO move to init()
+	log.Printf("Open logfile %s\n", logFilePath)
 	lf, err := os.OpenFile(logFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0640)
 	check(err)
 	defer lf.Close()
@@ -118,6 +119,7 @@ func main() {
 	rsidCount := 0
 
 	if rsID == "" {
+		log.Printf("Open rsfile %s\n", rsFilePath)
 		f, err := os.Open(rsFilePath)
 		check(err)
 		defer f.Close()
@@ -142,7 +144,7 @@ func main() {
 		// For each variant, filepath combination get a file record
 		for idx, variant := range variants {
 			if _, ok := validAssaytypes[variant.Assaytype]; ok {
-				//log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
+				log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
 				wg.Add(1)
 				go getvarfiledata(filepaths[idx], variant, fileRecords, &wg)
 			}

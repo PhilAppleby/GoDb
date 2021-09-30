@@ -1,0 +1,49 @@
+{{ define "grsupload" }}
+<html>
+  <head>
+    <title>GoDb GRS input file upload</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="container card text-center shadow p-3 mb-3 bg-light rounded">
+        <h2>GoDb GRS input file upload</h2>
+    </div>
+    {{ template "navigation" }}
+  </head>
+  <body>
+    <div class="container card shadow p-3 mb-3 bg-light rounded">
+      <form action="/grsprocess" method="POST" name="PUPL" enctype="multipart/form-data">
+        <div class="form-group row">
+          <div class="col-md-2">
+            <label for="gname"><h5>GR Score Name Tag</h5></label>
+            <input id="gname" type="text" name="gname" class="form-control" placeholder="GRS Tag Name" required autofocus>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-6">
+            <label for="gdesc"><h5>Phenotype Description</h5></label>
+            <textarea id="gdesc" name="gdesc" class="form-control rounded-0" rows="3" placeholder="GRS Description" required></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-4">
+            <label for="gfile"><h5>GRS Input File</h5></label>
+            <input id="gfile" type="file" name="grsFile" class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="controls">
+            <input class="btn btn-primary btn-block" name="guplbtn" type="submit" value="Upload">
+          </div>
+        </div>
+      </form>
+    </div>
+  <div class="container card shadow p-3 mb-3 bg-light rounded">
+    <p/><b>Notes:</b> GRS input files are csv files and must include a header record with the columns <b>rsid, ea, eaf, wgt</b>
+    <p/>Where <b>rsid</b> is a variant identifier, <b>ea</b> is the effect allele letter, <b>eaf</b> is the effect allele frequency and <b>wgt</b> is the weight to be applied
+  </div>
+
+  </body>
+</html>
+{{ end }}

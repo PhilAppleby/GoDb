@@ -24,7 +24,7 @@ class VCFrecord():
 
   def get_data_array(self):
     """
-    Return the split record 
+    Return the split record
     """
     return (self.data_array)
 
@@ -39,7 +39,7 @@ class VCFrecord():
     Varid (rsid) getter
     """
     return (self.data_array[self.rsid_idx])
-  
+
   def get_varid_ukb(self):
     """
     Varid (rsid) getter, for UKB bgen generated VCFs
@@ -71,11 +71,23 @@ class VCFrecord():
     """
     return (self.data_array[self.info_idx].split(';'))
 
+  def get_record(self):
+    """
+    Get a joined up record
+    """
+    return ("\t".join(self.data_array))
+
   def set_info(self, info):
     """
     Info setter
     """
     self.data_array[self.info_idx] = info
+
+  def set_chr(self, chrom):
+    """
+    Chrom setter
+    """
+    self.data_array[self.chr_idx] = chrom
 
   def set_varid(self, varid):
     """
@@ -145,7 +157,7 @@ class VCFrecord():
 
   def get_prfx_sfx(self):
     """
-    Prfx, sfx getter - in other words split the data array into prefix 
+    Prfx, sfx getter - in other words split the data array into prefix
     and genotypes components
     """
     return (self.data_array[:self.first_genotype_idx], self.data_array[self.first_genotype_idx:])
@@ -215,7 +227,7 @@ class VCFrecord():
           het_count += 1
 
     return homref_count, het_count, homalt_count, nc_count, miss_count
-    
+
   def get_call(self, probs, threshold):
     max_prob = 0.0
     max_idx = 3
@@ -225,27 +237,27 @@ class VCFrecord():
       if float(prob) > max_prob:
         max_prob = float(prob)
         max_idx = idx
- 
+
     if (threshold !=0.0):
       #print 'threshold', threshold, max_prob
       if max_prob < threshold:
         #print 'LT threshold', threshold, max_prob
         max_idx = 3
- 
+
     return (self.calls[max_idx], self.icalls[max_idx], max_prob)
 
   def get_call_from_probs(self, gen_vals, probidx=1, threshold=0.9):
     probs = gen_vals[probidx].split(",")
-    max_prob = 0.0 
-    max_idx = 3 
-    
+    max_prob = 0.0
+    max_idx = 3
+
     for idx, prob in enumerate(probs):
       if float(prob) > max_prob:
         max_prob = float(prob)
-        max_idx = idx 
+        max_idx = idx
 
     if (float(threshold) !=0.0):
       if max_prob < float(threshold):
-        max_idx = 3 
-    
+        max_idx = 3
+
     return (self.calls[max_idx], self.icalls[max_idx], max_prob, max_idx)
