@@ -9,10 +9,10 @@ The over-arching requirement is the provision of a simple data management archit
 ### Functional
 Some additional functional requirements are:
 * Curation of genomic data from multiple SNP panels.
-* Provision of the means to query data using well-known SNP identifiers (dbSNP rsids). 
+* Provision of the means to query data using well-known SNP identifiers (dbSNP rsids).
 * Maximising sample size via the automatic combination of genotype records across assay platforms, resolving overlaps in sample sets on demand.
 * Adding genotype data from new assays as they become available.   
- 
+
 ### Non-Functional
 Two non-functional requirements were also identified:
 * Operate in an environment where compute resources may be limited.
@@ -23,10 +23,10 @@ The data store was designed and built using MongoDb to hold collections of varia
 
 Software was developed to take advantage of the rapid access times offered by both MongoDb for storing variant id (rsid) vs genomic co-ordinates, and tabix indexing for random access to compressed VCF files via genomic co-ordinates. This includes a prototype web application for querying of the data store by variant_id(s), plus a collection of command line tools for use in bulk data extraction.
 
-### This repository 
+### This repository
 Repository sub-directories:
 
-- *cfg/* Config files containing environment variables to locate data, software and the MongoDb database host 
+- *cfg/* Config files containing environment variables to locate data, software and the MongoDb database host
 
 - *load/py/* Python scripts to load the data store.
 
@@ -38,13 +38,17 @@ Repository sub-directories:
 
 - *webapp/* All Python code, templates, java script, css and image files related to the web application.
 
-- *extract/py/* Command-line Python code for genotype data extract, from lists of SNPs. 
+- *extract/py/* Command-line Python code for genotype data extract, from lists of SNPs.
 
 - *extract/src/* Root directory for Go(lang) source code to build command-line data extraction tools. There is also library code to handle MongoDb and tabix-indexed file access plus VCF file parsing and metrics (for example calculation of MAF, HWEP, CR).
 
 - *extract/sh/* bash scripts, wrappers for command-line extract tools.
 
 - *lib/py/* Python library code, including the python godb API layer, VCFrecord field access and production of metrics (MAF, HWEP, CR) for genotype records.
+
+- *utils/py/* Python utility code, some of this is not thoroughly tested.
+
+- *utils/sh/* Wrappers for utilities, some strange path names here, not meant for general use 
 
 - *godbassoc/* Experimental webapp written in Golang, includes code to allow the upload, saving and selection of phenotype files (both binary and continuous) and to make a call-out to PLINK (if installed) for association testing. TODO: use cases and example phenotype data for association testing
 
@@ -54,11 +58,11 @@ All scripts rely on the files in the *cfg* directory to find both data and the M
 
 Once the cfg files are set up and, assuming the MongoDb collections listed in the next section are either non-existent or do not already contain data for the assay type in question with all indexes dropped three scripts can be run from the *load/sh* directory:
 
-- load_variants_from_vcf_files.sh \<full path to assay platform cfg file\> 
+- load_variants_from_vcf_files.sh \<full path to assay platform cfg file\>
 
-- load_samples.sh \<full path to assay platform cfg file\> 
+- load_samples.sh \<full path to assay platform cfg file\>
 
-- load_filepaths.sh \<full path to assay platform cfg file\> 
+- load_filepaths.sh \<full path to assay platform cfg file\>
 
 NOTES:
 - *assay type* is an assigned tag which must be unique for each assay type (SNP Panel) - assaytype examples in use in the current implementation are: "affy", "illumina", "broad", "metabo".
@@ -138,22 +142,22 @@ filepaths - one document per SNP panel (assaytype):
 - github.com/brentp/irelate/intercases golang library for tabix index access
 
 ## Index Web-Page
-Front page displayed by the prototype web-application
+Front page displayed by the prototype web-application (golang version)
 
 ![](images/godb_webapp.jpg)
- 
-## Data Store Architecture 
+
+## Data Store Architecture
 High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers.
 
 ![](images/godb_architecture.png)
 
 
-## Combining genotype records 
-Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules.If there were no sample overlaps this would be a matter of concatenating the genotype arrays and writing the combined record. Sample overlaps mean that the genotype for every sample must be checked across the record sets. This is explained further below and summarised in the figure.
+## Combining genotype records
+Genotype records are combined in both Python and Golang code, with sample overlaps resolved according to the indicated genotype resolution rules. If there were no sample overlaps this would be a matter of concatenating the genotype arrays and writing the combined record. Sample overlaps mean that the genotype for every sample must be checked across the record sets. This is explained further below and summarised in the figure.
 
 ![](images/combining_geno_data.png)
 
-The figure shows in-memory arrays built prior to writing the output. Data for each of the input arrays is copied to expanded intermediate arrays, in the same order as the combined array, before comparison is done, followed by a final copy step to the output array. 
+The figure shows in-memory arrays built prior to writing the output. Data for each of the input arrays is copied to expanded intermediate arrays, in the same order as the combined array, before comparison is done, followed by a final copy step to the output array.
 
 
 ## Performance
@@ -161,11 +165,10 @@ Performance for extracting and combining genotype records for one SNP (rs7412, p
 
 ![](images/extraction_performance.png)
 
-The 'X' axis is sample-size, the 'Y' axis time in seconds. Tests were run on an iMAC i7 with 16Gb of memory and 4 cores. As the numbers of samples rises, so does the number of SNP panels involved meaning parallel I/O in the Go paralell version (red-line) confers more of an advantage.
+The 'X' axis is sample-size, the 'Y' axis time in seconds. Tests were run on an iMAC i7 with 16Gb of memory and 4 cores. As the numbers of samples rises, so does the number of SNP panels involved meaning parallel I/O in the Go parallel version (red-line) confers more of an advantage.
 
 
- 
+
 ## Acknowledgments
 
 Early versions of this software were developed as part of a UK Medical Research Council funded PhD
-
