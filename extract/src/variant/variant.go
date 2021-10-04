@@ -11,7 +11,9 @@ import (
 )
 
 var sglDigitChrom map[string]int
+var genoDelim = "/"
 var genoStrings = []string{"0/0", "0/1", "1/1"}
+var genoStringInts = []string{"0", "1", "2"}
 
 const firstGenoIdx = 9
 const chrIdx = 0
@@ -81,6 +83,22 @@ func GetGeno(geno string, threshold float64, probidx int) string {
 		genoarray[0] = genoStrings[maxProbIdx]
 	}
 	return strings.Join(genoarray, ":")
+}
+
+// GetGenoAsIntStr ...
+// based on imputation probability threshold
+//------------------------------------------------------------------------------
+func GetGenoAsIntStr(geno string, threshold float64, probidx int) string {
+
+	if geno == "." {
+		return geno
+	}
+
+	mprob, maxProbIdx, _ := MaxProb(geno, probidx)
+	if mprob < threshold {
+		return "-9"
+	}
+	return genoStringInts[maxProbIdx]
 }
 
 // MaxProb ...

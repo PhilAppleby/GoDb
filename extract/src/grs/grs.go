@@ -64,6 +64,8 @@ func GetScores(records []string, eas map[string]string, eafs map[string]float64,
 	}
 	return scoreList, scoreListFlip
 }
+
+// TODO: call a func in variant.go instead
 func getGenoIntValueFlip(geno string, alt string, ea string) int {
 	gval := 0
 
@@ -86,6 +88,8 @@ func getGenoIntValueFlip(geno string, alt string, ea string) int {
 	}
 	return gval
 }
+
+// TODO: call a func in variant.go instead
 func getGenoIntValue(geno string) int {
 	gval := 0
 
