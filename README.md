@@ -140,13 +140,19 @@ filepaths - one document per SNP panel (assaytype):
 - pymongo python library (3.9.0)
 - gopkg.in/mgo.v2 golang library
 - gopkg.in/mgo.v2/bson golang library
-- github.com/brentp/bix golang library for tabix index access
-- github.com/brentp/irelate/intercases golang library for tabix index access
+- github.com/brentp/bix golang library for tabix index access, built on top of BioGo (https://github.com/biogo/biogo)
+- github.com/brentp/irelate/intercases golang library for tabix index access, built on top of BioGo (https://github.com/biogo/biogo)
+- PLINK version v1.90p 64-bit, built for the target architecture 
 
 ## Index Web-Page
-Front page displayed by the prototype web-application (golang version)
+Front page displayed by the prototype web-application (golang version), with a SNP and a named phenotype selected
 
-![](images/godb_webapp.jpg)
+![](images/godb_index_page.png)
+
+## Results Web-Page
+Results page for one SNP displayed by the prototype web-application (golang version)
+
+![](images/godb_one_result.png)
 
 ## Data Store Architecture
 High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers. Note that the Python web application is best run under management of a web-server and the Python WSGI web services gateway interface, the Go web service is stand-alone.
