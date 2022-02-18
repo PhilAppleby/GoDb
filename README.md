@@ -48,7 +48,7 @@ Repository sub-directories:
 
 - *utils/py/* Python utility code, some of this is not thoroughly tested.
 
-- *utils/sh/* Wrappers for utilities, some strange path names here, not meant for general use 
+- *utils/sh/* Wrappers for utilities, some strange path names here, not meant for general use
 
 - *godbassoc/* Experimental webapp written in Golang, includes code to allow the upload, saving and selection of phenotype files (both binary and continuous) and to make a call-out to PLINK (if installed) for association testing. TODO: use cases and example phenotype data for association testing
 
@@ -132,6 +132,8 @@ filepaths - one document per SNP panel (assaytype):
 ```
 
 ## Dependencies
+- Python 2.7.6 (TODO convert to running under Python 3)
+- Go 1.15.15 (TODO make module changes to allow move to Go 1.17)
 - MongoDb community edition (version 3 upwards, tested to 4.2.1)
 - Tabix (0.2.5)
 - pysam python library (0.15.3)
@@ -147,7 +149,7 @@ Front page displayed by the prototype web-application (golang version)
 ![](images/godb_webapp.jpg)
 
 ## Data Store Architecture
-High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers.
+High-level architecture diagram of the data store and software, showing application level, godb library and third-party library layers. Note that the Python web application is best run under management of a web-server and the Python WSGI web services gateway interface, the Go web service is stand-alone.
 
 ![](images/godb_architecture.png)
 

@@ -1,8 +1,10 @@
 //
 // Search / retrieval for a godb instance
-// Also includes single SNP assocation testing And
-// phenotype upload
+// Also includes single SNP assocation testing,
+// phenotype upload, variant list capture and use, GRS
+// input capture and use
 //
+// Author: PD Appleby
 package main
 
 import (
