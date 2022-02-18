@@ -1,0 +1,11 @@
+{
+  "Dbhost":"localhost",
+  "Dbname":"ehr",
+  "PhenoCollection": "pheno",
+  "PhenoMetaCollection": "pheno_meta",
+  "GrsInputCollection": "grsinput",
+  "GrsMetaCollection": "grs_meta",
+  "GrsScoresCollection": "grsscores",
+  "VarlistMetaCollection": "variantlist_meta",
+  "VarlistCollection": "variantlist"
+}

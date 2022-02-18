@@ -1,4 +1,4 @@
-{{ define "results" }}
+{{ define "grsresults" }}
 <!DOCTYPE html>
 <html>
   <head>
@@ -12,20 +12,12 @@
     <script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 
     <div class="container text-center card shadow p-3 mb-3 bg-light rounded">
-      <h2>Godb Variant Search Results</h2>
+      <h2>Godb GRS Results</h2>
     </div>
     {{ template "navigation" }}
   </head>
   <body>
-    <div class="container card shadow p-2 mb-2 bg-light rounded">
-      {{ if eq .VarlistName "None"}}
-        <h4>Variant: <b><a href="https://www.ncbi.nlm.nih.gov/snp/{{ .Variant }}" target="_blank">{{ .Variant }}</a></b></h4>
-      {{ else }}
-        <h4>Variant List: <b>{{ .VarlistName }}</b></h4>
-      {{ end  }}
-	    <h4>Pthr   : <b>{{ .Pthr }}</b> (Imputation threshold)</h4>
-    </div>
-    {{ template "vartables" .}}
+    {{ template "grstables" .}}
     <div class="container card shadow p-2 mb-2 bg-light rounded">
       <p></p>
       <form class="form-horizontal" action="/download" method="GET" name="RES">
@@ -35,17 +27,6 @@
           </div>
           <div class="col-md-4">
             <input class="btn btn-default btn-block" name="resbtn" type="submit" value="Download">
-          </div>
-          <div class="col-md-4">
-            <select class="form-control" id="ffmt" name="ffmt">
-              <option default>vcf</option>
-              <option>csv</option>
-            </select>
-          </div>
-          <div>
-            <input type="hidden" id="variant" name="variant" value={{ .Variant }}>
-            <input type="hidden" id="varlistname" name="varlistname" value={{ .VarlistName }}>
-            <input type="hidden" id="pthr" name="pthr" value={{ .Pthr }}>
           </div>
         </div>
       </form>

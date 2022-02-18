@@ -15,8 +15,9 @@ import (
 func init() {
 }
 
-func check(e error) {
+func check(e error, source string) {
 	if e != nil {
+		fmt.Println("main: check routine source: ", source)
 		fmt.Println("err != nil")
 		log.Fatal(e)
 	}
@@ -33,13 +34,20 @@ func main() {
 	// index, defined in route_main.go
 	mux.HandleFunc("/", index)
 	mux.HandleFunc("/index", index)
+	mux.HandleFunc("/grsrun", grsrun)
 	mux.HandleFunc("/results/", results)
+	mux.HandleFunc("/grsresults/", grsresults)
+
 	mux.HandleFunc("/notes", notes)
 	mux.HandleFunc("/err", err)
 
 	// defined in route_pheno.go
 	mux.HandleFunc("/phenoupload", phenoUpload)
 	mux.HandleFunc("/phenoprocess", phenoFileProcess)
+
+	// defined in route_varlist.go
+	mux.HandleFunc("/varlistupload", varlistUpload)
+	mux.HandleFunc("/varlistprocess", varlistFileProcess)
 
 	// defined in route_grs.go
 	mux.HandleFunc("/grsupload", grsUpload)

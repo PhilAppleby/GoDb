@@ -2,12 +2,18 @@ package main
 
 import (
 	"bufio"
+	"ehrdb"
 	"fmt"
 	"html/template"
+	"log"
 	"net/http"
 	"os"
 	"strings"
 )
+
+// NONE Substitute for string value "None"
+// Found throughout the package
+const NONE = "None"
 
 // Convenience function for printing to stdout
 func p(a ...interface{}) {
@@ -64,13 +70,13 @@ func version() string {
 
 func writeBufferedFile(filePath string, records []string) {
 	f, err := os.Create(filePath)
-	check(err)
+	check(err, "Utils, writeBufferedFile (1)")
 	defer f.Close()
 	w := bufio.NewWriter(f)
 
 	for _, line := range records {
 		_, err := w.WriteString(line + "\n")
-		check(err)
+		check(err, "Utils, writeBufferedFile (2)")
 	}
 	w.Flush()
 }
@@ -85,6 +91,19 @@ func convertStringMapToCSV(input map[string]string) []string {
 }
 
 func assocReformat(assocResult string) []string {
-
 	return strings.Split(assocResult, "\n")
+}
+
+func getVariantList(urlParams map[string][]string) (string, []string) {
+	log.Printf("getVariantList: %v", urlParams)
+	varlist := strings.Split(urlParams["variant"][0], ",")
+	varlistName := urlParams["varlistname"][0]
+	if len(varlist[0]) == 0 {
+		if varlistName != NONE {
+			varlist, _ = ehrdb.GetVarlistByName(varlistName)
+		}
+	} else {
+		varlistName = NONE
+	}
+	return varlistName, varlist
 }

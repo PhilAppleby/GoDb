@@ -85,7 +85,7 @@ class GoDb():
       if (len(self.genemapbuff) > 0):
         self.genemap.insert(self.genemapbuff)
     except:
-      print "Unexpected error writing to genemap collection:", sys.exc_info()[0]
+      print("Unexpected error writing to genemap collection:", sys.exc_info()[0])
       sys.exit()
 
     self.genemapbuff = []
@@ -100,7 +100,7 @@ class GoDb():
     try:
       doc = self.genemap.find_one(query)
     except:
-      print "Unexpected error (get_one_genemap):", sys.exc_info()[0]
+      print("Unexpected error (get_one_genemap):", sys.exc_info()[0])
       sys.exit()
 
     # can return 'None' if query fails
@@ -121,7 +121,7 @@ class GoDb():
       curs = self.genemap.find(query)
       curs = curs.sort([('genename',pymongo.ASCENDING), ('txStart',pymongo.ASCENDING), ('txEnd',pymongo.ASCENDING)])
     except:
-      print "Unexpected error (get_genemap_data_by_buffered_range):", sys.exc_info()[0]
+      print("Unexpected error (get_genemap_data_by_buffered_range):", sys.exc_info()[0])
       sys.exit()
     for doc in curs:
       #print "%s,%s,%d,%d" % (doc["genename"], doc["chrom"], doc["txStart"], doc["txEnd"])
@@ -182,7 +182,7 @@ class GoDb():
       if (len(self.variantbuff) > 0):
         self.variants.insert(self.variantbuff)
     except:
-      print "Unexpected error writing to variant collection:", sys.exc_info()[0]
+      print("Unexpected error writing to variant collection:", sys.exc_info()[0])
       sys.exit()
 
     self.variantbuff = []
@@ -201,7 +201,7 @@ class GoDb():
     try:
       doc = self.variants.find_one(query)
     except:
-      print "Unexpected error:", sys.exc_info()[0]
+      print("Unexpected error one variant find:", sys.exc_info()[0])
       sys.exit()
 
     # can return 'None' if query fails
@@ -214,7 +214,7 @@ class GoDb():
     try:
       doc = self.variants.find_one(query)
     except:
-      print "Unexpected error:", sys.exc_info()[0]
+      print("Unexpected error one variant find:", sys.exc_info()[0])
       sys.exit()
 
     # can return 'None' if query fails
@@ -227,7 +227,7 @@ class GoDb():
     try:
       curs = self.variants.find(query)
     except:
-      print "Error:", sys.exc_info()[0]
+      print("Find multiple variants error:", sys.exc_info()[0])
       sys.exit()
 
     # can return 'None' if query fails
@@ -244,14 +244,14 @@ class GoDb():
 
     # Some basic sanity checking
     if (end_pos - start_pos) > 250000:
-      msg = "Range is too great should be 250Kb or less [%d]" % (end_pos - start_pos)
+      msg = "Range is too great should be 250Kb or less [{0}]".format((end_pos - start_pos))
       return (docs, msg)
     if (end_pos - start_pos) < 0:
       msg = "Start pos is greater than End pos"
       return (docs, msg)
 
     query = {}
-    query['chromosome'] = chromosome = "%.2d" % (int(chromosome))
+    query['chromosome'] = chromosome = "{0:.2d}".format((int(chromosome)))
     query['position'] = {}
     query['position']['$gte'] = start_pos
     query['position']['$lte'] = end_pos
@@ -292,7 +292,7 @@ class GoDb():
       if (len(self.samplebuff) > 0):
         self.samples.insert(self.samplebuff)
     except:
-      print "Unexpected error writing to samples collection:", sys.exc_info()[0]
+      print("Unexpected error writing to samples collection:", sys.exc_info()[0])
       sys.exit()
 
     self.samplebuff = []
@@ -311,7 +311,7 @@ class GoDb():
       cursor = self.samples.find(query)
       cursor = cursor.sort([('list_posn',pymongo.ASCENDING)])
     except:
-      print "Unexpected error:", sys.exc_info()[0]
+      print("get_samples: Unexpected error:", sys.exc_info()[0])
       sys.exit()
 
     for doc in cursor:
@@ -329,14 +329,14 @@ class GoDb():
       query['assaytype'] = assaytype
       count = self.samples.find(query).count()
     except:
-      print "Unexpected ERROR:", sys.exc_info()
+      print("get_sample_count: Unexpected ERROR:", sys.exc_info())
       sys.exit()
 
     return count
 
   def get_sample_posns(self, sample_id):
     """
-    Get samples positions by assaytype
+    Get samples positions (can be multiple by assaytype)
     """
     sample_posns = {}
     count = 0
@@ -345,7 +345,7 @@ class GoDb():
       query['sample_id'] = sample_id
       cursor = self.samples.find(query)
     except:
-      print "Unexpected ERROR:", sys.exc_info()
+      print("get_sample_posns: Unexpected ERROR:", sys.exc_info())
       sys.exit()
 
     for doc in cursor:
@@ -377,7 +377,7 @@ class GoDb():
     try:
       self.filepaths.insert(doc)
     except:
-      print "Unexpected error writing to filepaths collection:", sys.exc_info()[0]
+      print("Unexpected error writing to filepaths collection:", sys.exc_info()[0])
       sys.exit()
 
   def get_filepath(self, assaytype, chromosome):
@@ -387,7 +387,7 @@ class GoDb():
     try:
       doc = self.filepaths.find_one(query)
     except:
-      print "Unexpected error:", sys.exc_info()[0]
+      print("Unexpected error:", sys.exc_info()[0])
 
     if doc == None:
       return None
@@ -409,7 +409,7 @@ class GoDb():
     try:
       doc = self.filepaths.find_one(query)
     except:
-      print "Unexpected error:", sys.exc_info()[0]
+      print("Unexpected error:", sys.exc_info()[0])
 
     # can return 'None' if query fails
     if doc == None:

@@ -32,13 +32,19 @@ func dataDownload(w http.ResponseWriter, r *http.Request) {
 				fmtChoice = r.URL.Query()["ffmt"][0]
 			}
 			start := time.Now()
-			var variantList = make([]string, 0)
-			variantList = append(variantList, r.URL.Query()["variant"][0])
+			varlistName, variantList := getVariantList(r.URL.Query())
+			//variantList = append(variantList, r.URL.Query()["variant"][0])
 			pthr, _ := strconv.ParseFloat(r.URL.Query()["pthr"][0], 64)
 			_, _, comborecs := godb.Getallvardata(config.VcfPrfx, variantList, getAssaytypes(), pthr)
 			// content, outFmt := godb.FormatOutput(comborecs, fmtChoice)
-			outFileName := config.OutfilePath + "/" + variantList[0] + "." + fmtChoice + ".gz"
-			dnldFileName := variantList[0] + "." + fmtChoice + ".gz"
+			fnameprfx := ""
+			if varlistName == "None" {
+				fnameprfx = strings.Join(variantList, "_")
+			} else {
+				fnameprfx = varlistName
+			}
+			outFileName := config.OutfilePath + "/" + fnameprfx + "." + fmtChoice + ".gz"
+			dnldFileName := fnameprfx + "." + fmtChoice + ".gz"
 
 			// Initialize gzip
 			buf := &bytes.Buffer{}

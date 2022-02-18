@@ -16,6 +16,7 @@ import (
 	"log"
 	"os"
 	"strings"
+	"time"
 )
 
 //------------------------------------------------
@@ -110,7 +111,10 @@ func main() {
 
 	_, _, genorecs := godb.Getallvardata(vcfPathPref, rsidList, validAssaytypes, threshold)
 
+	start := time.Now()
 	grScores, grScoresFlip := grs.GetScores(genorecs, eaMap, eafMap, wgtMap)
+	elapsed := time.Since(start)
+	log.Printf("GetScores timing %s", elapsed)
 
 	for _, gScore := range grScores {
 		fmt.Printf("001:%s\n", gScore)

@@ -272,7 +272,11 @@ func Getallvardata(vcfPathPref string, rsidList []string, requestedAssaytypes ma
 			dbvar.AlleleA, dbvar.AlleleB = variant.GetAlleles(prfx)
 			dbvar.CR, dbvar.RefAF, dbvar.AltAF, dbvar.MAF, dbvar.HWEP, _, _, _, dbvar.NumSamples, dbvar.Missing, _, _ = genometrics.MetricsForRecord(fields, pthr)
 			dbvar.Infoscore = variant.GetInfoScore(prfx)
-			dbvar.Errpct = (float64(rsidGenomet.MismatchCount) / float64(rsidGenomet.OverlapTestCount)) * 100.0
+			if float64(rsidGenomet.OverlapTestCount) == 0.0 {
+				dbvar.Errpct = 0.0
+			} else {
+				dbvar.Errpct = (float64(rsidGenomet.MismatchCount) / float64(rsidGenomet.OverlapTestCount)) * 100.0
+			}
 			dbvar.LineNum = lineCount
 			//log.Printf("%s combined, SFX len = %d, samples=%d, miss=%d, dot=%d\n", rsid, len(sfx), dbvar.NumSamples, dbvar.Missing, dot)
 			log.Printf("%s combined, mismatch=%d, overlaps=%d, ErrPct=%.5f\n", rsid, rsidGenomet.MismatchCount, rsidGenomet.OverlapTestCount, dbvar.Errpct)

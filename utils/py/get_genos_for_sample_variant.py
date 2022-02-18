@@ -50,7 +50,9 @@ def main(options):
     vcfr = VCFrecord(rec)
     prfx, sfx = vcfr.get_prfx_sfx()
     if doc["assaytype"] in sampposns:
-      print "%s,%s,%s,%d,%s" % (options.rsid, options.sampleid, doc["assaytype"], sampposns[doc["assaytype"]], sfx[sampposns[doc["assaytype"]]])
+      count += 1
+      print("{0},{1},{2},{3},{4},{5},{6}".format(options.rsid, doc["chromosome"], doc["position"], options.sampleid, doc["assaytype"], sampposns[doc["assaytype"]], sfx[sampposns[doc["assaytype"]]]))
+      # print "%s,%s,%s,%s,%s,%d,%s" % (options.rsid, doc["chromosome"], doc["position"], options.sampleid, doc["assaytype"], sampposns[doc["assaytype"]], sfx[sampposns[doc["assaytype"]]])
 
   return count
 
@@ -67,4 +69,4 @@ parser.add_option("-p", "--prfx", dest="prfx",
 
 (options, args) = parser.parse_args()
 rec_count = main(options)
-logging.info("END: %f seconds output=%d" % (time.time() - start_time, rec_count))
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))

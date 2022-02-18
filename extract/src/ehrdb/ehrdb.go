@@ -18,13 +18,15 @@ import (
 // dbconfig struct for db access
 //-----------------------------------------------
 type dbconfig struct {
-	Dbhost              string
-	Dbname              string
-	PhenoCollection     string
-	PhenoMetaCollection string
-	GrsInputCollection  string
-	GrsMetaCollection   string
-	GrsScoreCollection  string
+	Dbhost                string
+	Dbname                string
+	PhenoCollection       string
+	PhenoMetaCollection   string
+	GrsInputCollection    string
+	GrsMetaCollection     string
+	GrsScoreCollection    string
+	VarlistMetaCollection string
+	VarlistCollection     string
 }
 
 // DBPheno ...
@@ -54,7 +56,7 @@ type DBGrsInput struct {
 	Varid  string `bson:"varid,omitempty"`
 	Ea     string `bson:"ea,omitempty"`
 	Eaf    string `bson:"eaf,omitempty"`
-	Weight string `bson:"weight,omitempty"`
+	Weight string `bson:"wgt,omitempty"`
 }
 
 // DBGrsMeta ...
@@ -73,6 +75,22 @@ type DBGrsScore struct {
 	IID      string `bson:"iid,omitempty"`
 	SnpCount int    `bson:"snpcount,omitempty"`
 	Score    string `bson:"score,omitempty"`
+}
+
+// DBVarlistMeta ...
+// struct for the mongodb variantlist meta collection
+//------------------------------------------------------
+type DBVarlistMeta struct {
+	Name        string `bson:"name,omitempty"`
+	Description string `bson:"description,omitempty"`
+}
+
+// DBListVar ...
+// struct for the mongodb variant in a list of variants collection
+//------------------------------------------------------
+type DBListVar struct {
+	Name  string `bson:"name,omitempty"`
+	VarID string `bson:"varid,omitempty"`
 }
 
 var dbconf dbconfig
@@ -210,18 +228,6 @@ func InsertPhenoMetaData(name string, source string, desc string, pclass string)
 	return true
 }
 
-// InsertGrsMetaData ...
-// Insert grs meta data from string arguments
-//---------------------------------------------------------------------
-func InsertGrsMetaData(name string, desc string) bool {
-	grsMetaColl := session.DB(dbconf.Dbname).C(dbconf.GrsMetaCollection)
-	dbdata := bson.M{"name": name, "description": desc}
-
-	grsMetaColl.Insert(dbdata)
-
-	return true
-}
-
 // InsertPhenoData ...
 // Insert pheno data from a list
 //---------------------------------------------------------------------
@@ -237,16 +243,116 @@ func InsertPhenoData(phenoname string, phenoitems map[string]string) bool {
 	return true
 }
 
-// InsertGrsInputData ...
-// Insert grs input data from a list of items
+// ******* Stored variantlist section ***********************************
+
+// GetVarlistByName ...
+// Get all entries for a variantlist by name
 //---------------------------------------------------------------------
-func InsertGrsInputData(name string, items map[string][]string) bool {
+func GetVarlistByName(name string) ([]string, int) {
+	varlist := make([]string, 0, 100)
 
-	grsInputColl := session.DB(dbconf.Dbname).C(dbconf.GrsInputCollection)
+	varlistColl := session.DB(dbconf.Dbname).C(dbconf.VarlistCollection)
 
-	for varid, value := range items {
-		dbdata := bson.M{"name": name, "varid": varid, "ea": value[0], "eaf": value[1], "wgt": value[2]}
-		grsInputColl.Insert(dbdata)
+	variant := DBListVar{}
+
+	find := varlistColl.Find(bson.M{"name": name})
+
+	items := find.Iter()
+	count := 0
+	for items.Next(&variant) {
+		varlist = append(varlist, variant.VarID)
+		count++
+	}
+	return varlist, count
+}
+
+// GetVarlistMetaByName ...
+// Get single entry for the varlistMeta collection by name
+//---------------------------------------------------------------------
+func GetVarlistMetaByName(name string) DBVarlistMeta {
+	varlistMetaColl := session.DB(dbconf.Dbname).C(dbconf.VarlistMetaCollection)
+
+	varlistMeta := DBVarlistMeta{}
+
+	find := varlistMetaColl.Find(bson.M{"name": name})
+
+	items := find.Iter()
+	for items.Next(&varlistMeta) {
+	}
+	return varlistMeta
+}
+
+// GetVarlistMetaNames ...
+// Get all varlist names from the varlist meta collection
+//---------------------------------------------------------------------
+func GetVarlistMetaNames() []string {
+	var varlistNameList = make([]string, 0, 10)
+
+	varlistMetaColl := session.DB(dbconf.Dbname).C(dbconf.VarlistMetaCollection)
+
+	varlistMeta := DBVarlistMeta{}
+
+	find := varlistMetaColl.Find(bson.M{})
+
+	items := find.Iter()
+	for items.Next(&varlistMeta) {
+		varlistNameList = append(varlistNameList, varlistMeta.Name)
+	}
+	return varlistNameList
+}
+
+// InsertVarlistDataWithCheck ...
+// Insert variant list  data
+// but first check for existence (in the varlistMetaColl)
+//---------------------------------------------------------------------
+func InsertVarlistDataWithCheck(name string, desc string,
+	items []string) (bool, string) {
+	msg := ""
+	varlistMetaColl := session.DB(dbconf.Dbname).C(dbconf.VarlistMetaCollection)
+
+	find := varlistMetaColl.Find(bson.M{"name": name})
+
+	metaitems := find.Iter()
+	varlistMeta := DBVarlistMeta{}
+
+	if metaitems.Next(&varlistMeta) != false {
+		return false, "Variant list already exists"
+	}
+	res := InsertVarlistMetaData(name, desc)
+	if res != true {
+		msg = "Failed to insert variant list meta data"
+		return res, msg
+	}
+
+	res = InsertVarlistData(name, items)
+	if res != true {
+		msg = "Failed to insert variant list data"
+	}
+	return res, msg
+}
+
+// InsertVarlistMetaData ...
+// Insert pheno meta data from string arguments
+//---------------------------------------------------------------------
+func InsertVarlistMetaData(name string, desc string) bool {
+	varlistMetaColl := session.DB(dbconf.Dbname).C(dbconf.VarlistMetaCollection)
+	dbdata := bson.M{"name": name, "description": desc}
+
+	varlistMetaColl.Insert(dbdata)
+
+	return true
+}
+
+// InsertVarlistData ...
+// Insert variant list data from a list
+//---------------------------------------------------------------------
+func InsertVarlistData(name string, items []string) bool {
+
+	varlistColl := session.DB(dbconf.Dbname).C(dbconf.VarlistCollection)
+
+	for _, varid := range items {
+		dbdata := bson.M{"name": name, "varid": varid}
+		varlistColl.Insert(dbdata)
 	}
 
 	return true
@@ -279,6 +385,28 @@ func GetGrsInputByName(name string) (map[string][]string, int) {
 	return grsInputData, count
 }
 
+// GetGrsInputAsStringArrayByName ...
+// Get all entries for a phenotype by name
+//---------------------------------------------------------------------
+func GetGrsInputAsStringArrayByName(name string) ([]string, int) {
+	grsInputData := make([]string, 0)
+
+	grsInputColl := session.DB(dbconf.Dbname).C(dbconf.GrsInputCollection)
+
+	grsInput := DBGrsInput{}
+
+	find := grsInputColl.Find(bson.M{"name": name})
+
+	items := find.Iter()
+	count := 0
+	grsInputData = append(grsInputData, "varid,ea,eaf,wgt")
+	for items.Next(&grsInput) {
+		grsInputData = append(grsInputData, fmt.Sprintf("%s,%s,%s,%s", grsInput.Varid, grsInput.Ea, grsInput.Eaf, grsInput.Weight))
+		count++
+	}
+	return grsInputData, count
+}
+
 // GetGrsMetaByName ...
 // Get all entries for a phenotype by name
 //---------------------------------------------------------------------
@@ -299,19 +427,31 @@ func GetGrsMetaByName(name string) DBGrsMeta {
 // Get all pheno names from the pheno meta collection
 //---------------------------------------------------------------------
 func GetGrsMetaNames() []string {
-	var phenoNameList = make([]string, 0, 10)
+	var grsNameList = make([]string, 0, 10)
 
-	phenoMetaColl := session.DB(dbconf.Dbname).C(dbconf.PhenoMetaCollection)
+	grsMetaColl := session.DB(dbconf.Dbname).C(dbconf.GrsMetaCollection)
 
-	phenoMeta := DBPhenoMeta{}
+	grsMeta := DBGrsMeta{}
 
-	find := phenoMetaColl.Find(bson.M{})
+	find := grsMetaColl.Find(bson.M{})
 
 	items := find.Iter()
-	for items.Next(&phenoMeta) {
-		phenoNameList = append(phenoNameList, phenoMeta.Name)
+	for items.Next(&grsMeta) {
+		grsNameList = append(grsNameList, grsMeta.Name)
 	}
-	return phenoNameList
+	return grsNameList
+}
+
+// InsertGrsMetaData ...
+// Insert grs meta data from string arguments
+//---------------------------------------------------------------------
+func InsertGrsMetaData(name string, desc string) bool {
+	grsMetaColl := session.DB(dbconf.Dbname).C(dbconf.GrsMetaCollection)
+	dbdata := bson.M{"name": name, "description": desc}
+
+	grsMetaColl.Insert(dbdata)
+
+	return true
 }
 
 // InsertGrsInputDataWithCheck ...
@@ -342,4 +482,19 @@ func InsertGrsInputDataWithCheck(grsname string, grsdesc string, grsinputitems m
 		msg = "Failed to insert grs input data"
 	}
 	return res, msg
+}
+
+// InsertGrsInputData ...
+// Insert grs input data from a list of items
+//---------------------------------------------------------------------
+func InsertGrsInputData(name string, items map[string][]string) bool {
+
+	grsInputColl := session.DB(dbconf.Dbname).C(dbconf.GrsInputCollection)
+
+	for varid, value := range items {
+		dbdata := bson.M{"name": name, "varid": varid, "ea": value[0], "eaf": value[1], "wgt": value[2]}
+		grsInputColl.Insert(dbdata)
+	}
+
+	return true
 }

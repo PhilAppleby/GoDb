@@ -11,28 +11,31 @@ import (
 // Configuration ...
 // For use throughout the app
 type Configuration struct {
-	Address        string `json:"addr"`
-	ReadTimeout    int64  `json:"readto"`
-	WriteTimeout   int64  `json:"writeto"`
-	Static         string `json:"static"`
-	Templates      string `json:"templates"`
-	VcfPrfx        string `json:"vcfprfx"`
-	Assaytypes     string `json:"assaytypes"`
-	Pthr           string `json:"probthr"`
-	AssocCmd       string `json:"assoccmd"`
-	AssocBinaryCmd string `json:"assoccmdbin"`
-	OutfilePath    string `json:"outfilepath"`
-	PhenofilePath  string `json:"phenofilepath"`
-	PhenoColumns   string `json:"phenocolumns"`
-	GrsfilePath    string `json:"grsfilepath"`
-	GrsColumns     string `json:"grscolumns"`
-	Uploads        string `json:"uploads"`
+	Address         string `json:"addr"`
+	ReadTimeout     int64  `json:"readto"`
+	WriteTimeout    int64  `json:"writeto"`
+	Static          string `json:"static"`
+	Templates       string `json:"templates"`
+	VcfPrfx         string `json:"vcfprfx"`
+	Assaytypes      string `json:"assaytypes"`
+	Pthr            string `json:"probthr"`
+	AssocCmd        string `json:"assoccmd"`
+	AssocBinaryCmd  string `json:"assoccmdbin"`
+	OutfilePath     string `json:"outfilepath"`
+	PhenofilePath   string `json:"phenofilepath"`
+	PhenoColumns    string `json:"phenocolumns"`
+	GrsfilePath     string `json:"grsfilepath"`
+	GrsColumns      string `json:"grscolumns"`
+	VarlistfilePath string `json:"varlistfilepath"`
+	VarlistColumns  string `json:"varlistcolumns"`
+	Uploads         string `json:"uploads"`
 }
 
 var config Configuration
 var logger *log.Logger
 var requestedAssaytypes = map[string]bool{}
 var validPhenoColumns = map[string]bool{}
+var validVarlistColumns = map[string]bool{}
 var validGrsColumns = map[string]bool{}
 
 func init() {
@@ -67,6 +70,11 @@ func loadConfig() {
 		validPhenoColumns[colList[colname]] = true
 	}
 	log.Printf("Valid pheno input cols: %v\n", validPhenoColumns)
+	colList = strings.Split(config.VarlistColumns, ",")
+	for colname := range colList {
+		validVarlistColumns[colList[colname]] = true
+	}
+	log.Printf("Valid varlist input cols: %v\n", validVarlistColumns)
 	colList = strings.Split(config.GrsColumns, ",")
 	for colname := range colList {
 		validGrsColumns[colList[colname]] = true
@@ -80,6 +88,10 @@ func getAssaytypes() map[string]bool {
 
 func getPhenoColMap() map[string]bool {
 	return validPhenoColumns
+}
+
+func getVarlistColMap() map[string]bool {
+	return validVarlistColumns
 }
 
 func getGrsColMap() map[string]bool {
