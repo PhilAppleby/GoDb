@@ -142,10 +142,10 @@ filepaths - one document per SNP panel (assaytype):
 - gopkg.in/mgo.v2/bson golang library
 - github.com/brentp/bix golang library for tabix index access, built on top of BioGo (https://github.com/biogo/biogo)
 - github.com/brentp/irelate/intercases golang library for tabix index access, built on top of BioGo (https://github.com/biogo/biogo)
-- PLINK version v1.90p 64-bit, built for the target architecture 
+- PLINK version v1.90p 64-bit, built for the target architecture
 
 ## Index Web-Page
-Front page displayed by the prototype web-application (golang version), with a SNP and a named phenotype selected
+Front page displayed by the prototype web-application (golang version), with a SNP but no named phenotype selected
 
 ![](images/godb_index_page.png)
 
