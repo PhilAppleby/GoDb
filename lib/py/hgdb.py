@@ -1,3 +1,4 @@
+# Methods to access the human reference genome database (MongoDb)
 import time
 import pymongo
 
