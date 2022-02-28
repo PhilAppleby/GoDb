@@ -1,4 +1,5 @@
 // Package grs ...
+// Build GRS scores from VCF records
 //
 package grs
 

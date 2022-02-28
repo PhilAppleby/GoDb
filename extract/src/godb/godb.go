@@ -1,7 +1,7 @@
 // Package godb ...
 // A collection of methods for GoDb (MongoDb) access
-// Including variant and sample retrieval and tabix indexed
-// VCF file access
+// Including variant and sample retrieval
+// Also included is tabix indexed VCF file access via goroutines
 //
 package godb
 

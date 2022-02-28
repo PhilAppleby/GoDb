@@ -3,7 +3,7 @@ package genometrics
 //
 // Calculate selected metrics for a VCF record-as-slice
 // These include HWEP, CR, MAF
-// Note that the use of runParameters is not implemented as yet
+// Note that the use of runParameters is not implemented as yet (TODO)
 //
 //
 import (

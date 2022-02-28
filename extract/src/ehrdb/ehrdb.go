@@ -1,6 +1,8 @@
 //
 // ehrdb - a collection of methods for EhrDb (MongoDb) access
 // - add data to and retrieve from pheno, pheno_meta
+// - add data to and retrieve from grs, grs_meta
+// - add data to and retrieve from varlist, varlist_meta
 //
 package ehrdb
 

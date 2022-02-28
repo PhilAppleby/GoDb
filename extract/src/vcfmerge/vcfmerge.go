@@ -1,11 +1,11 @@
-package vcfmerge
-
 //---------------------------------------------------------
 // File: vcfmerge.go
 // Functions to merge (combine, merge is a misnomer) arrays
+// This is a cnetral module to the whole best-guess genotype process
 // of VCF genotype data
 // Author: P Appleby, University of Dundee
-//---------------------------------------------------------
+//---------------------------------------------------------package vcfmerge
+
 import (
 	"genometrics"
 	"log"

@@ -3,7 +3,8 @@
 // Steps:
 // 1) Read in a file of rsids and GRS information, including effect allele and
 // wgt to apply
-// 2) For each:
+// 2) For each SNP fine the data via the GoDb API
+// 3) Run the GetScores fn in the grs module
 //------------------------------------------------------------------------------
 package main
 

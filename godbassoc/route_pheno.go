@@ -1,3 +1,6 @@
+// route_pheno.go
+// Functions to upload phenotype files and load them into the ehr database
+//
 package main
 
 import (

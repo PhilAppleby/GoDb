@@ -1,5 +1,5 @@
 // Package variant ...
-// Everything VCF variant related
+// Everything VCF variant related (conforms to VCF 4.2, but not comprehensive)
 // Author: P Appleby, UoD
 package variant
 

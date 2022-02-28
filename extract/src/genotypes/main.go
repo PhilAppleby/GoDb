@@ -1,20 +1,19 @@
 //------------------------------------------------------------------------------
 // Access GoDb via the imported mongo libraries and (in 'vcfmerge')
-// tabix libraries to produce combined vcf records
+// tabix libraries to find all genotypes for a sampleId
 //
-// Uses goroutines (in godb.go now) for file i/o, care need to ba taken over the
+// Uses goroutines for file i/o, care need to ba taken over the
 // number of open file handles as a long list of SNPs can mean
 // 1000's of file reads
 //
 // Steps:
-// 1) Read in a file of rs numbers or a single rsid
-// 2) For each:
-//    2.1 get 'variants' and 'filepaths' data from mongodb, access VCF records
-//    2.2 save vcf records in maps of arrays (rsid -> array of VCF records
-// 3) Organise assaytypes found in the data and build a combined column list and
-//    VCF header record for all present.
-// 4) Build combined VCF records, applying genotype resolution rules
-// 5) Output combined records.
+// 1) Get a single sampleId from the command line
+// 2) Get a single rsId from the command line
+// 3) for the sampleId find all samples collection entries (often just 1)
+// from MongoDB - this gives the array slot numbers in each assayType
+// 4) call godb.Getallvardata for the single rsid
+// TODO - complete this
+//
 //------------------------------------------------------------------------------
 package main
 
@@ -37,7 +36,7 @@ import (
 // file-scope vars, accessed by multiple funcs
 //------------------------------------------------
 var logFilePath string
-var rsFilePath string
+var sampleID string
 var rsID string
 var vcfPathPref string
 var threshold float64
@@ -55,10 +54,10 @@ var fsem chan struct{}
 //------------------------------------------------
 func init() {
 	const (
-		defaultLogFilePath = "./data/vcombine_output.log"
+		defaultLogFilePath = "./data/genotypes_output.log"
 		lusage             = "Log file"
-		defaultRsFilePath  = "./data/rslist1.txt"
-		rsusage            = "File containing list of rsnumbers"
+		defaultSamplwID    = ""
+		sampleidusage      = "Single sample_id"
 		defaultRsID        = ""
 		rsidusage          = "Single rsid"
 		defaultvcfPathPref = ""
@@ -103,7 +102,6 @@ func check(e error) {
 //------------------------------------------------
 func main() {
 	// set up logging to a file, TODO move to init()
-	log.Printf("Open logfile %s\n", logFilePath)
 	lf, err := os.OpenFile(logFilePath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0640)
 	check(err)
 	defer lf.Close()
@@ -119,7 +117,6 @@ func main() {
 	rsidCount := 0
 
 	if rsID == "" {
-		log.Printf("Open rsfile %s\n", rsFilePath)
 		f, err := os.Open(rsFilePath)
 		check(err)
 		defer f.Close()
@@ -144,7 +141,7 @@ func main() {
 		// For each variant, filepath combination get a file record
 		for idx, variant := range variants {
 			if _, ok := validAssaytypes[variant.Assaytype]; ok {
-				log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
+				//log.Printf("##VAR FILEPATH %v, %s\n", variant, filepaths[idx])
 				wg.Add(1)
 				go getvarfiledata(filepaths[idx], variant, fileRecords, &wg)
 			}

@@ -35,7 +35,7 @@ import (
 )
 
 // min_posn = 0
-// maxPosn is intended to be greater than any value for genomic position
+// maxPosn is intended to be greater than any possible value for genomic position
 const maxPosn int64 = 999999999999
 
 var emptyRecord = []string{}

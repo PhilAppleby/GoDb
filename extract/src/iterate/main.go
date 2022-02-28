@@ -2,6 +2,7 @@
 // Test test application to iterate over a list of rsid's, to
 // Get genotype data from the GoDb data store, main pupose is to time
 // iterations to produce performance statistics.
+// TODO - might delete this
 //------------------------------------------------------------------------------
 package main
 
