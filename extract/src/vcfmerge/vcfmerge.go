@@ -1,3 +1,5 @@
+package vcfmerge
+
 //---------------------------------------------------------
 // File: vcfmerge.go
 // Functions to merge (combine, merge is a misnomer) arrays

@@ -5,9 +5,9 @@ from hwehelper import Hwehelper
 from mafhelper import Mafhelper
 from godb import GoDb
 from vcfrecord import VCFrecord
-from zipfile import ZipFile
-from zipfile import ZIP_DEFLATED
+
 from config import RSLISTMAX
+from config import ASSAY_TYPES
 
 class DataStore():
   def __init__(self):
@@ -18,7 +18,8 @@ class DataStore():
     self.variant_totals = []
     self.sample_count = -1
     self.call_rates = {}
-    self.maxrslist = 200
+    self.maxrslist = RSLISTMAX
+    self.allowed_assay_types = {}
 
   def get_db_name(self):
     return self.godb.get_dbname()
@@ -29,19 +30,19 @@ class DataStore():
   def get_variant_data_for_file(self, filepath, threshold):
     msg = ""
     pattern = re.compile('[\W_]+')
-     
+
     try:
       f = open(filepath, "r")
     except IOError as e:
       msg = filepath + ":" + e.strerror
       return([],msg)
     count = 0
-    
+
     rslist = []
     for line in f:
       count += 1
       if count > self.maxrslist:
-        msg = "line count for %s gt the limit (%d)" % (filepath, self.maxrslist)  
+        msg = "line count for %s gt the limit (%d)" % (filepath, self.maxrslist)
         return ([], msg)
       line = line.strip()
       pattern.sub('', line)
@@ -90,7 +91,7 @@ class DataStore():
     for rsid in rslist:
       rsidx[rsid] = idx
       idx +=1
-    
+
     assaytypes['combined'] = 1
     by_platform_data = {}
     for assaytype in assaytypes:
@@ -102,7 +103,7 @@ class DataStore():
       hdrData.append(rsid + "_p")
       hdrData.append(rsid + "_alt")
     hdrString = ','.join(hdrData)
-    
+
     for assaytype in assaytypes:
       by_platform_data[assaytype].append(hdrString)
     for samp in sampleDict:
@@ -110,36 +111,44 @@ class DataStore():
       filled_output_lines = {}
       filled_output_lines['combined'] = True
       for assaytype in assaytypes:
-        output_lines[assaytype] = ["" for x in range(len(rslist) * 4)] 
+        output_lines[assaytype] = ["" for x in range(len(rslist) * 4)]
       for rsid in sampleDict[samp]:
         if len(sampleDict[samp][rsid]) > 0: # if a sample wasn't genotyped on any platform there might not be data
-          idxoffset = rsidx[rsid] * 4 
+          idxoffset = rsidx[rsid] * 4
           # resolve_geno is at the crux - need to change to test CR?
           #logging.info("Call resolve_geno %s, %s", samp, str(sampleDict[samp][rsid]))
           geno_data = self.resolve_geno(sampleDict[samp][rsid], rsid, samp, threshold, atpidx)
-          dataVals = geno_data[2].split(':')
-          #print "build_csv_data:", geno_data
-          probVals = dataVals[atpidx[geno_data[0]]].split(',')
-          (probcall, intcall, outprob) = self.var_coll.get_call(probVals, threshold)
+          intcall = -9
+          outprob = 1
+          try:
+            dataVals = geno_data[2].split(':')
+            #print "build_csv_data:", geno_data
+            probVals = dataVals[atpidx[geno_data[0]]].split(',')
+            (probcall, intcall, outprob) = self.var_coll.get_call(probVals, threshold)
+          except IndexError:
+            logging.info("Caught idx error: %s, %s, %s, %s", geno_data[0], samp, rsid, str(dataVals))
           output_lines['combined'][idxoffset] = str(intcall)
           output_lines['combined'][idxoffset+1] = str(outprob)
           output_lines['combined'][idxoffset+2] = geno_data[0]
           output_lines['combined'][idxoffset+3] = geno_data[4]
           for geno_data in sampleDict[samp][rsid]:
-            dataVals = geno_data[2].split(':')
-            probVals = dataVals[atpidx[geno_data[0]]].split(',')
-            (probcall, intcall, outprob) = self.var_coll.get_call(probVals, threshold)
+            try:
+              dataVals = geno_data[2].split(':')
+              probVals = dataVals[atpidx[geno_data[0]]].split(',')
+              (probcall, intcall, outprob) = self.var_coll.get_call(probVals, threshold)
+            except IndexError:
+              logging.info("Caught idx error: %s, %s, %s, %s", geno_data[0], samp, rsid, str(dataVals))
             output_lines[geno_data[0]][idxoffset] = str(intcall)
             output_lines[geno_data[0]][idxoffset+1] = str(outprob)
             output_lines[geno_data[0]][idxoffset+2] = geno_data[0]
             output_lines[geno_data[0]][idxoffset+3] = geno_data[4]
             filled_output_lines[geno_data[0]] = True
-      
+
       for assaytype in assaytypes:
         if assaytype in filled_output_lines:
           by_platform_data[assaytype].append(samp + "," + ",".join(output_lines[assaytype]))
     return by_platform_data
-  
+
   def resolve_geno(self, genlist, rsid, samp, threshold, atpidx):
     maxprob = 0.0
     maxidx = -1
@@ -193,23 +202,28 @@ class DataStore():
 
   def make_zipfile(self, sample_return_data, snp_return_data, uploadDir, zipfilename):
     """
-    moved here from views.py
+    Create a zip file from the data in the arguments, write it to the
+    uploadDir with zipfilename
     """
+    from zipfile import ZipFile
+    from zipfile import ZIP_DEFLATED
+
     ares = {}
     for assaytype in sample_return_data:
       ares[assaytype] = '\n'.join(sample_return_data[assaytype]) + '\n'
-    zipname = uploadDir + "/" + zipfilename
-    with ZipFile(zipname, 'w') as resZip:
+    zipFilePath = uploadDir + "/" + zipfilename
+    with ZipFile(zipFilePath, 'w') as resZip:
       resZip.writestr('snp_summary.csv', snp_return_data, ZIP_DEFLATED)
       for assaytype in ares:
         resZip.writestr(assaytype + '_samples.csv', ares[assaytype], ZIP_DEFLATED)
-    with open(zipname, 'r') as f:
-      body = f.read()
-    return(body)
-    response = make_response(body)
-    response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
-    return(response)
-  
+    return(zipFilePath)
+    #with open(zipname, 'r') as f:
+    #  body = f.read()
+    #return(body)
+    #response = make_response(body)
+    #response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
+    #return(response)
+
   def get_rslist_file_data(self, filepath, threshold, download_list):
     msg = None
     try:
@@ -218,12 +232,12 @@ class DataStore():
       msg = filepath + ":" + e.strerror
       return([],[],msg)
     count = 0
-    
+
     rslist = []
     for line in f:
       count += 1
       if count > 500:
-        msg = "line count for %s gt the limit (%d)" % (filepath, 500)  
+        msg = "line count for %s gt the limit (%d)" % (filepath, 500)
         return ([], [], msg)
       line = line.strip()
       elems = line.split()
@@ -269,8 +283,8 @@ class DataStore():
         Afreq[doc["rsid"] + "_" + doc["assaytype"]] = alleleAf
         Bfreq[doc["rsid"] + "_" + doc["assaytype"]] = alleleBf
         data_count += 1
-        hwep = float(p_hwe) 
-          
+        hwep = float(p_hwe)
+
         assaytypelist.append(doc["assaytype"])
         data.append(vcfr)
         if doc["assaytype"] not in assaytypes:
@@ -288,10 +302,10 @@ class DataStore():
     pdata = self.get_sample_values(assaytypelist, data, data_count, rslist, impDict, assaytypes, Afreq, Bfreq, threshold)
     return(pdata, snpdata, msg)
 
-  def get_sample_values(self, assaytypelist, records, numrecs, rslist, impDict, 
+  def get_sample_values(self, assaytypelist, records, numrecs, rslist, impDict,
       assaytypes, Afreq, Bfreq, threshold):
     """Process vcf records
-      NOTE: impDict keyed on a composite of rsid_platform 
+      NOTE: impDict keyed on a composite of rsid_platform
        """
     samplesByAt = {}
     for assaytype in assaytypes:
@@ -327,10 +341,10 @@ class DataStore():
         if samplesByAt[assaytype][idx] in sampleDict:
           sampleId = samplesByAt[assaytype][idx]
           values_totals += 1
-          sampleDict[sampleId][rsid].append([assaytype,impDict[rsid  
-            + "_" + assaytype],sfx[idx],alleleA,alleleB, 
+          sampleDict[sampleId][rsid].append([assaytype,impDict[rsid
+            + "_" + assaytype],sfx[idx],alleleA,alleleB,
             Afreq[rsid  + "_" + assaytype], Bfreq[rsid  + "_" + assaytype]])
-      rscount += 1 
+      rscount += 1
 
     by_assaytype_data = self.build_csv_data(rslist, sampleDict, assaytypes, threshold, atpidx)
 
@@ -348,10 +362,10 @@ class _variants():
 
   def get_variant_data(self, variantid, assaytype):
     """
-    Get the data for a genetic variant / assay platform combination 
+    Get the data for a genetic variant / assay platform combination
     """
-    doc = self.godb.get_one_variant_for_assaytype(assaytype)
-  
+    doc = self.godb.get_one_variant_for_assaytype(assaytype, ASSAY_TYPES)
+
     # can return 'None' if query fails
     return doc
 
@@ -361,20 +375,20 @@ class _variants():
     """
     docs = []
 
-    cursor = self.godb.get_multiple_variants(variantid)
-  
+    cursor = self.godb.get_multiple_variants(variantid, ASSAY_TYPES)
+
     for doc in cursor:
       doc["samplecount"] = self.sample_coll.get_count(doc["assaytype"])
       docs.append(doc)
-    # can return [] if query fails
+    # can return [] if query fails or if assaytype not in list
     return docs
 
   def get_variant_data_by_range(self, chromosome, start, end):
     """
-    Get the data for variants within a genomic range 
+    Get the data for variants within a genomic range
     """
     # delegate to godb
-    return self.godb.get_variant_data_by_range(chromosome, start, end)
+    return self.godb.get_variant_data_by_range(chromosome, start, end, ASSAY_TYPES)
 
   def get_raw_variant_values(self, filepath, chromosome, posn):
     """
@@ -392,12 +406,13 @@ class _variants():
     sample_count = 0
     genotype_counts = {}
     for sample_value in sample_values:
-      sample_count += 1
-      genoValues = sample_value.split(':')
-      probVals = genoValues[probidx].split(',')
-      (key, ccode, maxprob) = self.get_call(probVals, threshold)
-      genotype_counts[key] = genotype_counts.get(key, 0) + 1
-    
+      if sample_value != ".":
+        sample_count += 1
+        genoValues = sample_value.split(':')
+        probVals = genoValues[probidx].split(',')
+        (key, ccode, maxprob) = self.get_call(probVals, threshold)
+        genotype_counts[key] = genotype_counts.get(key, 0) + 1
+
     hom1_ct = 0
     hom2_ct = 0
     het_ct = 0
@@ -428,7 +443,7 @@ class _variants():
     if (threshold !=0.0):
       if max_prob < threshold:
         max_idx = 3
-  
+
     return (self.calls[max_idx], self.icalls[max_idx], max_prob)
 
   def get_geno_data(self, rsid, sample_id, assaytype_list_posns):
@@ -471,7 +486,7 @@ class _samples():
       self.sample_counts[assaytype] = self.godb.get_sample_count(assaytype)
 
     return self.sample_counts[assaytype]
-  
+
   def get_samples(self, assaytype):
     """
     Get list of sampleids for assaytype in index order (that is, the order found in the .gen and .vcf files)
@@ -482,4 +497,3 @@ class _samples():
     self.sampleLists[assaytype] = self.godb.get_samples(assaytype)
 
     return self.sampleLists[assaytype]
-

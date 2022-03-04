@@ -190,7 +190,7 @@ class GoDb():
   def get_variants_len(self):
     return len(self.variantbuff)
 
-  def get_one_variant_for_assaytype(self, rsid, assaytype):
+  def get_one_variant_for_assaytype(self, rsid, assaytype, valid_assaytypes=None):
     """
     Find one variant "variant" record, for an rsid, assaytype
     """
@@ -204,10 +204,16 @@ class GoDb():
       print("Unexpected error one variant find:", sys.exc_info()[0])
       sys.exit()
 
-    # can return 'None' if query fails
+    if doc == None:
+      return None
+
+    if valid_assaytype != None:
+      if doc["assaytype"] not in valid_assaytypes:
+        return None
+
     return doc
 
-  def get_one_variant(self, rsid):
+  def get_one_variant(self, rsid, valid_assaytypes=None):
     query = {}
     query["rsid"] = rsid
 
@@ -220,20 +226,24 @@ class GoDb():
     # can return 'None' if query fails
     return doc
 
-  def get_multiple_variants(self, rsid):
+  def get_multiple_variants(self, rsid, valid_assaytypes=None):
     query = {}
     query["rsid"] = rsid
 
     try:
-      curs = self.variants.find(query)
+      docs = self.variants.find(query)
     except:
       print("Find multiple variants error:", sys.exc_info()[0])
       sys.exit()
 
-    # can return 'None' if query fails
-    return curs
+    rtndocs = []
+    for doc in docs:
+      if doc["assaytype"] in valid_assaytypes:
+        rtndocs.append(doc)
+    # can return [] if query fails
+    return rtndocs
 
-  def get_variant_data_by_range(self, chromosome, start, end):
+  def get_variant_data_by_range(self, chromosome, start, end, valid_assaytypes=None):
     """
     Get the data for variants within a genomic range
     """
@@ -251,7 +261,7 @@ class GoDb():
       return (docs, msg)
 
     query = {}
-    query['chromosome'] = chromosome = "{0:.2d}".format((int(chromosome)))
+    query['chromosome'] = chromosome = "{0:0>2}".format((int(chromosome)))
     query['position'] = {}
     query['position']['$gte'] = start_pos
     query['position']['$lte'] = end_pos
@@ -327,14 +337,15 @@ class GoDb():
     try:
       query = {}
       query['assaytype'] = assaytype
-      count = self.samples.find(query).count()
+      #count = self.samples.find(query).count()
+      count = self.samples.count_documents(query)
     except:
       print("get_sample_count: Unexpected ERROR:", sys.exc_info())
       sys.exit()
 
     return count
 
-  def get_sample_posns(self, sample_id):
+  def get_sample_posns(self, sample_id, valid_assaytypes=None):
     """
     Get samples positions (can be multiple by assaytype)
     """
@@ -349,7 +360,8 @@ class GoDb():
       sys.exit()
 
     for doc in cursor:
-      sample_posns[doc["assaytype"]] = int(doc["list_posn"])
+      if doc["assaytype"] in valid_assaytypes:
+        sample_posns[doc["assaytype"]] = int(doc["list_posn"])
     return sample_posns
 
   # methods relating to the filepaths collection

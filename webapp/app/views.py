@@ -7,7 +7,7 @@ import os
 import time
 import logging
 from flask import render_template, flash, redirect, session, url_for, request, g
-from flask import make_response, send_from_directory
+from flask import make_response, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 from app import app
 from app import ds
@@ -46,7 +46,7 @@ def index(rsid=None, threshold=0.9, procopt=None):
   variant_data = []
   threshold = float(threshold)
   if rsid != None:
-    logging.info("RSID-present")
+    logging.info("RSID-present %s", rsid)
     if procopt == 'download':
       logging.info("Initiate download")
       logging.info("request - %s", str(request.form))
@@ -54,10 +54,8 @@ def index(rsid=None, threshold=0.9, procopt=None):
       logging.info("download_list - %s", str(download_list))
       (sample_return_data, snp_return_data, msg) = ds.get_rslist_data([rsid], threshold, download_list)
       zipfilename = rsid + "_single_snp_results.zip"
-      body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
-      response = make_response(body)
-      response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
-      return response
+      zipFilePath = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+      return send_file(zipFilePath, as_attachment=True)
 
     (variant_data, msg) = ds.get_variant_summary_probs(rsid, threshold)
     form.rs.data = rsid
@@ -86,16 +84,16 @@ def range(chromosome = None, start = None, end=None, procopt=None):
     threshold = 0.9
     if "dbtn" in request.form and procopt != "download":
       procopt = 'download'
-      return redirect(url_for('range', 
-        chromosome=form.chromosome.data, 
-        start=form.start.data, 
+      return redirect(url_for('range',
+        chromosome=form.chromosome.data,
+        start=form.start.data,
         end=form.end.data,
         procopt=procopt), code=307)
     if procopt != "download":
       procopt = 'display'
-      return redirect(url_for('range', 
-        chromosome=form.chromosome.data, 
-        start=form.start.data, 
+      return redirect(url_for('range',
+        chromosome=form.chromosome.data,
+        start=form.start.data,
         end=form.end.data,
         procopt=procopt))
   variant_data = []
@@ -106,11 +104,9 @@ def range(chromosome = None, start = None, end=None, procopt=None):
       logging.info("Range - download_list - %s", str(download_list))
       (sample_return_data, snp_return_data, msg) = ds.get_range_data(chromosome, start, end, threshold, download_list)
       zipfilename = "%s_%s_%s_%s" % (chromosome, start, end, "range_results.zip")
-      body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
-      response = make_response(body)
-      response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
-      return response
-      
+      zipFilePath = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+      return send_file(zipFilePath, as_attachment=True)
+
     (variant_data, msg) = ds.get_variant_data_by_range(chromosome, start, end)
     form.chromosome.data = chromosome
     form.start.data = start
@@ -180,7 +176,5 @@ def download(filename=None, threshold=0.9):
 
   (sample_return_data, snp_return_data, msg) = ds.get_rslist_file_data(app.config['UPLOAD_DIR'] + "/" + filename, threshold, download_list)
   zipfilename = filename + "_file_results.zip"
-  body = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
-  response = make_response(body)
-  response.headers["Content-Disposition"] = "attachment; filename=" + zipfilename
-  return response
+  zipFilePath = ds.make_zipfile(sample_return_data, snp_return_data, app.config['UPLOAD_DIR'], zipfilename)
+  return send_file(zipFilePath, as_attachment=True)

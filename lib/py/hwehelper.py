@@ -21,13 +21,13 @@ class Hwehelper():
     obs_homc = obs_hom2 if obs_hom1 < obs_hom2 else obs_hom1
     obs_homr = obs_hom1 if obs_hom1 < obs_hom2 else obs_hom2
 
-    rare_copies = 2 * obs_homr + obs_hets
+    rare_copies = int(2 * obs_homr + obs_hets)
     common_copies = 2 * obs_homc + obs_hets
     genotypes = num_samples
 
     het_probs = [0.0] * (rare_copies + 1)
 
-    mid = rare_copies * (2 * genotypes - rare_copies) / (2 * genotypes)
+    mid = int(rare_copies * (2 * genotypes - rare_copies) / (2 * genotypes))
     if (rare_copies & 1) ^ (mid & 1):
       mid += 1
 
@@ -38,7 +38,7 @@ class Hwehelper():
     het_probs[mid] = 1.0
     sum = float(het_probs[mid])
 
-    for curr_hets in xrange(mid, 1, -2):
+    for curr_hets in range(mid, 1, -2):
       het_probs[curr_hets - 2] = het_probs[curr_hets] * curr_hets * (curr_hets - 1.0) / (4.0 * (curr_homr + 1.0) * (curr_homc + 1.0))
 
       sum += het_probs[curr_hets - 2];
@@ -50,7 +50,7 @@ class Hwehelper():
     curr_homr = (rare_copies - mid) / 2
     curr_homc = genotypes - curr_hets - curr_homr
 
-    for curr_hets in xrange(mid, rare_copies - 1, 2):
+    for curr_hets in range(mid, rare_copies - 1, 2):
 
       het_probs[curr_hets + 2] = het_probs[curr_hets] * 4.0 * curr_homr * curr_homc / ((curr_hets + 2.0) * (curr_hets + 1.0))
 
@@ -61,16 +61,16 @@ class Hwehelper():
       curr_homc -= 1
 
     
-    for i in xrange(0, rare_copies + 1):
+    for i in range(0, rare_copies + 1):
       het_probs[i] /= sum
 
     # alternate p-value calculation for p_hi/p_lo
     p_hi = float(het_probs[obs_hets])
-    for i in xrange(obs_hets, rare_copies+1):
+    for i in range(obs_hets, rare_copies+1):
       p_hi += het_probs[i]
 
     p_lo = float(het_probs[obs_hets])
-    for i in xrange(obs_hets-1, -1, -1):
+    for i in range(obs_hets-1, -1, -1):
       p_lo += het_probs[i]
 
     p_hi_lo = 2.0 * p_hi if p_hi < p_lo else 2.0 * p_lo
@@ -78,7 +78,7 @@ class Hwehelper():
     p_hwe = 0.0
 
     #  p-value calculation for p_hwe
-    for i in xrange(0, rare_copies + 1):
+    for i in range(0, rare_copies + 1):
       if het_probs[i] > het_probs[obs_hets]:
         continue;
       p_hwe += het_probs[i]
