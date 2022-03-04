@@ -1,5 +1,5 @@
 # Load the mongodb metadata samples collection
-# 
+#
 import time
 import re
 import os, sys
@@ -38,5 +38,4 @@ def main():
 # execution flow starts here
 #
 scount, gcount = main()
-print "END:", time.time() - start_time, "seconds", scount, gcount
-
+print("END: {0:.5f} seconds sampcount={1}, genocount={2}".format(time.time() - start_time, scount, gcount))

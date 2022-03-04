@@ -132,7 +132,7 @@ filepaths - one document per SNP panel (assaytype):
 ```
 
 ## Dependencies
-- Python 2.7.6 (TODO convert to running under Python 3)
+- Python 3 (Testing done with Python 3.9.5)
 - Go 1.15.15 (TODO make module changes to allow move to Go 1.17)
 - MongoDb community edition (version 3 upwards, tested to 4.2.1)
 - Tabix (0.2.5)

@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------
 # Command line args:
 # ----------------------------------------------------------------
-# 
+#
 import time
 import pymongo
 import re
@@ -81,5 +81,4 @@ def main():
 parser = OptionParser()
 
 rec_count, gen_length, out_total = main()
-print "END:", time.time() - start_time, "seconds", rec_count, gen_length, out_total, genome_str_len
-
+print("END: {0:.5f} seconds stats={1},{2},{3},{4}".format(time.time() - start_time, rec_count, gen_length, out_total, genome_str_len))

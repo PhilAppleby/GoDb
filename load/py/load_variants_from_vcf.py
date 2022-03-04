@@ -1,5 +1,5 @@
 # Load the mongodb metadata markers collection
-# 
+#
 import time
 import os, sys
 from optparse import OptionParser
@@ -24,7 +24,7 @@ def main(options):
       pass
     else:
       godb.process_variant_detail_vcf(line, options.assaytype)
-      count += 1 
+      count += 1
       if (godb.get_variants_len() >= flush_at):
         godb.flush_variant_buff()
         print ".", time.time() - start_time, "seconds", count
@@ -42,4 +42,4 @@ parser.add_option("-a", "--assaytype", dest="assaytype",
 (options, args) = parser.parse_args()
 
 rec_count = main(options)
-print "END:", time.time() - start_time, "seconds", rec_count
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))

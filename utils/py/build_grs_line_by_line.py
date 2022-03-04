@@ -148,4 +148,5 @@ else:
   options.flipgeno = True
 
 count = main(options)
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, count))
 #print "END:", time.time() - start_time, "seconds", count

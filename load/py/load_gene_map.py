@@ -1,5 +1,5 @@
 # Load the mongodb genemap collection
-# 
+#
 import time
 import os, sys
 from godb import GoDb
@@ -23,7 +23,7 @@ def main():
       pass
     else:
       godb.process_genemap_detail(line)
-      count += 1 
+      count += 1
       if (godb.get_genemap_len() >= flush_at):
         godb.flush_genemap_buff()
         print ".", time.time() - start_time, "seconds", count
@@ -35,4 +35,4 @@ def main():
 # execution flow starts here
 #
 rec_count = main()
-print "END:", time.time() - start_time, "seconds", rec_count
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))

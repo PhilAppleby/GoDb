@@ -1,7 +1,7 @@
 # ----------------------------------------------------------------
 # Command line args:
 # ----------------------------------------------------------------
-# 
+#
 import time
 import pymongo
 import re
@@ -28,11 +28,11 @@ def main(options):
   tbxf = Genomefile(genome_str_len)
   tbxf.set_tabix_file(filepath)
 
-  recs = tbxf.get_genome_file_records(int(options.chromosome), int(options.offset)) 
+  recs = tbxf.get_genome_file_records(int(options.chromosome), int(options.offset))
 
   print recs
 
-  return 
+  return
 
 
 # execution flow starts here
@@ -48,5 +48,4 @@ parser.add_option("-o", "--offset", dest="offset",
 
 (options, args) = parser.parse_args()
 main(options)
-print "END:", time.time() - start_time, "seconds", genome_str_len
-
+print("END: {0:.5f} seconds gen strlen={1}".format(time.time() - start_time, genome_str_len))

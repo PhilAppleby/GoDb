@@ -1,5 +1,5 @@
 # Load the mongodb metadata collection
-# 
+#
 import time
 import os, sys
 from optparse import OptionParser
@@ -46,4 +46,4 @@ parser.add_option("-a", "--assaytype", dest="assaytype",
 (options, args) = parser.parse_args()
 
 rec_count = main(options)
-print "END:", time.time() - start_time, "seconds", rec_count
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))

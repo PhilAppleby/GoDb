@@ -1,6 +1,6 @@
 #
 # Add a record to the mongodb genomicsdb_test filepaths collection
-# 
+#
 import time
 import os, sys
 from optparse import OptionParser
@@ -40,5 +40,4 @@ start_time = time.time()
 (options, args) = parser.parse_args()
 
 rec_count = main(options)
-print "END:", time.time() - start_time, "seconds", rec_count
-
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))

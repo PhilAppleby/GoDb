@@ -1,5 +1,5 @@
 # Load the mongodb metadata markers collection
-# 
+#
 import time
 import os, sys
 from optparse import OptionParser
@@ -34,7 +34,7 @@ def main(options):
           print 'UNABLE TO PARSE DETAIL:', data
         else:
           godb.process_marker_detail(hdr, data, options.assaytype)
-          count += 1 
+          count += 1
           if (godb.get_markers_len() >= flush_at):
             godb.flush_marker_data()
             print ".", time.time() - start_time, "seconds", count
@@ -52,4 +52,4 @@ parser.add_option("-a", "--assaytype", dest="assaytype",
 (options, args) = parser.parse_args()
 
 rec_count = main(options)
-print "END:", time.time() - start_time, "seconds", rec_count
+print("END: {0:.5f} seconds output={1}".format(time.time() - start_time, rec_count))
